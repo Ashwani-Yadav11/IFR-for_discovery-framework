@@ -6,25 +6,34 @@ public with sharing class ProcessDocument {
      * @param recordId
      */
     @AuraEnabled
-    public static void uploadFile(String base64,String filename,String recordId )
+    public static ContentVersion uploadFile(String base64,String filename,String recordId )
     {
-            String contentDocumentId = FileUploaderClass.uploadFile(base64, filename, recordId);
-                return contentDocumentId;
+            return FileUploaderClass.uploadFile(base64, filename, recordId);
+                //return contentDocumentId;
     }
     /*
      * @desc extract text from the uploaded file
      * @param {String} contentDocumentId of the uploaded file
-     * @return String
+     * @return {String}
      */
-    @AuraEnabled
-    public static String ocrExtract(String contentDocumentId){
-        // call to authorization
-        String sessionId = UserInfo.getSessionId();
-        console.log(sessionId);
-        // call to ocr api
-        Map<String,Object> texts = ScanDocument.scanDocument(contentDocumentId,sessionId);
-        return null;
-    }
+    // @AuraEnabled
+    // public static String ocrExtract(String contentDocumentId){
+    //     // call to authorization
+    //     String sessionId = UserInfo.getSessionId();
+    //     System.(sessionId);
+    //     // call to ocr api
+    //     Map<String,Object> texts = ScanDocument.scanDocument(contentDocumentId,sessionId);
+    //     return null;
+    // }
+    // /*
+    //  * @desc Upload the question in asses
+    //  * 
+    //  */
+    // public static String createQuestion(String questionParam)
+    // {
+    //         //There are two api that we are supposesd to hit 
+    //         //Assessment Question and Assessment Question Version
+    // }
 
 
 }
