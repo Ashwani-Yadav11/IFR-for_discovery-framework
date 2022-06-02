@@ -23,7 +23,7 @@ export default class FileUpload extends LightningElement {
     handleClick(){
         const {base64, filename, recordId} = this.fileData
         uploadFile({ base64, filename, recordId }).then(result=>{
-            console.log(result);
+            console.log(result,result.VersionData);
             this.fileData = null
             let title = `${filename} uploaded successfully!!`
             this.toast(title)
