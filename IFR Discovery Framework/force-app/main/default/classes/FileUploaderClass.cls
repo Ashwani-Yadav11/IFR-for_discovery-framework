@@ -11,8 +11,8 @@ public with sharing class FileUploaderClass {
    *   upload was successful, otherwise returns null
    */
    
-  public static ContentVersion uploadFile(String base64, String filename, String recordId) {
-        ContentVersion cv = createContentVersion(base64, filename);
+  public static String uploadFile(String base64, String filename, String recordId) {
+        String cv = createContentVersion(base64, filename);
        // ContentDocumentLink cdl = createContentLink(cv.Id, recordId);
         if (cv == null ) { return null; }
         return cv;
@@ -32,23 +32,20 @@ public with sharing class FileUploaderClass {
     cv.VersionData = EncodingUtil.base64Decode(base64);
     cv.Title = filename;
     cv.PathOnClient = filename;
-    
-    try {
+    //cv.ContentDocumentId = '';
+      try {
       insert cv;
-      ContentDistribution cd = new ContentDistribution();
-      cd.name = cv.Title;
-      cd.ContentVersionId = cv.id;
-      cd.PreferencesAllowOriginalDownload = true;
-      cd.PreferencesAllowPDFDownload = true;
-      cd.PreferencesAllowViewInBrowser = true;
-      insert cd;  
-      List<ContentDistribution>   cdList = [select id,DistributionPublicUrl from ContentDistribution where id =: cd.id];  
-      system.debug('cd.DistributionPublicUrl: ' + cdList[0].DistributionPublicUrl);
-
-      return cdList[0].DistributionPublicUrl;
+      String s = [
+        SELECT ContentDocumentId 
+        FROM ContentVersion 
+         WHERE Id =: cv.Id
+          ].ContentDocumentId;
+      // cv.TestId = s;
+     // cv.ContentDocumentId = s;
+      return s;
     } catch(DMLException e) {
       System.debug(e);
-      return 'cv2';
+      return null;
     }
   }
   // private static ContentDocumentLink createContentLink(String contentVersionId, String recordId) {

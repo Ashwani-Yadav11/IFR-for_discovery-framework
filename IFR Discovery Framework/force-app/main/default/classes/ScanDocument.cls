@@ -8,6 +8,7 @@ public with sharing class ScanDocument {
      * @param {String} contentDocumentId is the id of document uploaded on platform
      * @param {String} sessionId id used as an authentication token while doing rest requests 
      */
+<<<<<<< HEAD
      public  Map<String,Object> scanDocument(String contentDocumentId,String sessionId)
      {
         Http http = new Http();
@@ -24,4 +25,17 @@ public with sharing class ScanDocument {
         }
         return null; 
      }
+=======
+
+     // 
+    public  Map<String,Object> scanDocument(String contentDocumentId,String sessionId)
+    {
+        /**
+         * Http http = new Http();
+         * HttpRequest req = .....
+         * 
+         */
+        return null;
+    }
+>>>>>>> main
 }
