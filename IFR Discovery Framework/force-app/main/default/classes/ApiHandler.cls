@@ -3,7 +3,7 @@ public with sharing class ApiHandler {
     {
         Http http = new Http();
         HttpRequest request = new HttpRequest();
-        String ApiEndPoint = 'https://discoveryframeworkidiscover-dev-ed.my.stmfb.stm.salesforce.com/services/data/v55.0/connect/form-reader/contentDocuments/';
+        String ApiEndPoint = StaticResources.API_URL;
         request.setEndpoint();
         request.setMethod('GET');
         return null;
