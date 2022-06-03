@@ -6,7 +6,7 @@ public with sharing class ProcessDocument {
      * @param recordId
      */
     @AuraEnabled
-    public static ContentVersion uploadFile(String base64,String filename,String recordId )
+    public static String uploadFile(String base64,String filename,String recordId )
     {
             return FileUploaderClass.uploadFile(base64, filename, recordId);
                 //return contentDocumentId;

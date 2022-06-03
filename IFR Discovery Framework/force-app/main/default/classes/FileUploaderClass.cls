@@ -11,8 +11,8 @@ public with sharing class FileUploaderClass {
    *   upload was successful, otherwise returns null
    */
    
-  public static ContentVersion uploadFile(String base64, String filename, String recordId) {
-        ContentVersion cv = createContentVersion(base64, filename);
+  public static String uploadFile(String base64, String filename, String recordId) {
+        String cv = createContentVersion(base64, filename);
        // ContentDocumentLink cdl = createContentLink(cv.Id, recordId);
         if (cv == null ) { return null; }
         return cv;
@@ -27,18 +27,25 @@ public with sharing class FileUploaderClass {
    * @return {ContentVersion} - returns the newly created ContentVersion, or null
    *   if there was an error inserting the record
    */
-  private static ContentVersion createContentVersion(String base64, String filename) {
+  private static String createContentVersion(String base64, String filename) {
     ContentVersion cv = new ContentVersion();
     cv.VersionData = EncodingUtil.base64Decode(base64);
     cv.Title = filename;
     cv.PathOnClient = filename;
-    
-    try {
+    //cv.ContentDocumentId = '';
+      try {
       insert cv;
-      return cv;
+      String s = [
+        SELECT ContentDocumentId 
+        FROM ContentVersion 
+         WHERE Id =: cv.Id
+          ].ContentDocumentId;
+      // cv.TestId = s;
+     // cv.ContentDocumentId = s;
+      return s;
     } catch(DMLException e) {
       System.debug(e);
-      return cv2;
+      return null;
     }
   }
   // private static ContentDocumentLink createContentLink(String contentVersionId, String recordId) {

@@ -17,5 +17,6 @@ public with sharing class ScanDocument {
          * HttpRequest req = .....
          * 
          */
+        return null;
     }
 }
