@@ -27,7 +27,7 @@ public with sharing class FileUploaderClass {
    * @return {ContentVersion} - returns the newly created ContentVersion, or null
    *   if there was an error inserting the record
    */
-  private static ContentVersion createContentVersion(String base64, String filename) {
+  private static String createContentVersion(String base64, String filename) {
     ContentVersion cv = new ContentVersion();
     cv.VersionData = EncodingUtil.base64Decode(base64);
     cv.Title = filename;
@@ -35,10 +35,20 @@ public with sharing class FileUploaderClass {
     
     try {
       insert cv;
-      return cv;
+      ContentDistribution cd = new ContentDistribution();
+      cd.name = cv.Title;
+      cd.ContentVersionId = cv.id;
+      cd.PreferencesAllowOriginalDownload = true;
+      cd.PreferencesAllowPDFDownload = true;
+      cd.PreferencesAllowViewInBrowser = true;
+      insert cd;  
+      List<ContentDistribution>   cdList = [select id,DistributionPublicUrl from ContentDistribution where id =: cd.id];  
+      system.debug('cd.DistributionPublicUrl: ' + cdList[0].DistributionPublicUrl);
+
+      return cdList[0].DistributionPublicUrl;
     } catch(DMLException e) {
       System.debug(e);
-      return cv2;
+      return 'cv2';
     }
   }
   // private static ContentDocumentLink createContentLink(String contentVersionId, String recordId) {
