@@ -10,13 +10,15 @@ public with sharing class ScanDocument {
      */
 
      // 
-    public  Map<String,Object> scanDocument(String contentDocumentId,String sessionId)
+    public  Map<String,Object> scanDocument(String contentDocumentId,Authentication authModel)
     {
         /**
          * Http http = new Http();
          * HttpRequest req = .....
          * 
          */
+        String accesstoken = authModel.getAccessToken();
+        
         return null;
     }
 }
