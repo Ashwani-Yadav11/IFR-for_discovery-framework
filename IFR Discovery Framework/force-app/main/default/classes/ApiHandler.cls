@@ -24,7 +24,7 @@ public with sharing class ApiHandler {
     {
         Http http = new Http();
         HttpRequest request = new HttpRequest();
-        //Sending Parameters to along with endpoints to get the JSON results of text and coordintes
+        //Sending Parameters to along with endpoints to get the JSON results of text and coordinates
         //Number of ODSR Ids = Number of pages in the document
         String ApiEndPoint = StaticResources.API_URL_1 + contentDocumentId +  StaticResources.API_URL_2 + '?startPageIndex=1&'+'endPageIndex='+numberOfPages;
         request.setEndpoint(ApiEndPoint);
@@ -34,6 +34,7 @@ public with sharing class ApiHandler {
         if(response.getStatusCode() == 200) {
             // Deserialize the JSON string into collections of primitive data types.
             Map<String, Object> results = (Map<String, Object>) JSON.deserializeUntyped(response.getBody());
+            // Required JSON -> Object
            return results;
         }
         return null;
