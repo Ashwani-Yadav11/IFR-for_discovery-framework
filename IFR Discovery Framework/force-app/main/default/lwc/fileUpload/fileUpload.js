@@ -1,10 +1,13 @@
 import { LightningElement, api } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import uploadFile from '@salesforce/apex/ProcessDocument.uploadFile'
 
+import processDocument from '@salesforce/apex/ProcessDocument.processDocument';
+
+import extractDocument from '@salesforce/apex/ProcessDocument.extractDocument';
 export default class FileUpload extends LightningElement {
     @api recordId
     fileData
+    contentDocumentId
     openfileUpload(event) {
         const file = event.target.files[0]
         var reader = new FileReader()
@@ -22,12 +25,21 @@ export default class FileUpload extends LightningElement {
     
     handleClick(){
         const {base64, filename, recordId} = this.fileData
-        uploadFile({ base64, filename, recordId }).then(result=>{
+        processDocument({ base64, filename, recordId }).then(result=>{
             console.log(result);
+           this.contentDocumentId = result; 
             this.fileData = null
             let title = `${filename} uploaded successfully!!`
             this.toast(title)
+            
+        }).catch(e=>{
+            console.log(e)
         })
+    }
+    handleExtract(){
+        console.log('clicked');
+        console.log(this.contentDocumentId,'Hello');
+        extractDocument(this.contentDocumentId).then(res=>console.log(res)).catch(e=>console.log(e));
     }
 
     toast(title){

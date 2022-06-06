@@ -1,22 +1,28 @@
 public with sharing class ApiHandler {
 
-    
+   
     public static Map<String,Object> startExtract(String contentDocumentId, String accessToken)
     {
+        try{
         Http http = new Http();
         HttpRequest request = new HttpRequest();
-        String ApiEndPoint = StaticResources.API_URL_1 + contentDocumentId +  StaticResources.API_URL_2;
+        String ApiEndPoint = 'https://discoveryframeworkidiscover-dev-ed.my.stmfb.stm.salesforce.com/services/data/v55.0/connect/form-reader/contentDocuments/069RM0000001h63YAA/ocrDocumentScanResults';
         request.setEndpoint(ApiEndPoint);
         request.setMethod('POST');
         //Get Access token after JWT bearer Token hits the 
-        request.setHeader('Authorization','Bearer'+accessToken);
-        Http response  = http.send(request);
-        if(response.getStatusCode() == 200) {
+        System.debug(accessToken);
+        request.setHeader('Authorization','Bearer '+StaticResources.accessToken);
+        HttpResponse response  = http.send(request);
+        
             // Deserialize the JSON string into collections of primitive data types.
             Map<String, Object> results = (Map<String, Object>) JSON.deserializeUntyped(response.getBody());
            return results;
 
+    
         }
+        catch (Exception e){
+            System.debug(e);
+                }
         return null;
     }
 
@@ -30,7 +36,7 @@ public with sharing class ApiHandler {
         request.setEndpoint(ApiEndPoint);
         request.setMethod('GET');
         
-        Http response  = http.send(request);
+        HttpResponse response  = http.send(request);
         if(response.getStatusCode() == 200) {
             // Deserialize the JSON string into collections of primitive data types.
             Map<String, Object> results = (Map<String, Object>) JSON.deserializeUntyped(response.getBody());

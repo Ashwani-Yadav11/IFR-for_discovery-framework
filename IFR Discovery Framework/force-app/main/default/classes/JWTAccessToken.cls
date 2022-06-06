@@ -1,5 +1,4 @@
-public class JWTAccessToken implements Authentication{
-      
+public with sharing class JWTAccessToken{
     public String getAccessToken()
     {
         Auth.JWT jwt = new Auth.JWT();
@@ -28,6 +27,18 @@ public class JWTAccessToken implements Authentication{
         //Get the access token
         String accessToken = bearer.getAccessToken();
         System.debug(accessToken);
+        Http http = new Http();
+        HttpRequest request = new HttpRequest();
+        String ApiEndPoint = 'https://discoveryframeworkidiscover-dev-ed.my.stmfb.stm.salesforce.com/services/data/v55.0/connect/form-reader/contentDocuments/069RM0000001h63YAA/ocrDocumentScanResults';
+        request.setEndpoint(ApiEndPoint);
+        request.setMethod('POST');
+//String accessToken = '00DRM000000G7ke!AQEAQDU8ljR6m0mAwYlwLEEUUTSCsRaXLP078CN9YOOz04weycOEoHWoW7Wz2xMY.lQuLCqwtvBM_AFDhodEp9lALbsptS3V';
+        //Get Access token after JWT bearer Token hits the 
+        request.setHeader('Authorization','Bearer '+accessToken);
+        HttpResponse response  = http.send(request);
+        System.debug(response.getBody());
+                    Map<String, Object> results = (Map<String, Object>) JSON.deserializeUntyped(response.getBody());
+			System.debug(results);
         return accessToken;
     }
 }

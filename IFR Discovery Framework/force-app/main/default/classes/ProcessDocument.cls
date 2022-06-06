@@ -5,28 +5,49 @@ public with sharing class ProcessDocument {
      * @param filename 
      * @param recordId
      */
-    @AuraEnabled
-    public static String uploadFile(String base64,String filename,String recordId )
-    {
-            return FileUploaderClass.uploadFile(base64, filename, recordId);
-                //return contentDocumentId;
-    }
+    // @AuraEnabled
+    // public static String uploadFile(String base64,String filename,String recordId )
+    // {
+    //         return FileUploaderClass.uploadFile(base64, filename, recordId);
+    //             //return contentDocumentId;
+    // }
 
-    
+    @AuraEnabled
+    public static Map<String,Object> processDocument(String base64,String filename, String recordId){
+        try {
+           String contentDocumentId =  FileUploaderClass.uploadFile(base64, filename, recordId);
+           // extractDocument(contentDocumentId);
+           Map<String,Object> results = ApiHandler.startExtract(contentDocumentId, '');
+           return results;
+           //return contentDocumentId; 
+        //    JWTAccessToken authModel = new JWTAccessToken();
+        //     return authModel.getAccessToken();
+             //ScanDocument scm = new ScanDocument();
+             
+            // return scm.scanDocument(contentDocumentId,authModel);
+           // return odsrIds;
+             
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
     /*
      * @desc extract text from the uploaded file
      * @param {String} contentDocumentId of the uploaded file
      * @return {String}
      */
     // @AuraEnabled
-    // public static String ocrExtract(String contentDocumentId){
-    //     // call to authorization
-    //     String sessionId = UserInfo.getSessionId();
-    //     System.(sessionId);
-    //     // call to ocr api
-    //     Map<String,Object> texts = ScanDocument.scanDocument(contentDocumentId,sessionId);
-    //     return null;
-    // }
+    @AuraEnabled
+    public static String extractDocument(String contentDocumentId){
+       
+           JWTAccessToken authModel = new JWTAccessToken();
+            return authModel.getAccessToken();
+             //ScanDocument scm = new ScanDocument();
+             
+            // return scm.scanDocument(contentDocumentId,authModel);
+           // return odsrIds;
+    
+    }
     // /*
     //  * @desc Upload the question in asses
     //  * 
