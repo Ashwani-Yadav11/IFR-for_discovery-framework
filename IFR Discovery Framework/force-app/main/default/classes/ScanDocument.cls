@@ -12,13 +12,10 @@ public with sharing class ScanDocument {
      // 
     public  Map<String,Object> scanDocument(String contentDocumentId,Authentication authModel)
     {
-        /**
-         * Http http = new Http();
-         * HttpRequest req = .....
-         * 
-         */
-        String accesstoken = authModel.getAccessToken();
-        
-        return null;
+        String accessToken = authModel.getAccessToken();
+        // use the api handler to call the api methods
+        Map<String,Object> odsrIds = ApiHandler.startExtract(contentDocumentId, accessToken);
+        return odsrIds;
+        //return null;
     }
 }
