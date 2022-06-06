@@ -11,6 +11,8 @@ public with sharing class ProcessDocument {
             return FileUploaderClass.uploadFile(base64, filename, recordId);
                 //return contentDocumentId;
     }
+
+    
     /*
      * @desc extract text from the uploaded file
      * @param {String} contentDocumentId of the uploaded file
