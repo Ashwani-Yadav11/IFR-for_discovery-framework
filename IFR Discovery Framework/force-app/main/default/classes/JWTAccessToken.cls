@@ -1,4 +1,4 @@
-public with sharing class JWTAccessToken{
+public with sharing class JWTAccessToken implements Authentication{
     public String getAccessToken()
     {
         Auth.JWT jwt = new Auth.JWT();

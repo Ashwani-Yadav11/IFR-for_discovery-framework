@@ -10,10 +10,10 @@ export default class FileUpload extends LightningElement {
     @api recordId
     fileData
     contentDocumentId = '';
-    @wire(extractDocument)
-    accessToken
-    @wire(startExtract,{contentDocumentId: '$contentDocumentId',accessToken:'$accessToken.data'})
-    queryResponse
+    @wire(extractDocument,{contentDocumentId: '$contentDocumentId'})
+    odsrIds
+    // @wire(startExtract,{contentDocumentId: '$contentDocumentId',accessToken:'$accessToken.data'})
+    // queryResponse
     openfileUpload(event) {
         const file = event.target.files[0]
         var reader = new FileReader()
@@ -45,9 +45,9 @@ export default class FileUpload extends LightningElement {
         })
     }
     handleExtract(){
-        refreshApex(this.queryResponse);
-        console.log(this.accessToken,'jii');
-        console.log(this.queryResponse,'jjaid');
+        refreshApex(this.odsrIds);
+        //console.log(this.accessToken,'jii');
+        console.log(this.odsrIds,'Hell');
         console.log('clicked');
         console.log(this.contentDocumentId,'Hello');
         console.log(typeof this.contentDocumentId,'Hi');

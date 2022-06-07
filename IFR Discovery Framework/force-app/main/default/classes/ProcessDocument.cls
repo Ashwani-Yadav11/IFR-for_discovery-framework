@@ -38,13 +38,14 @@ public with sharing class ProcessDocument {
      */
     // @AuraEnabled
     @AuraEnabled(cacheable=true)
-    public static String extractDocument(){
+    public static Map<String,Object> extractDocument(String contentDocumentId){
        
-            JWTAccessToken authModel = new JWTAccessToken();
-            return authModel.getAccessToken();
-             //ScanDocument scm = new ScanDocument();
+            
+            Authentication authModel = new JWTAccessToken();
+            //return authModel.getAccessToken();
+            ScanDocument scm = new ScanDocument();
              
-            // return scm.scanDocument(contentDocumentId,authModel);
+            return scm.scanDocument(contentDocumentId,authModel);
            // return odsrIds;
     
     }
