@@ -13,12 +13,12 @@ public with sharing class ProcessDocument {
     // }
 
     @AuraEnabled
-    public static Map<String,Object> processDocument(String base64,String filename, String recordId){
+    public static String processDocument(String base64,String filename, String recordId){
         try {
            String contentDocumentId =  FileUploaderClass.uploadFile(base64, filename, recordId);
            // extractDocument(contentDocumentId);
-           Map<String,Object> results = ApiHandler.startExtract(contentDocumentId, '');
-           return results;
+          // Map<String,Object> results = ApiHandler.startExtract(contentDocumentId, '');
+           return contentDocumentId;
            //return contentDocumentId; 
         //    JWTAccessToken authModel = new JWTAccessToken();
         //     return authModel.getAccessToken();
@@ -37,10 +37,10 @@ public with sharing class ProcessDocument {
      * @return {String}
      */
     // @AuraEnabled
-    @AuraEnabled
-    public static String extractDocument(String contentDocumentId){
+    @AuraEnabled(cacheable=true)
+    public static String extractDocument(){
        
-           JWTAccessToken authModel = new JWTAccessToken();
+            JWTAccessToken authModel = new JWTAccessToken();
             return authModel.getAccessToken();
              //ScanDocument scm = new ScanDocument();
              
