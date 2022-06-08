@@ -1,0 +1,14 @@
+<template>
+    <lightning-card icon-name="standard:account" title="Account" 
+        ondragover={allowDrop} ondrop={dropElelment}>
+        <div style="text-align: center;">{message}</div>
+        <lightning-record-form if:true={accountid} 
+                record-id={accountid}
+                object-api-name="Account"
+                fields={fields}>
+        </lightning-record-form>
+    </lightning-card>
+    <lightning-input class="slds-p-around_medium" label="Data Type" value={name}
+                ondragover={allowDrop} ondrop={dropElelment2}></lightning-input>
+
+</template>
