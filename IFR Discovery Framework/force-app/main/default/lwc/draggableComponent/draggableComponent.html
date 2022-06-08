@@ -2,11 +2,11 @@
     <lightning-card title="Drag Accounts">   
         <template for:each={accounts.data} for:item="account" if:true={accounts.data}> 
             <div class="slds-var-m-top_medium slds-var-m-bottom_x-small" key={account.id}
-                draggable="true"  data-accountid={account.Id} ondragstart={handleDragStart}>
+                draggable="true"  data-accountid={account.Name} ondragstart={handleDragStart}>
                 <div  class="slds-var-p-around_medium">
                     <lightning-tile label={account.Name} type="media" class="bolder_style"> 
                         <lightning-icon slot="media" icon-name="standard:account"></lightning-icon>
-                        <p class="slds-truncate" title="7 Members">Type:{account.Type}</p>    
+                        <p class="slds-truncate" title="7 Members">Type:{account.Name}</p>    
                     </lightning-tile>
                 </div>
             </div>

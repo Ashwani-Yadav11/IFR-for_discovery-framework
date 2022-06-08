@@ -3,7 +3,7 @@ import { createRecord } from 'lightning/uiRecordApi';
 import EmailPreferencesStayInTouchReminder from '@salesforce/schema/User.EmailPreferencesStayInTouchReminder';
 
 export default class QuestionFieldViewer extends LightningElement {
-    strName;
+    strName='';
     strDevName;
     strDataType;
     strQuestionCategory;
@@ -12,7 +12,9 @@ export default class QuestionFieldViewer extends LightningElement {
 
     // Change Handlers.
     nameChangedHandler(event){
+
         this.strName = event.target.value;
+        console.log(this.strName);
     }
     devNameChangedHandler(event){
         this.strDevName = event.target.value;
@@ -49,5 +51,12 @@ export default class QuestionFieldViewer extends LightningElement {
         }).catch(error => {
             alert('Error: ' +JSON.stringify(error));
         });
+    }
+    dropElelment2(event)
+    {
+        this.strName = event.dataTransfer.getData("account_id");
+    }
+    allowDrop(event){
+        event.preventDefault();
     }
 }

@@ -4,6 +4,8 @@
             <lightning-layout-item size="6">
 
                 <!-- Displaying fields to get information. -->
+                <lightning-input class="slds-p-around_medium" label="Test" name="Test" value={strName} 
+                onchange={nameChangedHandler} ondragover={allowDrop} ondrop={dropElelment2}></lightning-input>
                 <lightning-input class="slds-p-around_medium" label="Name" name="Name" 
                 onchange={nameChangedHandler}></lightning-input>
                 <lightning-input class="slds-p-around_medium" label="Dev Name" name="devName" 

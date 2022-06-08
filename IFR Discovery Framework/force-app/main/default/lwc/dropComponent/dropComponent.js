@@ -5,6 +5,7 @@ import PHONE from '@salesforce/schema/Account.Phone';
 export default class Dropcomponent extends LightningElement {
     accountid;
     fields=[NAME_FIELD,INDUSTRY,PHONE];
+    fields2=[NAME_FIELD];
     message='Drop an Account here';
     name;
     dropElelment(event){
