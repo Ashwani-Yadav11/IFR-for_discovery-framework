@@ -1,3 +1,27 @@
 <template>
-    
+    <lightning-card title="Create Question">
+        <lightning-layout>
+            <lightning-layout-item size="6">
+
+                <!-- Displaying fields to get information. -->
+                <lightning-input class="slds-p-around_medium" label="Name" name="Name" 
+                onchange={nameChangedHandler}></lightning-input>
+                <lightning-input class="slds-p-around_medium" label="Dev Name" name="devName" 
+                onchange={devNameChangedHandler}></lightning-input>
+                <lightning-input class="slds-p-around_medium" label="Data Type" name="DataType" 
+                onchange={dataTypeChangedHandler}></lightning-input>
+                <lightning-input class="slds-p-around_medium" label="Question Category" name="questionCategory" 
+                onchange={questionCategoryChangedHandler}></lightning-input>
+                <lightning-input class="slds-p-around_medium" label="Related QuestionId" name="relatedQuestionId" 
+                onchange={relatedQuestionIdChangedHandler}></lightning-input>
+                <lightning-input class="slds-p-around_medium" label="FormulaResponseDataType" name="formulaResponseDataType" 
+                onchange={formulaResponseDataTypeChangedHandler}></lightning-input>
+
+                <br/>
+
+                <lightning-button class="slds-m-left_x-small" label="Create Question" variant="brand" 
+                    onclick={createQuestion}></lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
 </template>
