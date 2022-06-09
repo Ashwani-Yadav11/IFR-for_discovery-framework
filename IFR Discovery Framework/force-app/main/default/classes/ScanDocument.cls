@@ -15,6 +15,8 @@ public with sharing class ScanDocument {
         String accessToken = authModel.getAccessToken();
         // use the api handler to call the api methods
         Map<String,Object> odsrIds = ApiHandler.startExtract(contentDocumentId, accessToken);
+        //Map<String,Object> response = Api.
+       // Map<String,Object> results = Pulling.getExtractedText(contentDocumentId,accessToken);
         return odsrIds;
         //return null;
     }

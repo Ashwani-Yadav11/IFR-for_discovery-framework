@@ -5,6 +5,8 @@ import { refreshApex } from '@salesforce/apex';
 import processDocument from '@salesforce/apex/ProcessDocument.processDocument';
 
 import extractDocument from '@salesforce/apex/ProcessDocument.extractDocument';
+import getSession from '@salesforce/apex/ProcessDocument.getSession';
+
 import startExtract from '@salesforce/apex/ApiHandler.startExtract';
 export default class FileUpload extends LightningElement {
     @api recordId
@@ -12,6 +14,8 @@ export default class FileUpload extends LightningElement {
     contentDocumentId = '';
     @wire(extractDocument,{contentDocumentId: '$contentDocumentId'})
     odsrIds
+    @wire(getSession)
+    sessionId
     // @wire(startExtract,{contentDocumentId: '$contentDocumentId',accessToken:'$accessToken.data'})
     // queryResponse
     openfileUpload(event) {
@@ -46,6 +50,7 @@ export default class FileUpload extends LightningElement {
     }
     handleExtract(){
         refreshApex(this.odsrIds);
+        console.log(this.sessionId);
         //console.log(this.accessToken,'jii');
         console.log(this.odsrIds,'Hell');
         console.log('clicked');
