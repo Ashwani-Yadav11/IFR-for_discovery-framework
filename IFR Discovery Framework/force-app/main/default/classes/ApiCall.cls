@@ -1,4 +1,4 @@
-public with sharing  class apiCall {
+public with sharing  class ApiCall {
 
     public static Map<String,Object> apiCallMethod(String endPoint,String method,String authType,String token) {
 
