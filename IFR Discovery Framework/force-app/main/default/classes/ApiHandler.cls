@@ -11,7 +11,19 @@ public with sharing class ApiHandler {
      public static Map<String,Object> filePreview(String contentDocumentId)
      {
           String ApiEndPoint = 'https://discoveryframeworkidiscover-dev-ed.my.stmfb.stm.salesforce.com/services/data/v55.0/connect/files/'+contentDocumentId+'/rendition';
-         return ApiCall.apiCallMethod(ApiEndPoint,'GET','OAuth ',UserInfo.getSessionId());
+          Http http = new Http();
+        HttpRequest request = new HttpRequest();
+        //Datetime start = System.now();
+        request.setEndpoint(ApiEndPoint);
+        request.setMethod('GET');
+        request.setHeader('Authorization','OAuth '+ UserInfo.getSessionId());
+        HttpResponse response  = http.send(request);
+        System.debug(response);
+            // Deserialize the JSON string into collections of primitive data types.
+       // Map<String, Object> results = (Map<String, Object>) JSON.deserializeUntyped(response.getBody());
+         System.debug(JSON.deserializeUntyped(response.getBody()));
+          return null;
+
      }
  
      public static Map<String,Object> getExtract(String contentDocumentId,String accessToken)
