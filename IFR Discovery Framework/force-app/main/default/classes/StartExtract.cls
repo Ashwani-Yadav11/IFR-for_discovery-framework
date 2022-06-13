@@ -11,7 +11,7 @@ public with sharing class StartExtract {
 
         while(true){
             Long startTime = DateTime.now().getTime();
-             while(DateTime.now().getTime()-startTime<5000);
+             while(DateTime.now().getTime()-startTime<1000);
             
              if(res.getStatusCode()==200||res.getStatusCode()==201||res.getStatusCode()==202)
             break;

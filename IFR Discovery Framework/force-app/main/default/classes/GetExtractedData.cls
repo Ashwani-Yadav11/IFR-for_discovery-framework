@@ -5,32 +5,27 @@ public with sharing class GetExtractedData {
 
     public static Map<String,Object> extractedData (String accessToken,String contentDocumentId){
         //make api call
-        Http http = new Http();
-        HttpRequest request = new HttpRequest();
-        String endPoint = URL.getSalesforceBaseUrl().toExternalForm() + '/services/data/v55.0/connect/form-reader/contentDocuments/'+contentDocumentId+'/ocrDocumentScanResults';
-        request.setEndpoint(endPoint);
-        request.setMethod('POST');
-        String authType = 'Bearer ';
-        request.setHeader('Authorization',authType+accessToken);
-        HttpResponse response  = http.send(request);
-        System.debug(response);
-            // Deserialize the JSON string into collections of primitive data types.
-       // Map<String, Object> results = (Map<String, Object>) JSON.deserializeUntyped(response.getBody());
-         //
+      //make api call
+   
+      String ApiEndPoint = URL.getSalesforceBaseUrl().toExternalForm() + '/services/data/v55.0/connect/form-reader/contentDocuments/'+contentDocumentId+'/ocrDocumentScanResults';
+      HttpRequest request = CreateHttpRequest.createHttpRequest(ApiEndPoint, 'GET', 'Bearer ', accessToken);
+      Http http = new Http();
+      HttpResponse res = http.send(request);
+      System.debug(res);
+      
 
-        while(True){
-            Long startTime = DateTime.now().getTime();
-             while(DateTime.now().getTime()-startTime<1000);
-             //Check status of the call 
-             // if not done wait 
+      while(true){
+          Long startTime = DateTime.now().getTime();
+           while(DateTime.now().getTime()-startTime<1000);
+          
+        if(res.getStatusCode()==200||res.getStatusCode()==201)
+          break;
+          res = http.send(request);
+      }
+      Map<String,Object> results = (Map<String,Object>) JSON.deserializeUntyped(res.getBody());
+      System.debug(results);
+      return results;
 
-
-             //if recieved the results break
-
-
-        }
-       // System.debug(results);
-        return null;
 
 
     }

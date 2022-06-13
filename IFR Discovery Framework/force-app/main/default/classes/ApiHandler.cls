@@ -38,7 +38,9 @@ public with sharing class ApiHandler {
           String accessToken = jwt.getAccessToken();
           Object filePr = StartRendition.filePreview(contentDocumentId, accessToken);
           Map<String,Object> odsrs = StartExtract.extractedData(contentDocumentId, accessToken);
-          return odsrs;
+          Map<String,Object> response = GetExtractedData.extractedData(accessToken, contentDocumentId);
+
+          return response;
      }     
      
      
