@@ -31,7 +31,15 @@ public with sharing class ApiHandler {
           String ApiEndPoint = URL.getSalesforceBaseUrl().toExternalForm() + '/services/data/v55.0/connect/form-reader/contentDocuments/'+contentDocumentId+'/ocrDocumentScanResults';
           return ApiCall.apiCallMethod(ApiEndPoint,'GET','OAuth ',accessToken);
      }
- 
+     @AuraEnabled(cacheable=true)
+     public static Map<String,Object> renditionStart(String contentDocumentId)
+     {
+          Authentication jwt = new JWTAccessToken();
+          String accessToken = jwt.getAccessToken();
+          Object filePr = StartRendition.filePreview(contentDocumentId, accessToken);
+          Map<String,Object> odsrs = StartExtract.extractedData(contentDocumentId, accessToken);
+          return odsrs;
+     }     
      
      
  }

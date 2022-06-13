@@ -29,8 +29,8 @@ public with sharing class GetExtractedData {
 
 
         }
-        System.debug(results);
-        return results;
+       // System.debug(results);
+        return null;
 
 
     }

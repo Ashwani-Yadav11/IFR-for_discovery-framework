@@ -1,21 +1,30 @@
 <template>
-   <c-file-upload></c-file-upload>
-   <lightning-card>
-      <div class="slds-grid">
-         <div class="slds-col">
-            <c-page-viewer></c-page-viewer>
-         </div>
-         <div class="slds-col">
-            <!-- <c-text-list-viewer></c-text-list-viewer> -->
-            <c-draggable-component></c-draggable-component>
-         </div>
-         <div class="slds-col">
-            <c-question-field-viewer></c-question-field-viewer>
-         </div>
-         <!-- <div class="slds-col">
-            <c-question-field-viewer></c-question-field-viewer>
-         </div> -->
-       </div>
-      
-  </lightning-card>
+   
+      <c-file-upload oncustomevent={handleCustomEvent}></c-file-upload>
+  
+      <template if:true={fileUploaded}>
+      <lightning-card>
+         <div class="slds-grid">
+            <div class="slds-col">
+               <c-page-viewer ></c-page-viewer>
+            </div>
+            <div class="slds-col">
+               <!-- <c-text-list-viewer></c-text-list-viewer> -->
+               <c-draggable-component></c-draggable-component>
+            </div>
+            <div class="slds-col">
+              
+               <c-question-field-viewer content-document-id={contentDocumentId}></c-question-field-viewer>
+            </div>
+            <!-- <div class="slds-col">
+               <p>Hello</p>
+             <c-continuation-component content-document-id={contentDocumentId}> </c-continuation-component>
+            </div> -->
+            <div class="slds-col">
+               <c-text-list-viewer content-document-id={contentDocumentId}></c-text-list-viewer>
+            </div>
+          </div>
+     </lightning-card>
+   </template>
+   
 </template>

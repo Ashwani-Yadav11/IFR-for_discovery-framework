@@ -39,6 +39,7 @@ export default class FileUpload extends LightningElement {
         processDocument({ base64, filename, recordId }).then(result=>{
             console.log(result);
             this.contentDocumentId = result; 
+            this.handleContentDocumentId();
             this.fileData = null
             let title = `${filename} uploaded successfully!!`
             this.toast(title)
@@ -58,6 +59,17 @@ export default class FileUpload extends LightningElement {
        // startExtract('','').then(res=>console.log(res)).catch(e=>console.log(e));
         //extractDocument(String(this.contentDocumentId)).then(res=>console.log(res)).catch(e=>console.log(e));
         
+    }
+
+    handleContentDocumentId()
+    {
+        let message={
+            'contentDocumentId':this.contentDocumentId
+        }
+       
+        const selectEvent = new CustomEvent('customevent',{detail:this.contentDocumentId});
+        this.dispatchEvent(selectEvent);
+
     }
 
     toast(title){

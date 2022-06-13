@@ -1,7 +1,11 @@
 <template>
     <lightning-card title="Text List Viewer " icon-name="custom:custom14">
+        <lightning-button variant="brand" label="Refresh" title="Refresh" onclick={handleRefresh} class="slds-m-left_x-small"></lightning-button>
 
-       
-        
+       <p>{contentDocumentId}</p>
+       <p>contId: {contId}</p>
+        <div>
+            show results:{listOfRecords}
+        </div>
     </lightning-card>
 </template>
