@@ -1,17 +1,16 @@
 public with sharing class GetExtractedData {
-    public GetExtractedData() {
-        
-    }
-
-    public static Map<String,Object> extractedData (String accessToken,String contentDocumentId,String odsrId){
+   
+    @AuraEnabled(cacheable=true)
+    public static Map<String,Object> extractedData (String contentDocumentId,String odsrId){
         //make api call
       //make api call
    
-     
+        JWTAccessToken jwt = new JWTAccessToken();
+        String accessToken = jwt.getAccessToken();
         System.debug(odsrId+'OdsrId');
       while(true){
           Long startTime = DateTime.now().getTime();
-           while(DateTime.now().getTime()-startTime<1000);
+           while(DateTime.now().getTime()-startTime<5000);
           
         // if(res.getStatusCode()==200||res.getStatusCode()==201)
         // {

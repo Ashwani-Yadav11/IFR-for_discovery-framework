@@ -10,6 +10,7 @@ import extractDocument from '@salesforce/apex/ProcessDocument.extractDocument';
 
 import renditionStart from '@salesforce/apex/ApiHandler.renditionStart';
 import getExtract from "@salesforce/apexContinuation/ContinuationController.getExtract";
+import extractedData from '@salesforce/apex/GetExtractedData.extractedData';
 export default class TextListViewer extends LightningElement {
 //   @api contentDocumentId;
 
@@ -31,12 +32,26 @@ export default class TextListViewer extends LightningElement {
     //     console.log(data,'File Preview One');
     //     console.log(error);
     // }
+    odsrId;
     @wire(renditionStart,{contentDocumentId:'$contentDocumentId_'})
     files({data,error})
     {
-        console.log(data,'OdsrIds New');
-        console.log(error,'new error');
+        console.log(data,'OdsrIds New1');
+        if(data)
+        {
+            this.odsrId = data.ocrDocumentScanResultInfos[0].ocrDocumentScanResultId;
+        }
+        console.log(error,'new error3');
     }
+    @wire(extractedData,{contentDocumentId:'$contentDocumentId_',odsrId:'$odsrId'})
+    texts
+    // ({data,error})
+    // {
+    //     console.log(data,'Extract data');
+    //     if(data)
+    //     this.listOfRecords = data;
+    //     console.log(error,'Extract error');
+    // }
     // @wire(extractDocument,{contentDocumentId: '$contentDocumentId_'})
     // odsrIds({data,error})
     // {
@@ -68,11 +83,12 @@ export default class TextListViewer extends LightningElement {
     //            });
     //    }
     
-    // handleRefresh()
-    // {
-    //     console.log(this.contentDocumentId);
-    //     refreshApex(this.odsrIds);
-    //     console.log(this.listOfRecords);
+    handleRefresh()
+    {
+        //console.log(this.contentDocumentId);
+        refreshApex(this.texts);
+        console.log(this.texts);
+        //console.log(this.listOfRecords);
         
-    // }
+    }
 }
