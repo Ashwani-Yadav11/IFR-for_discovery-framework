@@ -8,7 +8,7 @@ public with sharing class StartRendition {
         while(true)
         {
             Long startTime = DateTime.now().getTime();
-            while(DateTime.now().getTime()-startTime<5000);
+            while(DateTime.now().getTime()-startTime<1000);
             //Check status of the call 
             if(res.getStatusCode()==200||res.getStatusCode()==201)
             break;
