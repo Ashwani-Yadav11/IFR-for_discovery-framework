@@ -19,7 +19,15 @@ public with sharing class GetExtractedData {
            while(DateTime.now().getTime()-startTime<1000);
           
         if(res.getStatusCode()==200||res.getStatusCode()==201)
-          break;
+        {
+            // Map<String,Object> res = (Map<String,Object>) JSON.deserializeUntyped(res.getBody());
+            // List<Object> odsrs = res.get('ocrDocumentScanResults');
+            // String status = odsrs[0].get('status');
+            // if(status=='SUCCESS')
+            break;
+            
+        }
+         
           res = http.send(request);
       }
       Map<String,Object> results = (Map<String,Object>) JSON.deserializeUntyped(res.getBody());
