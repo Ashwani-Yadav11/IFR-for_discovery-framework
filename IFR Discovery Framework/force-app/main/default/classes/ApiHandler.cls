@@ -38,8 +38,8 @@ public with sharing class ApiHandler {
           String accessToken = jwt.getAccessToken();
           Object filePr = StartRendition.filePreview(contentDocumentId, accessToken);
           Map<String,Object> odsrs = StartExtract.extractedData(contentDocumentId, accessToken);
-          List<Map<String,Object>> lists = (List<Map<String,Object>>) odsrs.get('ocrDocumentScanResultInfos');
-          Map<String,Object> odsr = lists[0];
+          List<Object> lists = (List<Object>) odsrs.get('ocrDocumentScanResultInfos');
+          Map<String,Object> odsr = (Map<String,Object>)lists[0];
           String odsrId = (String) odsr.get('ocrDocumentScanResultId');
           Map<String,Object> response = GetExtractedData.extractedData(accessToken,contentDocumentId, odsrId);
 
