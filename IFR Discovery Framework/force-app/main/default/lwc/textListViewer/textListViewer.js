@@ -45,8 +45,8 @@ export default class TextListViewer extends LightningElement {
     }
     // @wire(extractedData,{contentDocumentId:'$contentDocumentId_',odsrId:'$odsrId'})
     // texts
-    @wire(getExtract,{contentDocumentId:'$contentDocumentId_',odsrId:'$odsrId'})
-    texts
+    // @wire(getExtract,{contentDocumentId:'$contentDocumentId_',odsrId:'$odsrId'})
+    // texts
     
     // ({data,error})
     // {
