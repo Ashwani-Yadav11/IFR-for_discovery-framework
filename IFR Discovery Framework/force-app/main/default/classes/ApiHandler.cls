@@ -25,11 +25,11 @@ public with sharing class ApiHandler {
           return null;
 
      }
-     
+ 
      public static Map<String,Object> getExtract(String contentDocumentId,String accessToken)
      {
           String ApiEndPoint = URL.getSalesforceBaseUrl().toExternalForm() + '/services/data/v55.0/connect/form-reader/contentDocuments/'+contentDocumentId+'/ocrDocumentScanResults';
-          return ApiCall.apiCallMethod(ApiEndPoint,'GET','Bearer ',accessToken);
+          return ApiCall.apiCallMethod(ApiEndPoint,'GET','OAuth ',accessToken);
      }
      @AuraEnabled(cacheable=true)
      public static Map<String,Object> renditionStart(String contentDocumentId)
@@ -38,10 +38,15 @@ public with sharing class ApiHandler {
           String accessToken = jwt.getAccessToken();
           Object filePr = StartRendition.filePreview(contentDocumentId, accessToken);
           Map<String,Object> odsrs = StartExtract.extractedData(contentDocumentId, accessToken);
-          //List<Object> lists = (List<Object>) odsrs.get('ocrDocumentScanResultInfos');
-          //Map<String,Object> odsr = (Map<String,Object>)lists[0];
-          //String odsrId = (String) odsr.get('ocrDocumentScanResultId');
-          //Map<String,Object> response = GetExtractedData.extractedData(accessToken,contentDocumentId, odsrId);
+         //Map<String,Object> odsrs1 = (map<string,object>)odsrs.get('ocrDocumentScanResultInfos');
+         //Map<String,Object> odsrs2 = (map<string,object>)odsrs1.get('0');
+         
+                  
+         
+     // List<Object> lists = (List<Object>) odsrs.get('ocrDocumentScanResultInfos');
+       //   Map<String,Object> odsr = (Map<String,Object>)lists[0];
+         // String odsrId = (String) odsr.get('ocrDocumentScanResultId');
+         //System.debug('Odsr -> '+odsrId);
 
           return odsrs;
      }     
