@@ -9,4 +9,5 @@ export default class MainComponent extends LightningElement {
         console.log(event.detail,'maincomp');
         this.fileUploaded = true;
     }
+    
 }
