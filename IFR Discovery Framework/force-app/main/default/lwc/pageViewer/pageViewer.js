@@ -2,8 +2,8 @@ import { LightningElement,api } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 
 export default class PageViewer extends NavigationMixin(LightningElement)  {
-    //@api contentDocumentId='069RM0000001hmjYAA'
-    contentDocumentId='069RM0000001hmjYAA';
+    @api contentDocumentId='';
+    //contentDocumentId='069RM0000001hmjYAA';
     get pdfHeight() {
         return 'height: ' + this.heightInRem + 'rem';
     }
@@ -14,7 +14,7 @@ export default class PageViewer extends NavigationMixin(LightningElement)  {
         this[NavigationMixin.GenerateUrl]({
             type: 'standard__recordPage',
             attributes: {
-                recordId: '005B0000001ptf1IAE',
+                recordId: this.contentDocumentId,
                 actionName: 'view',
             },
         }).then((url) => {
