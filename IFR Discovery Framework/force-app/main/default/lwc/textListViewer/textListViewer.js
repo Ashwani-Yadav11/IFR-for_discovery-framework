@@ -9,7 +9,7 @@ import extractDocument from '@salesforce/apex/ProcessDocument.extractDocument';
 
 
 import renditionStart from '@salesforce/apex/ApiHandler.renditionStart';
-import getExtract from "@salesforce/apexContinuation/ContinuationController.getExtract";
+import getExtract from '@salesforce/apex/ApiHandler.getExtract';
 import extractedData from '@salesforce/apex/GetExtractedData.extractedData';
 export default class TextListViewer extends LightningElement {
 //   @api contentDocumentId;
@@ -43,8 +43,11 @@ export default class TextListViewer extends LightningElement {
         }
         console.log(error,'new error3');
     }
-    @wire(extractedData,{contentDocumentId:'$contentDocumentId_',odsrId:'$odsrId'})
+    // @wire(extractedData,{contentDocumentId:'$contentDocumentId_',odsrId:'$odsrId'})
+    // texts
+    @wire(getExtract,{contentDocumentId:'$contentDocumentId_',odsrId:'$odsrId'})
     texts
+    
     // ({data,error})
     // {
     //     console.log(data,'Extract data');

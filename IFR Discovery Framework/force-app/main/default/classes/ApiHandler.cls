@@ -25,11 +25,13 @@ public with sharing class ApiHandler {
           return null;
 
      }
- 
-     public static Map<String,Object> getExtract(String contentDocumentId,String accessToken)
+     @AuraEnabled(cacheable=true)
+     public static Map<String,Object> getExtract(String contentDocumentId,String acct)
      {
+          Authentication jwt = new JWTAccessToken();
+          String accessToken = jwt.getAccessToken();
           String ApiEndPoint = URL.getSalesforceBaseUrl().toExternalForm() + '/services/data/v55.0/connect/form-reader/contentDocuments/'+contentDocumentId+'/ocrDocumentScanResults';
-          return ApiCall.apiCallMethod(ApiEndPoint,'GET','OAuth ',accessToken);
+          return ApiCall.apiCallMethod(ApiEndPoint,'GET','Bearer ',accessToken);
      }
      @AuraEnabled(cacheable=true)
      public static Map<String,Object> renditionStart(String contentDocumentId)

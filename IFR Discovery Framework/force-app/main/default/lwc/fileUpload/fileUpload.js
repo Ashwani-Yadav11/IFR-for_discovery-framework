@@ -1,4 +1,4 @@
-import { LightningElement, api ,wire} from 'lwc';
+import { LightningElement, api ,wire, track} from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { refreshApex } from '@salesforce/apex';
 
@@ -53,6 +53,8 @@ export default class FileUpload extends LightningElement {
         console.log(this.sessionId);
         //console.log(this.accessToken,'jii');
         console.log(this.odsrIds,'Hell');
+        // if(this.odsrIds.data.ocrDocumentScanResultInfos!=null)
+        // this.handleOdsrs();
         console.log('clicked');
         console.log(this.contentDocumentId,'Hello');
         console.log(typeof this.contentDocumentId,'Hi');
@@ -70,6 +72,11 @@ export default class FileUpload extends LightningElement {
         const selectEvent = new CustomEvent('customevent',{detail:this.contentDocumentId});
         this.dispatchEvent(selectEvent);
 
+    }
+    handleOdsrs()
+    {
+        const selectEvent = new CustomEvent('customevent2',{detail:this.odsrIds.data.ocrDocumentScanResultInfos[0].ocrDocumentScanResultId});
+        this.dispatchEvent(selectEvent);
     }
 
     toast(title){
