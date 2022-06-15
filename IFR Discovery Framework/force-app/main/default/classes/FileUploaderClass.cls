@@ -42,7 +42,7 @@ public with sharing class FileUploaderClass {
           ].ContentDocumentId;
       // cv.TestId = s;
      // cv.ContentDocumentId = s;
-      return s;
+      return cv.Id+' '+s;
     } catch(DMLException e) {
       System.debug(e);
       return null;

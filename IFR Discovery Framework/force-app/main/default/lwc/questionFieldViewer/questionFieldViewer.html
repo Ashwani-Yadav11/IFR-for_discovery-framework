@@ -5,12 +5,12 @@
               <lightning-record-edit-form
                 
               object-api-name={assessmentQuestion}
-              onload={handleLoad}
+              onload={makeid}
+              >
+              <!-- onload={handleLoad}
               onsubmit={handleSubmit}
               onsuccess={handleSuccess}
-              onerror={handleError}
-              >
-               
+              onerror={handleError} -->
                 <lightning-layout multiple-rows>
                   <lightning-layout-item size="12">
                     <lightning-messages></lightning-messages>
@@ -18,14 +18,18 @@
                   <lightning-layout-item size="12">
                     <div class="slds-grid">
                         <div class="slds-col">
+                          <lightning-messages></lightning-messages>
                             <lightning-input-field 
                             value={strName} 
-                            onchange={nameChangeHandler} 
+                            ondragover={allowDrop}
+                                 ondrop={nameDropHandler}
+                            onchange={nameChangedHandler} 
                             field-name="Name"></lightning-input-field>
 
                         </div>
                         <div class="slds-col">
                             <!-- <c-text-list-viewer></c-text-list-viewer> -->
+                            <lightning-messages></lightning-messages>
                             <lightning-input-field
                             value={strDevName}
                             onchange={devNameChangedHandler}
@@ -36,6 +40,7 @@
                     <div class="slds-grid">
                         <div class="slds-col">
                             <div class="slds-col">
+                              <lightning-messages></lightning-messages>
                                 <lightning-input-field 
                                 value={strQuestionCategory}
                                 onchange={questionCategoryChangedHandler}
@@ -44,6 +49,7 @@
                         </div>
                         <div class="slds-col">
                             <!-- <c-text-list-viewer></c-text-list-viewer> -->
+                            <lightning-messages></lightning-messages>
                             <lightning-input-field value={strDataType}
                             onchange={dataTypeChangedHandler}
                              field-name="DataType"></lightning-input-field>
@@ -52,6 +58,7 @@
                     <div class="slds-grid">
                         <div class="slds-col">
                             <div class="slds-col">
+                              <lightning-messages></lightning-messages>
                                 <lightning-input-field 
                                 value={strRelatedQuestionId}
                                 onchange={relatedQuestionIdChangedHandler}
@@ -60,6 +67,7 @@
                         </div>
                         <div class="slds-col">
                             <!-- <c-text-list-viewer></c-text-list-viewer> -->
+                            <lightning-messages></lightning-messages>
                             <lightning-input-field 
                             value={strFormulaResponseDataType}
                             onchange={formulaResponseDataTypeChangedHandler}
@@ -75,10 +83,7 @@
                 
                 
                 object-api-name={assessmentQuestionVersion}
-                onload={handleLoad}
-                onsubmit={handleSubmit}
-                onsuccess={handleSuccess}
-                onerror={handleError}
+               
               >
         
                 <lightning-layout multiple-rows>
@@ -91,6 +96,7 @@
                     <div class="slds-grid">
                         <div class="slds-col">
                             <div class="slds-col">
+                              <lightning-messages></lightning-messages>
                                 <lightning-input-field 
                                 value={strQuestionText} 
                                  onchange={questionTextChangeHandler} 
@@ -101,6 +107,7 @@
                         </div>
                         <div class="slds-col">
                             <!-- <c-text-list-viewer></c-text-list-viewer> -->
+                            <lightning-messages></lightning-messages>
                             <lightning-input-field 
                             value={strDescription} 
                             onchange={descriptionChangeHandler} 
@@ -113,6 +120,7 @@
                     <div class="slds-grid">
                         <div class="slds-col">
                             <div class="slds-col">
+                              <lightning-messages></lightning-messages>
                                 <lightning-input-field 
                                 value={strIsActive} 
                                 onchange={activeChangeHandler} field-name="IsActive"></lightning-input-field>
@@ -120,6 +128,7 @@
                         </div>
                         <div class="slds-col">
                             <!-- <c-text-list-viewer></c-text-list-viewer> -->
+                            <lightning-messages></lightning-messages>
                             <lightning-input-field
                             value={strResponseValues}
                             onchange={responseValuesChangeHandler}
@@ -129,14 +138,14 @@
             
                         </div>
                     </div>
-                    <div class="slds-grid">
+                    <!-- <div class="slds-grid">
                         <div class="slds-col">
                             <div class="slds-col">
+                              <lighning-messages></lighning-messages>
                                 <lightning-input-field field-name="IsOptionSourceResponseValue"></lightning-input-field>
                             </div>
                         </div>
                         <div class="slds-col">
-                            <!-- <c-text-list-viewer></c-text-list-viewer> -->
                             <lightning-input-field field-name="HelpText"></lightning-input-field>
             
                         </div>
@@ -148,7 +157,7 @@
                             </div>
                         </div>
                         
-                    </div>
+                    </div> -->
                 </lightning-layout-item>
                   <lightning-layout-item size="12" class="slds-align_absolute-center">
                     <lightning-button
@@ -157,7 +166,7 @@
                       onclick={resetForm}
                     ></lightning-button>
                     <lightning-button
-                      type="submit"
+                      onclick={createQuestion}
                       variant="brand"
                       label="Save"
                     ></lightning-button>

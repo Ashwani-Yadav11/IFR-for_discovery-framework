@@ -45,7 +45,7 @@ public with sharing class ApiHandler {
          
                   
          
-     // List<Object> lists = (List<Object>) odsrs.get('ocrDocumentScanResultInfos');
+     List<Object> lists = (List<Object>) odsrs.get('ocrDocumentScanResultInfos');
        //   Map<String,Object> odsr = (Map<String,Object>)lists[0];
          // String odsrId = (String) odsr.get('ocrDocumentScanResultId');
          //System.debug('Odsr -> '+odsrId);

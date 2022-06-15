@@ -14,7 +14,7 @@ export default class FileUpload extends LightningElement {
     contentDocumentId = '';
     @wire(extractDocument,{contentDocumentId: '$contentDocumentId'})
     odsrIds
-    
+    contentIds='';
     // @wire(startExtract,{contentDocumentId: '$contentDocumentId',accessToken:'$accessToken.data'})
     // queryResponse
     openfileUpload(event) {
@@ -38,7 +38,10 @@ export default class FileUpload extends LightningElement {
         
         processDocument({ base64, filename, recordId }).then(result=>{
             console.log(result);
-            this.contentDocumentId = result; 
+            this.contentIds=result;
+             var ids = result.split(" ");
+             console.log(ids);
+            this.contentDocumentId = ids[1]; 
             this.handleContentDocumentId();
             this.fileData = null
             let title = `${filename} uploaded successfully!!`
@@ -69,7 +72,7 @@ export default class FileUpload extends LightningElement {
             'contentDocumentId':this.contentDocumentId
         }
        
-        const selectEvent = new CustomEvent('customevent',{detail:this.contentDocumentId});
+        const selectEvent = new CustomEvent('customevent',{detail:this.contentIds});
         this.dispatchEvent(selectEvent);
 
     }

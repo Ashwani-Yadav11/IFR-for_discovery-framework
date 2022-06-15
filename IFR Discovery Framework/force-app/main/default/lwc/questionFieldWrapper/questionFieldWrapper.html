@@ -1,0 +1,18 @@
+<template>
+    <lightning-button
+                      onclick={addNewQuestion}
+                      variant="brand"
+                      label="+NewQuestion"
+                    ></lightning-button>
+    <lightning-accordion 
+                allow-multiple-sections-open
+                         onsectiontoggle={handleSectionToggle}
+                         active-section-name={activeSections}
+                         >
+    <template for:each={questions} for:item="question">
+        <lightning-accordion-section key={question.id} name={question.id} label={question.id}>
+            <c-question-field-viewer></c-question-field-viewer>
+            </lightning-accordion-section>
+    </template>
+    </lightning-accordion>
+</template>
