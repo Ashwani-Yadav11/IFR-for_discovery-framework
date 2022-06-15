@@ -8,10 +8,16 @@ public with sharing class StartExtract {
         HttpResponse res = http.send(request);
         System.debug(res);
         
-
+        Long timeLimit = 2000;
+        Long maxWaitingTime=120000;
         while(true){
             Long startTime = DateTime.now().getTime();
-             while(DateTime.now().getTime()-startTime<1000);
+            if(timeLimit>=maxWaitingTime){
+                break;
+            }
+             while(DateTime.now().getTime()-startTime<timeLimit);
+
+             timeLimit=timeLimit*timeLimit;
             
              if(res.getStatusCode()==200||res.getStatusCode()==201||res.getStatusCode()==202)
             break;
