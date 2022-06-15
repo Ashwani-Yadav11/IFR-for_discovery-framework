@@ -1,7 +1,10 @@
 .bolder_style{
-    border-radius: 25px;
-    background: #78dca0;
-    padding: 20px;
-    width: 288px;
-    height: 92px;
+    border-radius: 2px;
+    background: whitesmoke;
+    padding: 2px;
+    width: 350px;
+    height: 20px;
+}
+.whitebackground {
+  background-color: white;
 }
