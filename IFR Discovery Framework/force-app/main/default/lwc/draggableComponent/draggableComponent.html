@@ -1,12 +1,16 @@
 <template>
-	<lightning-card class="slds-scrollable_x" style="height:10rem;width:24rem;" title="Digitized Text">
-		<template for:each={accounts.data} for:item="account" if:true={accounts.data}>
-			<li key={account.Name} style="list-style: none;">
-				<div style="width:100px;height:25px; margin:0px; margin-bottom:0px;">
-					<lightning-input type="checkbox" data-accountname={account.Name} label={account.Name} onclick={createTemplate} draggable="true"
-						ondragstart={handleDragStart} class="bolder_style"> </lightning-input>
-				</div>
-			</li>
-		</template>
-	</lightning-card>
+	<h1>Digitized Text</h1>
+	<nav>
+		<ul>
+			<template for:each={accounts.data} for:item="account" if:true={accounts.data}>
+				<li key={account.Name}>
+					<lightning-input type="checkbox" data-accountname={account.Name} label={account.Name} onclick={createTemplate}
+						draggable="true" ondragstart={handleDragStart} class="bolder_style"> </lightning-input>
+				</li>
+			</template>
+
+
+		</ul>
+	</nav>
+
 </template>

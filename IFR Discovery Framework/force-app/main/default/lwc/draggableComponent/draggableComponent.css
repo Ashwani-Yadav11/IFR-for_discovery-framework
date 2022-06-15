@@ -1,10 +1,15 @@
 .bolder_style{
-    border-radius: 2px;
-    background: whitesmoke;
-    padding: 2px;
-    width: 350px;
-    height: 20px;
+  border-radius: 6px;
+  background: whitesmoke;
+  padding: 8px;
+  width: 350px;
+  height: 30px;
 }
 .whitebackground {
-  background-color: white;
+background-color: white;
 }
+li{
+margin: 2px 0;
+}
+nav ul{height: 600px; width:100%;}
+nav ul{overflow:hidden; overflow-y:scroll;}
