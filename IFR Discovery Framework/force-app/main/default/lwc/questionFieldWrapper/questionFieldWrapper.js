@@ -5,7 +5,9 @@ export default class QuestionFieldWrapper extends LightningElement {
             id:1,
         },
     ];
-    activeSections = ['1'];
+    activeSections = ['1','2'];
+    @track saveAll=false;
+    @track resetAll=false;
 
     activeSectionMessage = '';
    // isDVisible = false;
@@ -23,6 +25,15 @@ export default class QuestionFieldWrapper extends LightningElement {
             this.activeSectionsMessage =
                 'Open sections: ' + openSections.join(', ');
         }
+    }
+    saveAllQuestion(event){
+        event.preventDefault();
+        this.saveAll=true;
+    }
+    resetAllQuestion(event)
+    {        event.preventDefault();
+            this.resetAll = false;
+
     }
 
 }
