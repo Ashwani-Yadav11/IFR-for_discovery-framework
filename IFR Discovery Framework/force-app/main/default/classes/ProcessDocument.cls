@@ -49,6 +49,11 @@ public with sharing class ProcessDocument {
            // return odsrIds;
     
     }
+    @AuraEnabled(cacheable=true)
+    public static Map<String,Object> startRenditionAndExtractText(String contentDocumentId){
+         Map<String,Object> results = ApiHandler.filePreview(contentDocumentId);
+         return results;
+    }
     // /*
     //  * @desc Upload the question in asses
     //  * 
