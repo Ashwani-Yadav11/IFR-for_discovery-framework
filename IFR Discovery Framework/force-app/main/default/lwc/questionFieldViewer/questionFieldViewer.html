@@ -3,7 +3,7 @@
 		<lightning-card title="Question">
             <div class="slds-p-horizontal_small">
               <lightning-record-edit-form
-                
+              record-id={assessmentQuestionRecordId}
               object-api-name={assessmentQuestion}
               onload={makeid}
               >
@@ -80,11 +80,9 @@
                   </lightning-layout>
                   </lightning-record-edit-form>
                   <lightning-record-edit-form
-                
-                
-                object-api-name={assessmentQuestionVersion}
-               
-              >
+                    record-id={assessmentQuestionVersionId}
+                    object-api-name={assessmentQuestionVersion}
+                  >
         
                 <lightning-layout multiple-rows>
                   <lightning-layout-item size="12">
@@ -169,6 +167,7 @@
                       onclick={createQuestion}
                       variant="brand"
                       label="Save"
+                      class="questionFieldSubmit"
                     ></lightning-button>
                   </lightning-layout-item>
                 </lightning-layout>
