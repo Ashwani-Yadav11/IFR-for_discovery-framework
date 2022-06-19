@@ -13,7 +13,7 @@ export default class PageViewer extends NavigationMixin(LightningElement)  {
     }
     recordPageUrl;
     get url() {
-        return '/sfc/servlet.shepherd/version/renditionDownload?rendition=JPGZ&versionId=068RM0000001kn6YAA';
+        return '/sfc/servlet.shepherd/version/renditionDownload?rendition=JPGZ&versionId='+this.contentVersionId;
     }
     @wire(renditionStart,{contentDocumentId:'$contentDocumentId'})
     files({data,error})

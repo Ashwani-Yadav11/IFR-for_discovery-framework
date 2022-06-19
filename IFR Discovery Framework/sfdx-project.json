@@ -8,5 +8,5 @@
   "name": "IFR Discovery Framework",
   "namespace": "",
   "sfdcLoginUrl": "https://login.stmfa.stm.salesforce.com",
-  "sourceApiVersion": "54.0"
+  "sourceApiVersion": "53.0"
 }
