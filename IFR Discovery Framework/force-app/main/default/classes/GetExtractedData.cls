@@ -1,4 +1,4 @@
-public with sharing class GetExtractedData {
+public with sharing class  {
    
     @AuraEnabled(cacheable=true)
     public static Map<String,Object> extractedData (String contentDocumentId,String odsrId){
