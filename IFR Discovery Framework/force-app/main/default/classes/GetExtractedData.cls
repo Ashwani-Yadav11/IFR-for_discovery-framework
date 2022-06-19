@@ -1,4 +1,4 @@
-public with sharing class  {
+public with sharing class  GetExtractedData{
    
     @AuraEnabled(cacheable=true)
     public static Map<String,Object> extractedData (String contentDocumentId,String odsrId){
@@ -43,5 +43,19 @@ public with sharing class  {
 
 
 
+    }
+    public static Map<String,Object> returnExtractedTexts(String contentDocumentId){
+      
+      JWTAccessToken jwt = new JWTAccessToken();
+      String accessToken = jwt.getAccessToken();
+      String ApiEndPoint = URL.getSalesforceBaseUrl().toExternalForm() + '/services/data/v55.0/connect/form-reader/contentDocuments/'+contentDocumentId+'/ocrDocumentScanResults';
+      HttpRequest request = CreateHttpRequest.createHttpRequest(ApiEndPoint, 'GET', 'Bearer ', accessToken);
+      Http http = new Http();
+      HttpResponse res = http.send(request);
+      System.debug(res);
+      
+      Map<String,Object> results = (Map<String,Object>) JSON.deserializeUntyped(res.getBody());
+      System.debug(results);
+      return results;
     }
 }
