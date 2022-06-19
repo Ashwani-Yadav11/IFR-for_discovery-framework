@@ -18,7 +18,9 @@ public with sharing class ApiHandler {
           System.debug(jobInfo);
           String jobStatus = (String)jobInfo.Status;
           while(jobStatus!='Completed' || jobStatus!='Aborted'||jobStatus!='Failed' );
-          //get the extracted json
+          //get the extracted json call get extract function
+
+          
           
           
 
