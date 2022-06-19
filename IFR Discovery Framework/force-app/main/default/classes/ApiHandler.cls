@@ -24,7 +24,7 @@ public with sharing class ApiHandler {
                 while(DateTime.now().getTime()-startTime<5000);
                jobInfo = [SELECT Status,NumberOfErrors FROM AsyncApexJob WHERE Id=:jobID];
                System.debug(jobInfo);
-               String jobStatus = (String)jobInfo.Status;
+               jobStatus = (String)jobInfo.Status;
 
           }
 
