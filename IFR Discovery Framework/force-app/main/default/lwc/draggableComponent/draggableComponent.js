@@ -1,14 +1,7 @@
-import startRenditionAndExtractText from '@salesforce/apex/ProcessDocument.startRenditionAndExtractText';
-import { LightningElement,wire ,api} from 'lwc';
+import { LightningElement,wire } from 'lwc';
 //import getAccounts from '@salesforce/apex/AccountController.getAccounts';
 export default class Draggercomponent extends LightningElement {
     //@wire(getAccounts) accounts;
-    @api contentDocumentId;
-    @wire(startRenditionAndExtractText,{contentDocumentId:this.contentDocumentId})
-    texts(data,error){
-        console.log(data,'Extracted Text');
-        console.log(error,'Extracted Text Error');
-    }
     accounts={
         data:[
             {

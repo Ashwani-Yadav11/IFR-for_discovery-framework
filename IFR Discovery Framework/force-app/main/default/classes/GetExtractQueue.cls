@@ -10,7 +10,7 @@ public with sharing class GetExtractQueue implements Queueable {
         
         //setting up a timer
         Long startTime = DateTime.now().getTime();
-    	while(DateTime.now().getTime()-startTime<5000); 
+    	while(DateTime.now().getTime()-startTime<1000); 
         
         String s = [
             SELECT OcrStatus 
@@ -22,9 +22,12 @@ public with sharing class GetExtractQueue implements Queueable {
             System.enqueueJob(this);
         }else{
             //ODSR documemnt result status success get the extracted text
-           
-            //System.debug(text);
-            System.debug('Extraction Queue Success');
+           Map<String,Object> text = (Map<String, Object>) JSON.deserialize( [
+            SELECT ExtractedValues
+            FROM OcrDocumentScanResult 
+            WHERE Id =: odsrId
+            ].ExtractedValues);
+            System.debug(text);
         }
        
        //Object results = (Map<String,Object>) JSON.deserializeUntyped(response.getBody());
