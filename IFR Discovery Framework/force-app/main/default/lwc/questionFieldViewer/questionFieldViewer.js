@@ -1,4 +1,4 @@
-import { LightningElement,api } from 'lwc';
+import { LightningElement,api, track } from 'lwc';
 import { createRecord } from 'lightning/uiRecordApi';
 //import EmailPreferencesStayInTouchReminder from '@salesforce/schema/User.EmailPreferencesStayInTouchReminder';
 import ASSESSMENT_QUESTION from "@salesforce/schema/AssessmentQuestion";
@@ -10,6 +10,8 @@ import Id from '@salesforce/user/Id';
 export default class QuestionFieldViewer extends LightningElement {
     assessmentQuestion = ASSESSMENT_QUESTION;
     assessmentQuestionVersion = ASSESSMENT_QUESTION_VERSION;
+    @track assessmentQuestionRecordId;
+    @track assessmentQuestionVersionId;
     userId = Id;
     strName='';
     strDevName;
@@ -88,16 +90,16 @@ export default class QuestionFieldViewer extends LightningElement {
         this.strName = event.dataTransfer.getData("account_id");
     }
     //Generate Developer Name
-    makeid() {
-        var result           = '';
-        var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        var charactersLength = characters.length;
-        for ( var i = 0; i < 20; i++ ) {
-          result += characters.charAt(Math.floor(Math.random() * 
-     charactersLength));
-       }
-       this.strDevName = this.userId+result; 
-    }
+    // makeid() {
+    //     var result           = '';
+    //     var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    //     var charactersLength = characters.length;
+    //     for ( var i = 0; i < 20; i++ ) {
+    //       result += characters.charAt(Math.floor(Math.random() * 
+    //  charactersLength));
+    //    }
+    //    this.strDevName = this.userId+result; 
+    // }
     
  // ================================================================================
     // ACCESSOR METHODS
@@ -164,18 +166,20 @@ export default class QuestionFieldViewer extends LightningElement {
             console.log(qvfields);
              // Assessment Question Version entity has foreign key to AssessmentQuestionId
              qvfields[ASSESSMENT_QUESTION_ID_FIELD.fieldApiName] = assessmentQuestionRecord.id;
+             this.assessmentQuestionRecordId = assessmentQuestionRecord.id;
              // Set the name to same as AssessmentQuestion entity's Name field
              qvfields[ASSESSMENT_QUESTION_VERSION_NAME_FIELD.fieldApiName] = this.strName;
              
             const assessmentQuestionVersionInput = { apiName: ASSESSMENT_QUESTION_VERSION.objectApiName, fields: qvfields };
             createRecord(assessmentQuestionVersionInput)
-                    .then(() => {
+                    .then((assessmentQuestionVersionRecord) => {
                         const successEvent = new ShowToastEvent({
                             'variant': 'success',
                             'title': 'Success!',
                             'message': 'Assessment Version Save Success',
                         });
                         this.dispatchEvent(successEvent);
+                        this.assessmentQuestionVersionId=assessmentQuestionVersionRecord.id;
                         // if (!wasSaveAndNewButtonClicked && this.shouldNavigateToNewlyCreatedQuestion) {
                         //     this[NavigationMixin.Navigate]({
                         //         type: 'standard__recordPage',

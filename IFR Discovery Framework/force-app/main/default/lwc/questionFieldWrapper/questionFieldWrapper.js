@@ -29,6 +29,7 @@ export default class QuestionFieldWrapper extends LightningElement {
     saveAllQuestion(event){
         event.preventDefault();
         this.saveAll=true;
+        document.querySelectorAll('questionFieldSubmit')[0].click();
     }
     resetAllQuestion(event)
     {        event.preventDefault();
