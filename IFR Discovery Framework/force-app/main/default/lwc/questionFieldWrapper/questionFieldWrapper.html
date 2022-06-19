@@ -1,18 +1,34 @@
 <template>
+    <lightning-card title="Create Question" icon-name="custom:custom14">
+
     <lightning-button
                       onclick={addNewQuestion}
                       variant="brand"
                       label="+NewQuestion"
                     ></lightning-button>
-    <lightning-accordion 
-                allow-multiple-sections-open
-                         onsectiontoggle={handleSectionToggle}
-                         active-section-name={activeSections}
-                         >
-    <template for:each={questions} for:item="question">
-        <lightning-accordion-section key={question.id} name={question.id} label={question.id}>
-            <c-question-field-viewer></c-question-field-viewer>
-            </lightning-accordion-section>
-    </template>
-    </lightning-accordion>
+        
+        <lightning-accordion 
+                    allow-multiple-sections-open
+                            onsectiontoggle={handleSectionToggle}
+                            active-section-name={activeSections}
+                            >
+        <template for:each={questions} for:item="question">
+            <lightning-accordion-section key={question.id} name={question.id} label={question.id}>
+                <c-question-field-viewer save-all={saveAll} reset-all={resetAll}></c-question-field-viewer>
+                </lightning-accordion-section>
+        </template>
+        </lightning-accordion>
+    <lightning-button
+                      onclick={saveAllQuestion}
+                      variant="brand"
+                      label="Save All"
+                      class="questionFieldSubmit"
+                    ></lightning-button>
+    <lightning-button
+                    onclick={ResetAllQuestion}
+                    variant="brand"
+                    label="Cancel"
+    ></lightning-button>
+  
+    </lightning-card>
 </template>

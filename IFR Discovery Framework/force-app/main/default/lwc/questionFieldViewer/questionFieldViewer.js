@@ -1,4 +1,4 @@
-import { LightningElement } from 'lwc';
+import { LightningElement,api } from 'lwc';
 import { createRecord } from 'lightning/uiRecordApi';
 //import EmailPreferencesStayInTouchReminder from '@salesforce/schema/User.EmailPreferencesStayInTouchReminder';
 import ASSESSMENT_QUESTION from "@salesforce/schema/AssessmentQuestion";
@@ -21,6 +21,8 @@ export default class QuestionFieldViewer extends LightningElement {
     strDescription='';
     strIsActive;
     strResponseValues='';
+    @api saveAll;
+    @api resetAll;
     // Change Handlers.
     questionTextChangeHandler(event){
         if(this.strName==''&&this.strQuestionText=='')

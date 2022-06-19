@@ -14,7 +14,13 @@ public with sharing class ApiHandler {
 
           
           //poll the job id
-          while
+          AsyncApexJob jobInfo = [SELECT Status,NumberOfErrors FROM AsyncApexJob WHERE Id=:jobID];
+          System.debug(jobInfo);
+          String jobStatus = (String)jobInfo.Status;
+          while(jobStatus!='Completed' || jobStatus!='Aborted'||jobStatus!='Failed' );
+          //get the extracted json
+          
+          
 
      }
     

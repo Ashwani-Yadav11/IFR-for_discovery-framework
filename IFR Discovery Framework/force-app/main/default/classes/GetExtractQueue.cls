@@ -27,9 +27,12 @@ public with sharing class GetExtractQueue implements Queueable {
             FROM OcrDocumentScanResult 
             WHERE Id =: odsrId
             ].ExtractedValues);
+            System.debug(text);
         }
        
        //Object results = (Map<String,Object>) JSON.deserializeUntyped(response.getBody());
+
+
        
         
     }
