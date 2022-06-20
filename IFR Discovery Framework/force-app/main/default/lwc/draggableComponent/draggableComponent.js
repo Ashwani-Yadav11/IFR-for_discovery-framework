@@ -3,7 +3,8 @@ import { LightningElement,wire ,api} from 'lwc';
 //import getAccounts from '@salesforce/apex/AccountController.getAccounts';
 export default class Draggercomponent extends LightningElement {
     //@wire(getAccounts) accounts;
-    @api contentDocumentId;
+    //@api contentDocumentId='069RM0000001h5PYAQ';
+    contentDocumentId='069RM0000001h5PYAQ'
     @wire(startRenditionAndExtractText,{contentDocumentId:'$contentDocumentId'})
     texts(data,error){
         console.log(data,'Extracted Text');

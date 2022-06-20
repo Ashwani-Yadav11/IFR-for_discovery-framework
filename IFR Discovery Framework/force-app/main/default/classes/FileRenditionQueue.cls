@@ -16,7 +16,7 @@ public class FileRenditionQueue implements Queueable, Database.AllowsCallouts   
 
         //setting up a timer
         Long startTime = DateTime.now().getTime();
-    	while(DateTime.now().getTime()-startTime<1000); 
+    	while(DateTime.now().getTime()-startTime<5000); 
         
         HttpResponse res = http.send(request);
         
