@@ -1,4 +1,4 @@
-public class FileRenditionQueue implements Queueable  {
+public class FileRenditionQueue implements Queueable, Database.AllowsCallouts   {
        public final String contentDocumentId;
     
     public FileRenditionQueue(String contentDocumentId){
