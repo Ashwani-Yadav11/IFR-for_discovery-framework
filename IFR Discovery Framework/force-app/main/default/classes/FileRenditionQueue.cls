@@ -31,9 +31,9 @@ public class FileRenditionQueue implements Queueable  {
         	request = CreateHttpRequest.createHttpRequest(ApiEndPoint, 'POST', 'Bearer ', accessToken);
         	res = http.send(request);
             Map<String,Object> results = (Map<String,Object>) JSON.deserializeUntyped(res.getBody());
-
+            List<Object> odsrIds = (List<Object>)results.get('ocrDocumentScanResults');
             //send odsr id as a parameter to the get extract class
-            Map<String,Object> odsr = (Map<String,Object>)results[0];
+            Map<String,Object> odsr = (Map<String,Object>)odsrIds[0];
             String odsrId = (String) odsr.get('ocrDocumentScanResultId');
 
             System.enqueueJob(new GetExtractQueue(odsrId));
