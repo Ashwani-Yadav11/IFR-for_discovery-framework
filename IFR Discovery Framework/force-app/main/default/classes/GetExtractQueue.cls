@@ -29,8 +29,5 @@ public with sharing class GetExtractQueue implements Queueable {
        
        //Object results = (Map<String,Object>) JSON.deserializeUntyped(response.getBody());
 
-
-       
-        
     }
 }
