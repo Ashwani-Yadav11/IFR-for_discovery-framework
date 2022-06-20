@@ -1,5 +1,5 @@
 public class EmailHelper {
-    public boolean sendNotification(string jobId,String emailAddress)
+    public static boolean sendNotification(string jobId,String emailAddress)
     {
         Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
         message.toAddresses = new String[] { 'ashwani.yadav@salesforce.com' };
