@@ -19,18 +19,18 @@ public with sharing class ApiHandler {
           String jobStatus = (String)jobInfo.Status;
           //while(jobStatus!='Completed' || jobStatus!='Aborted'||jobStatus!='Failed' );
           //polling
-          while(jobStatus!='Completed' || jobStatus!='Aborted'||jobStatus!='Failed' ){
-               Long startTime = DateTime.now().getTime();
-                while(DateTime.now().getTime()-startTime<5000);
-               jobInfo = [SELECT Status,NumberOfErrors FROM AsyncApexJob WHERE Id=:jobID];
-               System.debug(jobInfo);
-               jobStatus = (String)jobInfo.Status;
+          // while(jobStatus!='Completed' || jobStatus!='Aborted'||jobStatus!='Failed' ){
+          //      Long startTime = DateTime.now().getTime();
+          //       while(DateTime.now().getTime()-startTime<5000);
+          //      jobInfo = [SELECT Status,NumberOfErrors FROM AsyncApexJob WHERE Id=:jobID];
+          //      System.debug(jobInfo);
+          //      jobStatus = (String)jobInfo.Status;
 
-          }
+          // }
 
           //get the extracted json
-          Map<String,Object> texts = GetExtractedData.returnExtractedTexts(contentDocumentId);
-          return texts;
+          //Map<String,Object> texts = GetExtractedData.returnExtractedTexts(contentDocumentId);
+          return null;
           
 
      }
