@@ -1,10 +1,11 @@
 import { LightningElement,api,wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
-import renditionStart from '@salesforce/apex/ApiHandler.renditionStart';
+import filePreview from '@salesforce/apex/ApiHandler.filePreview';
+//import renditionStart from '@salesforce/apex/ApiHandler.renditionStart';
 
 export default class PageViewer extends NavigationMixin(LightningElement)  {
     @api contentVersionId='';
-    @api contentDocumentId='';
+  contentDocumentId='069RM0000001h5PYAQ';
     @api heightInRem='';
     //contentDocumentId='069RM0000001hmjYAA';
     @api fileId='';
@@ -15,12 +16,12 @@ export default class PageViewer extends NavigationMixin(LightningElement)  {
     get url() {
         return '/sfc/servlet.shepherd/version/renditionDownload?rendition=JPGZ&versionId='+this.contentVersionId;
     }
-    @wire(renditionStart,{contentDocumentId:'$contentDocumentId'})
-    files({data,error})
-    {
-        console.log(data,'OdsrIds New1');
-        console.log(error,'new error3');
+    @wire(filePreview,{contentDocumentId:'$contentDocumentId'})
+    texts(data,error){
+        console.log(data,'Preview Response');
+        console.log(error,'Error');
     }
+    
     // connectedCallback() {
     //     // Generate a URL to a User record page
     //     this[NavigationMixin.GenerateUrl]({

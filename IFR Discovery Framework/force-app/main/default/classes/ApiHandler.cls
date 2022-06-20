@@ -5,8 +5,9 @@ public with sharing class ApiHandler {
      {
 
           String ApiEndPoint = URL.getSalesforceBaseUrl().toExternalForm() + '/services/data/v55.0/connect/form-reader/contentDocuments/'+contentDocumentId+'/ocrDocumentScanResults';
-           return ApiCall.apiCallMethod(ApiEndPoint,'POST','Bearer ',accessToken);
-     }
+           //return ApiCall.apiCallMethod(ApiEndPoint,'POST','Bearer ',accessToken);
+          return null;
+          }
      @AuraEnabled(cacheable=true)
      public static Map<String,Object> filePreview(String contentDocumentId)
      {
