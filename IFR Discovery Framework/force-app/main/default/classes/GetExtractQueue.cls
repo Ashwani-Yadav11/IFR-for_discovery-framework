@@ -1,6 +1,6 @@
 public with sharing class GetExtractQueue implements Queueable {
     public final String OdsrId;
-    public GetExtractQueue() {
+    public GetExtractQueue(String odsrId) {
         this.odsrId=odsrId;
 
     }
