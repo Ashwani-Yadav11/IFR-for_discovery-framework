@@ -4,7 +4,7 @@ import { LightningElement,wire ,api} from 'lwc';
 export default class Draggercomponent extends LightningElement {
     //@wire(getAccounts) accounts;
     @api contentDocumentId;
-    @wire(startRenditionAndExtractText,{contentDocumentId:this.contentDocumentId})
+    @wire(startRenditionAndExtractText,{contentDocumentId:'$contentDocumentId'})
     texts(data,error){
         console.log(data,'Extracted Text');
         console.log(error,'Extracted Text Error');

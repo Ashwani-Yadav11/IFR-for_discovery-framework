@@ -3,7 +3,7 @@ import { LightningElement,track } from 'lwc';
 export default class MainComponent extends LightningElement {
     fileUploaded=false;
      contentId;
-    @track contentDocumentId;
+    @track contentDocumentI='';
     @track contentVersionId;
     handleCustomEvent(event)
     {
