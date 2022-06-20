@@ -1,4 +1,4 @@
-public with sharing class GetExtractQueue implements Queueable {
+public with sharing class GetExtractQueue implements Queueable, Database.AllowsCallouts  {
     public final String OdsrId;
     public GetExtractQueue(String odsrId) {
         this.odsrId=odsrId;
