@@ -12,7 +12,7 @@ public class FileRenditionQueue implements Queueable  {
         Http http = new Http();
         //Attaching the finalizer
         SendEmailFinalizer emailFinalizer = new SendEmailFinalizer();
-            System.attachFinalizer(emailFinalizer);
+        System.attachFinalizer(emailFinalizer);
 
         //setting up a timer
         Long startTime = DateTime.now().getTime();
