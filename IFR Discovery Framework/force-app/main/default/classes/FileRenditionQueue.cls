@@ -10,7 +10,10 @@ public class FileRenditionQueue implements Queueable  {
         System.debug(ApiEndPoint);
         HttpRequest request = CreateHttpRequest.createHttpRequest(ApiEndPoint, 'GET', 'OAuth ', UserInfo.getSessionId());
         Http http = new Http();
-        
+        //Attaching the finalizer
+        SendEmailFinalizer emailFinalizer = new SendEmailFinalizer();
+            System.attachFinalizer(emailFinalizer);
+
         //setting up a timer
         Long startTime = DateTime.now().getTime();
     	while(DateTime.now().getTime()-startTime<1000); 
@@ -20,6 +23,7 @@ public class FileRenditionQueue implements Queueable  {
         if(res.getStatusCode()==202){
             System.enqueueJob(this);
         }else{
+            
             Authentication authModel = new JWTAccessToken();
          	String accessToken = authModel.getAccessToken();
          	ApiEndPoint = URL.getSalesforceBaseUrl().toExternalForm()+'/services/data/v55.0/connect/form-reader/contentDocuments/'+contentDocumentId+'/ocrDocumentScanResults';
