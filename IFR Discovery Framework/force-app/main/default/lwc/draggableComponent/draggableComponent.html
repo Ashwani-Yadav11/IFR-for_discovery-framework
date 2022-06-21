@@ -1,11 +1,23 @@
 <template>
 	<h1>Digitized Text</h1>
-	<nav>
+	<!-- <nav>
 		<ul>
 			<template for:each={accounts.data} for:item="account" if:true={accounts.data}>
 				<li key={account.Name}>
 					<lightning-input type="checkbox" data-accountname={account.Name} label={account.Name} onclick={createTemplate}
 						draggable="true" ondragstart={handleDragStart} class="bolder_style"> </lightning-input>
+				</li>
+			</template>
+
+
+		</ul>
+	</nav> -->
+	<nav>
+		<ul>
+			<template for:each={listOfTexts} for:item="textItem" >
+				<li key={textItem.id}>
+					<lightning-input type="checkbox" data-textitem={textItem.text} label={textItem.text} onclick={createTemplate2}
+						draggable="true" ondragstart={handleDragStart2} class="bolder_style"> </lightning-input>
 				</li>
 			</template>
 

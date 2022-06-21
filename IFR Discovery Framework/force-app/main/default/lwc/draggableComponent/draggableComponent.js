@@ -28,17 +28,20 @@ export default class Draggercomponent extends LightningElement {
             for(let j=0;j<keyValue.length;j++)
             {
                 let tex = keyValue[j].key.text;
-                this.listOfTexts.push({
+                let packet = {
                     text:tex,
-                    id:this.listOfTexts.length+1
-                });
-                console.log(tex);
+                    id:this.listOfTexts.length+1,
+                };
+                console.log(packet);
+                this.listOfTexts.push(packet);
+               // console.log(tex);
             }
             
 
         }
-        console.log(this.listOfTexts,'ListOftexts');
-    }
+        console.info(this.listOfTexts);
+        //'ListOftexts');
+         }
         console.log(error,'Extracted Text Error');
     }
     
@@ -62,11 +65,20 @@ export default class Draggercomponent extends LightningElement {
       console.log(e.target.dataset.accountname+' dragged');
       
     }
+    handleDragStart2(e)
+    {
+        e.dataTransfer.setData("account_id",e.target.dataset.textitem);
+        console.log(e.target.dataset.textitem+' dragged');
+    }
 
     createTemplate(e){
         
     
         console.log('A question template with '+e.target.dataset.accountname+' as Question Text field will be created');
      
+    }
+    createTemplate2(e){
+        console.log('A question template with '+e.target.dataset.textitem+' as Question Text field will be created');
+
     }
 }
