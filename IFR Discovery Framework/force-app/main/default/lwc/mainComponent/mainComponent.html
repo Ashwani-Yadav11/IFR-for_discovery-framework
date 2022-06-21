@@ -1,37 +1,33 @@
 <template>
-   
+      <template if:false={fileUploaded}>
       <c-file-upload oncustomevent={handleCustomEvent}></c-file-upload>
-  
-      <!-- <template if:true={fileUploaded}> -->
-      <lightning-card>
-         <!-- <lightning-layout multiple-rows>
-            <lightning-layout-item size="12">
-               </lightning-layout-item size="6">
-               <c-page-viewer content-document-id={contentDocumentId} height-in-rem='50'></c-page-viewer>
-                  </lightning-layout-item>
-            </lightning-layout-item>
-         </lightning-layout> -->
-         <div class="slds-grid">
-            <div class="slds-size_3-of-6 slds-scrollable" style="height:50rem">
-               <c-page-viewer content-document-id={contentDocumentId} content-version-id={contentVersionId} height-in-rem='50'></c-page-viewer>
+      </template>
+      <template if:true={fileUploaded}>
+         <lightning-button variant="brand" label="extract" title="Extract" onclick={handleExtract} class="slds-m-left_x-small"></lightning-button>
+
+         <!-- <template if:false={success}>
+            <lightning-spinner if:false={success}>
+            </lightning-spinner>
+         </template> -->
+         <template if:true={success}>
+            <lightning-card>
+         
+            <div class="slds-grid">
+               <div class="slds-size_3-of-6 slds-scrollable" style="height:50rem">
+                  <c-page-viewer content-document-id={contentDocumentId} content-version-id={contentVersionId} height-in-rem='50'></c-page-viewer>
+               </div>
+               <div class="slds-size_1-of-6 slds-scrollable">
+                  <!-- <c-text-list-viewer></c-text-list-viewer> -->
+                  <c-draggable-component content-document-id={contentDocumentId}></c-draggable-component>
+               </div>
+               <div class="slds-size_2-of-6 slds-scrollable">
+               <c-question-field-wrapper></c-question-field-wrapper>
+                  <!-- <c-question-field-viewer content-document-id={contentDocumentId}></c-question-field-viewer> -->
+               </div>
+            
             </div>
-            <div class="slds-size_1-of-6 slds-scrollable">
-               <!-- <c-text-list-viewer></c-text-list-viewer> -->
-               <c-draggable-component content-document-id={contentDocumentId}></c-draggable-component>
-            </div>
-            <div class="slds-size_2-of-6 slds-scrollable">
-              <c-question-field-wrapper></c-question-field-wrapper>
-               <!-- <c-question-field-viewer content-document-id={contentDocumentId}></c-question-field-viewer> -->
-            </div>
-            <!-- <div class="slds-col">
-               <p>Hello</p>
-             <c-continuation-component content-document-id={contentDocumentId}> </c-continuation-component>
-            </div> -->
-            <!-- <div class="slds-col">
-               <c-text-list-viewer content-document-id={contentDocumentId}></c-text-list-viewer>
-            </div> -->
-          </div>
-     </lightning-card>
-   <!-- </template> -->
+         </lightning-card>
+      </template>
+   </template>
    
 </template>

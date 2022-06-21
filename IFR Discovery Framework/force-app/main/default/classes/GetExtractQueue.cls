@@ -22,12 +22,25 @@ public with sharing class GetExtractQueue implements Queueable, Database.AllowsC
         //     FROM OcrDocumentScanResult 
         //     WHERE Id =: odsrId
         //     ].OcrStatus;
-       
-        if(texts.get('ocrDocumentScanResults')==null){
+        List<Object> lists = (List<Object>)texts.get('ocrDocumentScanResults');
+        if(lists.size()==0){
             System.enqueueJob(this);
         }else{
             //ODSR documemnt result status success get the extracted text
-           
+        //     Boolean flag = true;
+        //    for(Integer i=0;i<lists.size();i++)
+        //    {
+        //     Map<String,Object> keyValue  = (Map<String,Object>) lists[i];
+        //     if(keyValue.get('status')!='SUCESS')
+        //     {
+        //         flag = false;
+        //         break;
+        //     }
+        //    }
+        //    if(flag==false)
+        //    {
+        //     System.enqueueJob(this);
+        //    }
             //System.debug(text);
             System.debug('Extraction Queue Success');
         }

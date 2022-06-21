@@ -5,7 +5,7 @@ import filePreview from '@salesforce/apex/ApiHandler.filePreview';
 
 export default class PageViewer extends NavigationMixin(LightningElement)  {
     @api contentVersionId='';
-  contentDocumentId='069RM0000001h5PYAQ';
+    @api contentDocumentId='';
     @api heightInRem='';
     //contentDocumentId='069RM0000001hmjYAA';
     @api fileId='';
