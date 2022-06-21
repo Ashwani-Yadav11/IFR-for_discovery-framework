@@ -16,7 +16,7 @@ public with sharing class GetExtractQueue implements Queueable, Database.AllowsC
          System.attachFinalizer(emailFinalizer);
         //setting up a timer
         Long startTime = DateTime.now().getTime();
-    	while(DateTime.now().getTime()-startTime<5000); 
+    	while(DateTime.now().getTime()-startTime<50000); 
         HttpResponse response = http.send(request);
         Map<String,Object> texts = (Map<String,Object>) JSON.deserializeUntyped(response.getBody());
 
