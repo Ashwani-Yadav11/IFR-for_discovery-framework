@@ -16,6 +16,7 @@ public with sharing class ProcessDocument {
     public static String processDocument(String base64,String filename, String recordId){
         try {
            String contentDocumentId =  FileUploaderClass.uploadFile(base64, filename, recordId);
+           //ApiHandler.filePreview(contentDocumentId);
            // extractDocument(contentDocumentId);
           // Map<String,Object> results = ApiHandler.startExtract(contentDocumentId, '');
            return contentDocumentId;
