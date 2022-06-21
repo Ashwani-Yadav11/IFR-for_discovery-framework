@@ -36,7 +36,18 @@ export default class MainComponent extends LightningElement {
       //  this.checkExtractionStatus();
     }
     handleExtract(){
-        this.success = true;
+        returnExtractionStatus({contentDocumentId:'$contentDocumentId'}).then(response=>{
+                    console.log(response,'Respose');
+                    this.success = response;
+                    if(response==false){
+                        alert("Extraction in progress.Please wait or check email for confirmation");
+                    }
+                 }).catch(error=>{
+                    console.log(error);
+                    this.error = error;
+                 });
+        //this.success = true;
+        
     }
     // renderedCallback(){
     //     returnExtractionStatus({contentDocumentId:'$contentDocumentId'}).then(response=>{
