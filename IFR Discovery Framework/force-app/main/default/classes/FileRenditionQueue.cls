@@ -10,9 +10,7 @@ public class FileRenditionQueue implements Queueable, Database.AllowsCallouts   
         System.debug(ApiEndPoint);
         HttpRequest request = CreateHttpRequest.createHttpRequest(ApiEndPoint, 'GET', 'OAuth ', UserInfo.getSessionId());
         Http http = new Http();
-        //Attaching the finalizer
-        // SendEmailFinalizer emailFinalizer = new SendEmailFinalizer();
-        // System.attachFinalizer(emailFinalizer);
+       
 
         //setting up a timer
         Long startTime = DateTime.now().getTime();
