@@ -63,33 +63,27 @@ public with sharing class  GetExtractedData{
      * Testing purpose
      */
     @AuraEnabled(cacheable=true)
-    public static Boolean returnExtractionStatus(String contentDocumentId){
+    public static List<Object> returnExtractionStatus(String contentDocumentId){
       JWTAccessToken jwt = new JWTAccessToken();
-      String accessToken  = jwt.getAccessToken();
-      String ApiEndPoint = URL.getSalesforceBaseUrl().toExternalForm() + '/services/data/v55.0/connect/form-reader/contentDocuments/'+contentDocumentId+'/ocrDocumentScanResults';
-      HttpRequest request = CreateHttpRequest.createHttpRequest(ApiEndPoint, 'GET', 'Bearer ', accessToken);
-      Http http = new Http();
-      //setting up a timer
-     
-      HttpResponse response = http.send(request);
-      Map<String,Object> texts = (Map<String,Object>) JSON.deserializeUntyped(response.getBody());
-
-      // String s = [
-      //     SELECT OcrStatus 
-      //     FROM OcrDocumentScanResult 
-      //     WHERE Id =: odsrId
-      //     ].OcrStatus;
-      Object temp = texts.get('ocrDocumentScanResults');
-      if(temp==null)
-      return false;
-      List<Object> lists = (List<Object>)temp;
-      if(lists.size()==0){
-         return false;
-      }else{
-          //ODSR documemnt result status success get the extracted text
+        String accessToken  = jwt.getAccessToken();
+        String ApiEndPoint = URL.getSalesforceBaseUrl().toExternalForm() + '/services/data/v55.0/connect/form-reader/contentDocuments/'+contentDocumentId+'/ocrDocumentScanResults';
+        HttpRequest request = CreateHttpRequest.createHttpRequest(ApiEndPoint, 'GET', 'Bearer ', accessToken);
+        Http http = new Http();
+        
+        Long startTime = DateTime.now().getTime();
+      	while(DateTime.now().getTime()-startTime<5000); 
+        HttpResponse response = http.send(request);
+        Map<String,Object> texts = (Map<String,Object>) JSON.deserializeUntyped(response.getBody());
+       
+        List<Object> lists = (List<Object>)texts.get('ocrDocumentScanResults');
+      //   if(lists.size()==0){
+      //    return false;
+      // }else{
+      //     //ODSR documemnt result status success get the extracted text
          
-          //System.debug(text);
-          return true;
-      }
+      //     //System.debug(text);
+      //     return true;
+      // }
+      return lists;
     } 
 }

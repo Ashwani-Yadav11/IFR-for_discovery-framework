@@ -1,6 +1,7 @@
 import returnExtractionStatus from '@salesforce/apex/GetExtractedData.returnExtractionStatus';
 import { LightningElement,track, wire } from 'lwc';
 import { refreshApex } from '@salesforce/apex';
+import returnExtractedTexts from '@salesforce/apex/GetExtractedData.returnExtractedTexts';
 
 export default class MainComponent extends LightningElement {
     fileUploaded=false;
@@ -10,6 +11,7 @@ export default class MainComponent extends LightningElement {
     @track error;
     @track contentDocumentId='';
     @track contentVersionId;
+    //@track list
     maxattempts = 4;
     attempt = 0;
     // @wire(returnExtractionStatus,{contentDocumentId:'$contentDocumentId'})
@@ -36,16 +38,24 @@ export default class MainComponent extends LightningElement {
       //  this.checkExtractionStatus();
     }
     handleExtract(){
-        returnExtractionStatus({contentDocumentId:'$contentDocumentId'}).then(response=>{
-                    console.log(response,'Respose');
-                    this.success = response;
-                    if(response==false){
-                        alert("Extraction in progress.Please wait or check email for confirmation");
-                    }
+        returnExtractionStatus({contentDocumentId:this.contentDocumentId}).then(response=>{
+
+                    console.log(response,response.length,'Respose');
+                    if(response.length==0)
+                    {alert("Extraction in progress.Please wait or check email for confirmation");
+                        this.success = false;}
+                    else
+                   this.success = true;
+                    //this.success = response;
+                    // if(response==false){
+                    //     alert("Extraction in progress.Please wait or check email for confirmation");
+                    // }
                  }).catch(error=>{
                     console.log(error);
                     this.error = error;
+                    alert("Extraction in progress.Please wait or check email for confirmation");
                  });
+        //returnExtractedTexts({})
         //this.success = true;
         
     }
