@@ -11,6 +11,9 @@ public with sharing class GetExtractQueue implements Queueable, Database.AllowsC
         String ApiEndPoint = URL.getSalesforceBaseUrl().toExternalForm() + '/services/data/v55.0/connect/form-reader/contentDocuments/'+contentDocumentId+'/ocrDocumentScanResults';
         HttpRequest request = CreateHttpRequest.createHttpRequest(ApiEndPoint, 'GET', 'Bearer ', accessToken);
         Http http = new Http();
+         //Attaching the finalizer
+         SendEmailFinalizer emailFinalizer = new SendEmailFinalizer();
+         System.attachFinalizer(emailFinalizer);
         //setting up a timer
         Long startTime = DateTime.now().getTime();
     	while(DateTime.now().getTime()-startTime<5000); 

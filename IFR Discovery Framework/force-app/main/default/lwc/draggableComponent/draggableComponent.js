@@ -5,14 +5,22 @@ import { LightningElement,wire ,api} from 'lwc';
 //import getAccounts from '@salesforce/apex/AccountController.getAccounts';
 export default class Draggercomponent extends LightningElement {
     //@wire(getAccounts) accounts;
+
+
+
   @api contentDocumentId;
  //contentDocumentId='069RM0000001hyBYAQ';
  
+
     @wire(returnExtractedTexts,{contentDocumentId:'$contentDocumentId'})
     texts({data,error}){
         console.log(data,'Extracted Text');
         console.log(error,'Extracted Text Error');
     }
+    
+
+
+
     
     
    
@@ -27,172 +35,7 @@ export default class Draggercomponent extends LightningElement {
                 Name:'Gender',
                 id:'2',
                 
-            },
-            { Name:'Address',
-                id:'3',
-                
-            },
-            { Name:'Account Number',
-                id:'3',
-                
-            },
-            {
-                Name:'Name',
-                id:'1',
-                
-            },
-            {
-                Name:'Gender',
-                id:'2',
-                
-            },
-            { Name:'Address',
-                id:'3',
-                
-            },
-            { Name:'Account Number',
-                id:'3',
-                
-            },
-            {
-                Name:'Name',
-                id:'1',
-                
-            },
-            {
-                Name:'Gender',
-                id:'2',
-                
-            },
-            { Name:'Address',
-                id:'3',
-                
-            },
-            { Name:'Account Number',
-                id:'3',
-                
-            },     {
-                Name:'Name',
-                id:'1',
-                
-            },
-            {
-                Name:'Gender',
-                id:'2',
-                
-            },
-            { Name:'Address',
-                id:'3',
-                
-            },
-            { Name:'Account Number',
-                id:'3',
-                
-            },     {
-                Name:'Name',
-                id:'1',
-                
-            },
-            {
-                Name:'Gender',
-                id:'2',
-                
-            },
-            { Name:'Address',
-                id:'3',
-                
-            },
-            { Name:'Account Number',
-                id:'3',
-                
-            },
-            {
-                Name:'Name',
-                id:'1',
-                
-            },
-            {
-                Name:'Gender',
-                id:'2',
-                
-            },
-            { Name:'Address',
-                id:'3',
-                
-            },
-            { Name:'Account Number',
-                id:'3',
-                
-            },
-            {
-                Name:'Name',
-                id:'1',
-                
-            },
-            {
-                Name:'Gender',
-                id:'2',
-                
-            },
-            { Name:'Address',
-                id:'3',
-                
-            },
-            { Name:'Account Number',
-                id:'3',
-                
-            },
-            {
-                Name:'Name',
-                id:'1',
-                
-            },
-            {
-                Name:'Gender',
-                id:'2',
-                
-            },
-            { Name:'Address',
-                id:'3',
-                
-            },
-            { Name:'Account Number',
-                id:'3',
-                
-            },     {
-                Name:'Name',
-                id:'1',
-                
-            },
-            {
-                Name:'Gender',
-                id:'2',
-                
-            },
-            { Name:'Address',
-                id:'3',
-                
-            },
-            { Name:'Account Number',
-                id:'3',
-                
-            },     {
-                Name:'Name',
-                id:'1',
-                
-            },
-            {
-                Name:'Gender',
-                id:'2',
-                
-            },
-            { Name:'Address',
-                id:'3',
-                
-            },
-            { Name:'Account Number',
-                id:'3',
-        }
+            }
         ]
     };
     selectValue = '';
