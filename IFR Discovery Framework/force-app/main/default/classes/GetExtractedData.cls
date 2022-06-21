@@ -44,6 +44,7 @@ public with sharing class  GetExtractedData{
 
 
     }
+    @AuraEnabled(cacheable=true)
     public static Map<String,Object> returnExtractedTexts(String contentDocumentId){
       
       JWTAccessToken jwt = new JWTAccessToken();
