@@ -58,4 +58,34 @@ public with sharing class  GetExtractedData{
       System.debug(results);
       return results;
     }
+    /**
+     * Testing purpose
+     */
+    @AuraEnabled(cacheable=true)
+    public static Boolean returnExtractionStatus(String contentDocumetId){
+      JWTAccessToken jwt = new JWTAccessToken();
+      String accessToken  = jwt.getAccessToken();
+      String ApiEndPoint = URL.getSalesforceBaseUrl().toExternalForm() + '/services/data/v55.0/connect/form-reader/contentDocuments/'+contentDocumentId+'/ocrDocumentScanResults';
+      HttpRequest request = CreateHttpRequest.createHttpRequest(ApiEndPoint, 'GET', 'Bearer ', accessToken);
+      Http http = new Http();
+      //setting up a timer
+     
+      HttpResponse response = http.send(request);
+      Map<String,Object> texts = (Map<String,Object>) JSON.deserializeUntyped(response.getBody());
+
+      // String s = [
+      //     SELECT OcrStatus 
+      //     FROM OcrDocumentScanResult 
+      //     WHERE Id =: odsrId
+      //     ].OcrStatus;
+     
+      if(texts.get('ocrDocumentScanResults')==null){
+         false;
+      }else{
+          //ODSR documemnt result status success get the extracted text
+         
+          //System.debug(text);
+          true;
+      }
+    } 
 }
