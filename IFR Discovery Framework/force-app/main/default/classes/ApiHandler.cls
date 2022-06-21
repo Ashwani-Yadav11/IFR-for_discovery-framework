@@ -11,13 +11,13 @@ public with sharing class ApiHandler {
      @AuraEnabled(cacheable=true)
      public static Map<String,Object> filePreview(String contentDocumentId)
      {
-          ID jobID = System.enqueueJob(new FileRenditionQueue(contentDocumentId));
+          // ID jobID = System.enqueueJob(new FileRenditionQueue(contentDocumentId));
 
           
-          //poll the job id
-          AsyncApexJob jobInfo = [SELECT Status,NumberOfErrors FROM AsyncApexJob WHERE Id=:jobID];
-          System.debug(jobInfo);
-          String jobStatus = (String)jobInfo.Status;
+          // //poll the job id
+          // AsyncApexJob jobInfo = [SELECT Status,NumberOfErrors FROM AsyncApexJob WHERE Id=:jobID];
+          // System.debug(jobInfo);
+          // String jobStatus = (String)jobInfo.Status;
           //while(jobStatus!='Completed' || jobStatus!='Aborted'||jobStatus!='Failed' );
           //polling
           // while(jobStatus!='Completed' || jobStatus!='Aborted'||jobStatus!='Failed' ){
