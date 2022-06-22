@@ -12,13 +12,8 @@ public with sharing class GetExtractQueue implements Queueable, Database.AllowsC
         HttpRequest request = CreateHttpRequest.createHttpRequest(ApiEndPoint, 'GET', 'Bearer ', accessToken);
         Http http = new Http();
          //Attaching the finalizer
-<<<<<<< HEAD
        //  SendEmailFinalizer emailFinalizer = new SendEmailFinalizer();
         // System.attachFinalizer(emailFinalizer);
-=======
-        //  SendEmailFinalizer emailFinalizer = new SendEmailFinalizer();
-        //  System.attachFinalizer(emailFinalizer);
->>>>>>> f68d77f94245acafa9172d4f94feeaa8dc672795
         //setting up a timer
         Long startTime = DateTime.now().getTime();
     	while(DateTime.now().getTime()-startTime<50000); 
