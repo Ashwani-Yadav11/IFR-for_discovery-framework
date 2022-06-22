@@ -1,17 +1,5 @@
 <template>
-	<h1>Digitized Text</h1>
-	<!-- <nav>
-		<ul>
-			<template for:each={accounts.data} for:item="account" if:true={accounts.data}>
-				<li key={account.Name}>
-					<lightning-input type="checkbox" data-accountname={account.Name} label={account.Name} onclick={createTemplate}
-						draggable="true" ondragstart={handleDragStart} class="bolder_style"> </lightning-input>
-				</li>
-			</template>
-
-
-		</ul>
-	</nav> -->
+	<lightning-card title="Digitized Text">
 	<nav>
 		<ul>
 			<template for:each={listOfTexts} for:item="textItem" >
@@ -24,5 +12,5 @@
 
 		</ul>
 	</nav>
-
+</lightning-card>
 </template>
