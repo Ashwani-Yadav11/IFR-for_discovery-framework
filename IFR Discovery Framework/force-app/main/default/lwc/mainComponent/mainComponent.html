@@ -3,17 +3,18 @@
       <c-file-upload oncustomevent={handleCustomEvent}></c-file-upload>
       </template>
       <template if:true={fileUploaded}>
-         <lightning-button variant="brand" label="startQuestionCreation" title="Start Question Creation" onclick={handleExtract} class="slds-m-left_x-small"></lightning-button>
-
-         <!-- <template if:false={success}>
-            <lightning-spinner if:false={success}>
+         <template if:false={success}>
+         <lightning-button variant="brand" label="Start Question Creation" title="Start Question Creation" onclick={handleExtract} class="slds-m-left_x-small"></lightning-button>
+               </template>
+         <template if:true={spinner}>
+            <lightning-spinner if:true={spinner}>
             </lightning-spinner>
-         </template> -->
+         </template>
          <template if:true={success}>
             <lightning-card>
          
             <div class="slds-grid">
-               <div class="slds-size_3-of-6 slds-scrollable" style="height:50rem">
+               <div class="slds-size_3-of-6 slds-scrollable" style="height:45rem">
                   <c-page-viewer content-document-id={contentDocumentId} content-version-id={contentVersionId} height-in-rem='50'></c-page-viewer>
                </div>
                <div class="slds-size_1-of-6 slds-scrollable">

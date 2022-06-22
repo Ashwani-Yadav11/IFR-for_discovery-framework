@@ -62,7 +62,7 @@ public with sharing class  GetExtractedData{
     /**
      * Testing purpose
      */
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled
     public static List<Object> returnExtractionStatus(String contentDocumentId){
       JWTAccessToken jwt = new JWTAccessToken();
         String accessToken  = jwt.getAccessToken();

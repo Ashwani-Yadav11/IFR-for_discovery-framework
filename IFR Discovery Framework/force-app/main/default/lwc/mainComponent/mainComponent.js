@@ -6,7 +6,7 @@ import returnExtractedTexts from '@salesforce/apex/GetExtractedData.returnExtrac
 export default class MainComponent extends LightningElement {
     fileUploaded=false;
      contentId;
-    spinner=false;
+    @track spinner=false;
     @track success=false;
     @track error;
     @track contentDocumentId='';
@@ -34,26 +34,31 @@ export default class MainComponent extends LightningElement {
             this.contentVersionId = ids[0];
         console.log(event.detail,'maincomp');
         this.fileUploaded = true;
-        this.spinner=true;
+        //this.spinner=true;
       //  this.checkExtractionStatus();
     }
-    handleExtract(){
+    handleExtract(e){
+        //e.preventDefault();
+        this.spinner = true;
         returnExtractionStatus({contentDocumentId:this.contentDocumentId}).then(response=>{
-
+            this.spinner = false;
                     console.log(response,response.length,'Respose');
                     if(response.length==0)
                     {alert("Extraction in progress.Please wait or check email for confirmation");
                         this.success = false;}
                     else
                    this.success = true;
+                 
                     //this.success = response;
                     // if(response==false){
                     //     alert("Extraction in progress.Please wait or check email for confirmation");
                     // }
                  }).catch(error=>{
+                    this.spinner = false;
                     console.log(error);
                     this.error = error;
                     alert("Extraction in progress.Please wait or check email for confirmation");
+                    
                  });
         //returnExtractedTexts({})
         //this.success = true;
