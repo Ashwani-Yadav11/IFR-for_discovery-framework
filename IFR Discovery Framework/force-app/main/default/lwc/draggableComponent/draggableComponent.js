@@ -19,6 +19,11 @@ export default class Draggercomponent extends LightningElement {
         if(data)
         {
             let pages = data.ocrDocumentScanResults;
+            let temp ={
+                text:'Gender',
+                id:1,
+            }
+            this.listOfTexts.push(temp);
         for(let i = 0;i<pages.length;i++)
         {
             //for
@@ -32,14 +37,14 @@ export default class Draggercomponent extends LightningElement {
                     text:tex,
                     id:this.listOfTexts.length+1,
                 };
-                console.log(packet);
+               // console.log(packet);
                 this.listOfTexts.push(packet);
                // console.log(tex);
             }
             
 
         }
-        console.info(this.listOfTexts);
+        //console.info(this.listOfTexts);
         //'ListOftexts');
          }
         console.log(error,'Extracted Text Error');
