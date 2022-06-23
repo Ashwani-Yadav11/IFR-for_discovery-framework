@@ -65,6 +65,41 @@ export default class Draggercomponent extends LightningElement {
         ]
     };
     selectValue = '';
+    @track selectedOption;
+    sortOrder(event) {
+        const field = event.target.name;
+        if (field === 'optionSelect'){
+            this.selectedOption = event.target.value;
+            if(this.selectedOption=='Sort a-z'){
+                this.listOfTexts.sort((a, b) => {
+                let fa=a.text.toLowerCase();
+                let fb=b.text.toLowerCase();
+                if (fa < fb) {
+                    return -1;
+                }
+                if (fa > fb) {
+                    return 1;
+                }
+                return 0;
+                });
+            }
+            if(this.selectedOption=='Sort z-a'){
+                this.listOfTexts.sort((a, b) => {
+                let fa=a.text.toLowerCase();
+                let fb=b.text.toLowerCase();
+                if (fa < fb) {
+                    return 1;
+                }
+                if (fa > fb) {
+                    return -1;
+                }
+                return 0;
+                });
+            }
+        }
+
+    
+};
     handleDragStart(e){
         e.dataTransfer.setData("account_id",e.target.dataset.accountname);
       console.log(e.target.dataset.accountname+' dragged');
