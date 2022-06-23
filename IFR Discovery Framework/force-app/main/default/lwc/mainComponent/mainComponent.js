@@ -1,6 +1,7 @@
 import returnExtractionStatus from '@salesforce/apex/GetExtractedData.returnExtractionStatus';
 import { LightningElement,track, wire } from 'lwc';
 import { refreshApex } from '@salesforce/apex';
+import {CurrentPageReference} from 'lightning/navigation';
 import returnExtractedTexts from '@salesforce/apex/GetExtractedData.returnExtractedTexts';
 
 export default class MainComponent extends LightningElement {
@@ -12,19 +13,26 @@ export default class MainComponent extends LightningElement {
     @track contentDocumentId='';
     @track contentVersionId;
     //@track list
-    maxattempts = 4;
-    attempt = 0;
-    // @wire(returnExtractionStatus,{contentDocumentId:'$contentDocumentId'})
-    // successStatus({data,error}){
-    //     if(data==true)
-    //     {
-    //         this.success = true;
-    //         this.spinner=false;
-    //     }
-    //     console.log(data);
-    //     console.log(error) ;
-    //     console.log(this.success,'SuccessStatus');
-    // }
+    currentPageReference = null; 
+    urlStateParameters = null;
+ 
+    @wire(CurrentPageReference)
+    getStateParameters(currentPageReference) {
+        console.log(currentPageReference,'Current Page reference');
+       if (currentPageReference) {
+     
+          this.urlStateParameters = currentPageReference.state;
+          this.setParametersBasedOnUrl();
+       }
+    }
+ 
+    setParametersBasedOnUrl() {
+       this.contentDocumentId = this.urlStateParameters.c__contentDocumentId || null;
+        if(this.contentDocumentId!=null)
+        {   this.fileUploaded=true;
+            this.success = true;}
+        console.log(this.contentDocumentId,this.success,'Content Id fetched from url');
+    }
     handleCustomEvent(event)
     {
         this.contentId = event.detail;
@@ -34,8 +42,7 @@ export default class MainComponent extends LightningElement {
             this.contentVersionId = ids[0];
         console.log(event.detail,'maincomp');
         this.fileUploaded = true;
-        //this.spinner=true;
-      //  this.checkExtractionStatus();
+
     }
     handleExtract(e){
         //e.preventDefault();
@@ -44,54 +51,21 @@ export default class MainComponent extends LightningElement {
             this.spinner = false;
                     console.log(response,response.length,'Respose');
                     if(response.length==0)
-                    {alert("Extraction in progress.Please wait or check email for confirmation");
-                        this.success = false;}
+                    {
+                        alert("Extraction in progress.Please wait or check email for confirmation");
+                        this.success = false;
+                    }
                     else
                    this.success = true;
-                 
-                    //this.success = response;
-                    // if(response==false){
-                    //     alert("Extraction in progress.Please wait or check email for confirmation");
-                    // }
+                
                  }).catch(error=>{
                     this.spinner = false;
                     console.log(error);
                     this.error = error;
                     alert("Extraction in progress.Please wait or check email for confirmation");
                     
-                 });
-        //returnExtractedTexts({})
-        //this.success = true;
-        
+                 });  
     }
-    // renderedCallback(){
-    //     returnExtractionStatus({contentDocumentId:'$contentDocumentId'}).then(response=>{
-    //         console.log(response,'Respose');
-    //         this.success = response;
-    //      }).catch(error=>{
-    //         console.log(error);
-    //         this.error = error;
-    //      });
-    // }
-    //  checkExtractionStatus(){
-    //     this.attempt++;
-    //     console.log('Method called');
-    //     returnExtractionStatus({contentDocumentId:'$contentDocumentId'}).then(response=>{
-    //         console.log(response,'Respose');
-    //      }).catch(error=>{
-    //         console.log(error);
-    //         if(this.attempt<this.maxattempts)
-    //         {
-    //             renderedCallback() {
-    //             if(!this.ready)
-    //             this.ready == true;
-    //             } 
-    //             setTimeout(this.checkExtractionStatus(),30000);
-    //         }
-    //      });
-         
-       
-    // }
 
     
 }
