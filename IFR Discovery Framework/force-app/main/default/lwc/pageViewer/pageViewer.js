@@ -1,6 +1,7 @@
 import { LightningElement,api,wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import filePreview from '@salesforce/apex/ApiHandler.filePreview';
+import getContentVersionId from '@salesforce/apex/ProcessDocument.getContentVersionId';
 //import renditionStart from '@salesforce/apex/ApiHandler.renditionStart';
 
 export default class PageViewer extends NavigationMixin(LightningElement)  {
@@ -9,6 +10,10 @@ export default class PageViewer extends NavigationMixin(LightningElement)  {
     @api heightInRem='';
     //contentDocumentId='069RM0000001hmjYAA';
     @api fileId='';
+    @wire(getContentVersionId,{contentDocumentId:'$contentDocumentId'})
+    versionId({data,error}){
+        this.contentVersionId=data;
+    }
     get pdfHeight() {
         return 'height: ' + this.heightInRem + 'rem';
     }

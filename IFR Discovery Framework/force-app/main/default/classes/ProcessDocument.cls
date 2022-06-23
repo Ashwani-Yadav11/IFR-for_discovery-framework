@@ -64,7 +64,15 @@ public with sharing class ProcessDocument {
     //         //There are two api that we are supposesd to hit 
     //         //Assessment Question and Assessment Question Version
     // }
-
+        @AuraEnabled(cacheable=true)
+        public static string getContentVersionId(String contentDocumentId){
+            String s = [
+            SELECT Id 
+            FROM ContentVersion 
+            WHERE ContentDocumentId =: contentDocumentId
+            ].Id;
+            return s;
+        }
 
     /**
      * Conitnuation Logic
