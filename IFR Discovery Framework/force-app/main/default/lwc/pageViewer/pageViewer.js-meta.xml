@@ -7,4 +7,10 @@
         <target>lightning__AppPage</target>
         <target>lightning__HomePage</target>
     </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__AppPage, lightning__HomePage, lightning__RecordPage">
+            <property label="File ID" name="fileId" type="String" placeholder="Please enter PDF file's Content Document ID." />
+            <property label="Height in rem" name="heightInRem" type="Integer" default="100" />
+        </targetConfig>
+    </targetConfigs>
 </LightningComponentBundle>

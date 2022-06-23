@@ -1,4 +1,4 @@
-import { LightningElement, api ,wire} from 'lwc';
+import { LightningElement, api ,wire, track} from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { refreshApex } from '@salesforce/apex';
 
@@ -14,7 +14,7 @@ export default class FileUpload extends LightningElement {
     contentDocumentId = '';
     @wire(extractDocument,{contentDocumentId: '$contentDocumentId'})
     odsrIds
-    
+    contentIds='';
     // @wire(startExtract,{contentDocumentId: '$contentDocumentId',accessToken:'$accessToken.data'})
     // queryResponse
     openfileUpload(event) {
@@ -38,10 +38,13 @@ export default class FileUpload extends LightningElement {
         
         processDocument({ base64, filename, recordId }).then(result=>{
             console.log(result);
-            this.contentDocumentId = result; 
+            this.contentIds=result;
+             var ids = result.split(" ");
+             console.log(ids);
+            this.contentDocumentId = ids[1]; 
             this.handleContentDocumentId();
             this.fileData = null
-            let title = `${filename} uploaded successfully!!`
+            let title = `${filename} is uploaded and queued for extraction, please continue with your other work completion of same will be notified via mail !! `
             this.toast(title)
             
         }).catch(e=>{
@@ -53,6 +56,8 @@ export default class FileUpload extends LightningElement {
         console.log(this.sessionId);
         //console.log(this.accessToken,'jii');
         console.log(this.odsrIds,'Hell');
+        // if(this.odsrIds.data.ocrDocumentScanResultInfos!=null)
+        // this.handleOdsrs();
         console.log('clicked');
         console.log(this.contentDocumentId,'Hello');
         console.log(typeof this.contentDocumentId,'Hi');
@@ -67,9 +72,14 @@ export default class FileUpload extends LightningElement {
             'contentDocumentId':this.contentDocumentId
         }
        
-        const selectEvent = new CustomEvent('customevent',{detail:this.contentDocumentId});
+        const selectEvent = new CustomEvent('customevent',{detail:this.contentIds});
         this.dispatchEvent(selectEvent);
 
+    }
+    handleOdsrs()
+    {
+        const selectEvent = new CustomEvent('customevent2',{detail:this.odsrIds.data.ocrDocumentScanResultInfos[0].ocrDocumentScanResultId});
+        this.dispatchEvent(selectEvent);
     }
 
     toast(title){

@@ -1,0 +1,12 @@
+{
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "default": true
+    }
+  ],
+  "name": "IFR_Demo",
+  "namespace": "",
+  "sfdcLoginUrl": "https://ifrproject-dev-ed.lightning.stmfc.stm.force.com/",
+  "sourceApiVersion": "53.0"
+}

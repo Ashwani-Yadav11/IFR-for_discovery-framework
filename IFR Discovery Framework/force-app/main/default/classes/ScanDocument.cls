@@ -12,9 +12,14 @@ public with sharing class ScanDocument {
      // 
     public  Map<String,Object> scanDocument(String contentDocumentId,Authentication authModel)
     {
+
+        // as per new approach enque the the rendition 
+
+
+
         String accessToken = authModel.getAccessToken();
         // use the api handler to call the api methods
-        Map<String,Object> previewUrls = ApiHandler.filePreview(contentDocumentId);
+        //Map<String,Object> previewUrls = ApiHandler.filePreview(contentDocumentId);
         Map<String,Object> odsrIds = ApiHandler.startExtract(contentDocumentId, accessToken);
         //Map<String,Object> response = Api.
        // Map<String,Object> results = Pulling.getExtractedText(contentDocumentId,accessToken);

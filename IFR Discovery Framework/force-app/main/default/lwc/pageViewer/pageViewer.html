@@ -1,14 +1,11 @@
 <template>
     <lightning-card title="Page Viewer" icon-name="custom:custom14">
 
-        <template if:true={url}>
-            <iframe src={url} ></iframe>
-        </template>
-        <template if:false={url}>
-            <lightning-card
-                >No PDF File ID found. Please specify PDF File ID.</lightning-card
-            >
-        </template>
+        <!-- <p>{contentDocumentId}</p>
+        <p>{url}</p> -->
+            <img src={url} ></iframe>
+     
+        
         
     </lightning-card>
 </template>

@@ -16,6 +16,7 @@ public with sharing class ProcessDocument {
     public static String processDocument(String base64,String filename, String recordId){
         try {
            String contentDocumentId =  FileUploaderClass.uploadFile(base64, filename, recordId);
+           //ApiHandler.filePreview(contentDocumentId);
            // extractDocument(contentDocumentId);
           // Map<String,Object> results = ApiHandler.startExtract(contentDocumentId, '');
            return contentDocumentId;
@@ -49,6 +50,11 @@ public with sharing class ProcessDocument {
            // return odsrIds;
     
     }
+    @AuraEnabled(cacheable=true)
+    public static Map<String,Object> startRenditionAndExtractText(String contentDocumentId){
+         Map<String,Object> results = ApiHandler.filePreview(contentDocumentId);
+         return results;
+    }
     // /*
     //  * @desc Upload the question in asses
     //  * 
@@ -58,7 +64,15 @@ public with sharing class ProcessDocument {
     //         //There are two api that we are supposesd to hit 
     //         //Assessment Question and Assessment Question Version
     // }
-
+        @AuraEnabled(cacheable=true)
+        public static string getContentVersionId(String contentDocumentId){
+            String s = [
+            SELECT Id 
+            FROM ContentVersion 
+            WHERE ContentDocumentId =: contentDocumentId
+            ].Id;
+            return s;
+        }
 
     /**
      * Conitnuation Logic

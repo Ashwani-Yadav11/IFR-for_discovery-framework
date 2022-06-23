@@ -1,15 +1,16 @@
 <template>
-    <lightning-card title="Drag Accounts">   
-        <template for:each={accounts.data} for:item="account" if:true={accounts.data}> 
-            <div class="slds-var-m-top_medium slds-var-m-bottom_x-small" key={account.id}
-                draggable="true"  data-accountid={account.Name} ondragstart={handleDragStart}>
-                <div  class="slds-var-p-around_medium">
-                    <lightning-tile label={account.Name} type="media" class="bolder_style"> 
-                        <lightning-icon slot="media" icon-name="standard:account"></lightning-icon>
-                        <p class="slds-truncate" title="7 Members">Type:{account.Name}</p>    
-                    </lightning-tile>
-                </div>
-            </div>
-        </template> 
-    </lightning-card>
+	<lightning-card title="Digitized Text">
+	<nav>
+		<ul>
+			<template for:each={listOfTexts} for:item="textItem" >
+				<li key={textItem.id}>
+					<lightning-input type="checkbox" data-textitem={textItem.text} label={textItem.text} onclick={createTemplate2}
+						draggable="true" ondragstart={handleDragStart2} class="bolder_style"> </lightning-input>
+				</li>
+			</template>
+
+
+		</ul>
+	</nav>
+</lightning-card>
 </template>

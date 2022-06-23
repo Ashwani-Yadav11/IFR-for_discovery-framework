@@ -1,7 +1,15 @@
 .bolder_style{
-    border-radius: 25px;
-    background: #78dca0;
-    padding: 20px;
-    width: 288px;
-    height: 92px;
+  border-radius: 10px;
+  background: whitesmoke;
+  padding: 8px;
+  width: auto;
+  height: 50px;
 }
+.whitebackground {
+background-color: white;
+}
+li{
+margin: 2px 0;
+}
+nav ul{height:45rem;width:100%;}
+nav ul{overflow:hidden; overflow-y:scroll;}
