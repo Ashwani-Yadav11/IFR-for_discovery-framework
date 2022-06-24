@@ -71,26 +71,26 @@ export default class Draggercomponent extends LightningElement {
         if (field === 'optionSelect'){
             this.selectedOption = event.target.value;
             if(this.selectedOption=='Sort a-z'){
-                this.listOfTexts.sort((a, b) => {
-                let fa=a.text.toLowerCase();
-                let fb=b.text.toLowerCase();
-                if (fa < fb) {
+                this.listOfTexts.sort((text1, text2) => {
+                let compareText1=text1.text.toLowerCase();
+                let compareText2=text2.toLowerCase();
+                if (compareText1< compareText2) {
                     return -1;
                 }
-                if (fa > fb) {
+                if (compareText1> compareText2) {
                     return 1;
                 }
                 return 0;
                 });
             }
             if(this.selectedOption=='Sort z-a'){
-                this.listOfTexts.sort((a, b) => {
-                let fa=a.text.toLowerCase();
-                let fb=b.text.toLowerCase();
-                if (fa < fb) {
+                this.listOfTexts.sort((text1, text2) => {
+                let compareText1=text1.text.toLowerCase();
+                let compareText2=text2.toLowerCase();
+                if (compareText1< compareText2) {
                     return 1;
                 }
-                if (fa > fb) {
+                if (compareText1> compareText) {
                     return -1;
                 }
                 return 0;
