@@ -50,20 +50,7 @@ export default class Draggercomponent extends LightningElement {
         console.log(error,'Extracted Text Error');
     }
     
-    accounts={
-        data:[
-            {
-                Name:'Name',
-                id:'1',
-                
-            },
-            {
-                Name:'Gender',
-                id:'2',
-                
-            }
-        ]
-    };
+    
     selectValue = '';
     @track selectedOption;
     sortOrder(event) {

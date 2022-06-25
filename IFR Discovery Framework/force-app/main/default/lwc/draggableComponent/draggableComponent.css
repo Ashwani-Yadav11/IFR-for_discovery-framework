@@ -1,15 +1,41 @@
 .bolder_style{
-  border-radius: 10px;
-  background: whitesmoke;
-  padding: 8px;
-  width: auto;
-  height: 50px;
-}
-.whitebackground {
-background-color: white;
-}
-li{
-margin: 2px 0;
-}
-nav ul{height:45rem;width:100%;}
-nav ul{overflow:hidden; overflow-y:scroll;}
+  font-family: 'Segoe UI';
+ font-style: normal;
+ font-size: 12px;
+ background: whitesmoke;
+ width: auto;
+ height: 40px;
+ margin: 2px;
+ padding: 6px 12px 0px 22px;
+ flex: none;
+ align-self: stretch;
+ }
+ .bolder_style_drop{
+  font-family: 'Segoe UI';
+ font-style: normal;
+ font-size: 12px;
+ background: whitesmoke;
+ width: auto;
+ height: 40px;
+ margin: 2px;
+ padding: 6px 6px 6px 6px;
+ border-color: aliceblue;
+ border-radius: 10px;
+ }
+ 
+ .title_style{
+ position: absolute;
+ width: 120.09px;
+ height: 23px;
+ left: 454px;
+ top: 120px;
+ 
+ font-family: 'Segoe UI';
+ font-style: normal;
+ font-weight: 700;
+ font-size: 14px;
+ line-height: 21px;
+ }
+ 
+ nav ul{height:45rem;width:100%;}
+ nav ul{overflow:hidden; overflow-y:scroll;}
