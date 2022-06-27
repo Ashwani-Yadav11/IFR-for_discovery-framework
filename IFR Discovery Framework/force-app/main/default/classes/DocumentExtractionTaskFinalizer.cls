@@ -6,21 +6,26 @@ public with sharing class DocumentExtractionTaskFinalizer implements Finalizer {
     public static String logClassName='DocumentExtractionTaskFinalizer';
     public static String logMethodName;
     public static String logMessage;
+
+    // //------------------------------------------------------------------------------
+    // //======================= Implemented Methods =================================
+    // //------------------------------------------------------------------------------
     
     String contentDocumentId;
     public DocumentExtractionTaskFinalizer(String contentDocumentId) {
         contentDocumentId=this.contentDocumentId;
     }
 
-    public void execute(FinalizerContext extractionFinalizerContext){
 
     /**
      * @method : execute() [public]
      * @desc   : method inherited from Finalizer interface.
      * this method is attached to the Queable task of getting extracted data.
-     * and executed on the success logic of that job.
+     * and get executed on the success logic of that job.
      * @param{FinalizerContex} extractionFinalizerContext: reffers to the context of the current Finalizer.
      */
+    public void execute(FinalizerContext extractionFinalizerContext){
+
     logMethodName='execute';
 
         //Get the job Id of the parent queueable class to which it is attached.

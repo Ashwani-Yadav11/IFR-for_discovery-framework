@@ -10,12 +10,12 @@ public with sharing class ApiHandler {
     
  
      public static void extractDocument(String contentDocumentId){
+
      /**
      * @method : extractDocument() [public static]
      * @desc   : Act as a enqueing gateway for the rendition-extraction async job chain
      * @param {String} contentdocumentId : unique id assigned to the document on uploading it into the org.
      */
-
           ID jobID = System.enqueueJob(new FileRenditionQueue(contentDocumentId));
           
           logMessage='Job Id corrosponding to the rendition-extraction async job chain is'+jobID;
@@ -29,7 +29,7 @@ public with sharing class ApiHandler {
              * 
              */
           String jobStatus = (String)jobInfo.Status;
-          
+
           logMessage='Currnet status of the Job chain is '+jobStatus;
           System.debug(logClassName+' : ' +logMethodName+' : '+logMessage);
           

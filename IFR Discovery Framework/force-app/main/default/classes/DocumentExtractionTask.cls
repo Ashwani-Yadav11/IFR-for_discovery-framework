@@ -7,6 +7,10 @@ public with sharing class DocumentExtractionTask implements Queueable, Database.
     public static String logMethodName;
     public static String logMessage;
 
+    // //------------------------------------------------------------------------------
+    // //======================= Implemented Methods =================================
+    // //------------------------------------------------------------------------------
+
     String contentDocumentId;
     public DocumentExtractionTask(String contentDocumentId) {
         this.contentDocumentId=contentDocumentId;
@@ -31,10 +35,8 @@ public with sharing class DocumentExtractionTask implements Queueable, Database.
          logMethodName='execute';
 
         //Getting essential parameters in order to make API call using seprate interfaces and static resources.
-        String apiEndPointTemplate = ConfigurationUtils.endPointService.get('GetExtractedData');
-        List<Object> parameter = new List<Object> {contentDocumentId};
-        String apiEndPoint = String.format(endPointTemplate,parameter);  
-        
+        String apiEndPoint = ConfigurationUtils.endPointService.get('GetExtractedData');
+       
         logMessage='API Endpoint created with current document ID';
         System.debug(logClassName+' : ' +logMethodName+' : '+logMessage);
 
@@ -62,13 +64,14 @@ public with sharing class DocumentExtractionTask implements Queueable, Database.
         List<Object> scanResults  = (List<Object>)extractedDataInfo.get('ocrDocumentScanResults');
 
         if(scanResults.size()==0){
+
             //Data still in queue for processing
             System.enqueueJob(this);
-        }else{     
+
+        }else{
+
             logMessage='List of extracted texts recieved successfully Finalzer will be executed';
             System.debug(logClassName+' : ' +logMethodName+' : '+logMessage);
-
-
             //extraction Complteted finalizer will be executed now 
 
         }
