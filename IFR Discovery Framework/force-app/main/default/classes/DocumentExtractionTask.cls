@@ -28,21 +28,30 @@ public with sharing class DocumentExtractionTask implements Queueable, Database.
          * depending upon above result re-enque itself or execute the finalizer 
          */
 
+         logMethodName='execute';
+
         //Getting essential parameters in order to make API call using seprate interfaces and static resources.
         String apiEndPointTemplate = ConfigurationUtils.endPointService.get('GetExtractedData');
         List<Object> parameter = new List<Object> {contentDocumentId};
         String apiEndPoint = String.format(endPointTemplate,parameter);  
         
+        logMessage='API Endpoint created with current document ID';
+        System.debug(logClassName+' : ' +logMethodName+' : '+logMessage);
+
         //Creating a Authentication model to authenticate our API Call.
         JWTAuthService jwtAuthenticationModel = new JWTAuthService();
+        WebServicesUtils makeCallOuts = new WebServicesUtils();
         HttpRequest request = makeCallOuts.createHttpRequest(apiEndPoint,'GET ',jwtAuthenticationModel);
         HttpResponse response = makeCallOuts.getResponse(request);
         
+        logMessage='API callout sent and current response recieved';
+        System.debug(logClassName+' : ' +logMethodName+' : '+logMessage);
+
         //Attaching the Finalizer to current Queueable job(Executed at the success of current Job)
         DocumentExtractionTaskFinalizer emailFinalizer = new DocumentExtractionTaskFinalizer(this.contentDocumentId);
         System.attachFinalizer(emailFinalizer);
 
-        //setting up optimal interval between extracted data check
+        //setting up optimal interval between consecutive extracted data check
         Long startTime = DateTime.now().getTime();
     	while(DateTime.now().getTime()-startTime<50000); 
         
@@ -55,7 +64,10 @@ public with sharing class DocumentExtractionTask implements Queueable, Database.
         if(scanResults.size()==0){
             //Data still in queue for processing
             System.enqueueJob(this);
-        }else{      
+        }else{     
+            logMessage='List of extracted texts recieved successfully Finalzer will be executed';
+            System.debug(logClassName+' : ' +logMethodName+' : '+logMessage);
+
 
             //extraction Complteted finalizer will be executed now 
 

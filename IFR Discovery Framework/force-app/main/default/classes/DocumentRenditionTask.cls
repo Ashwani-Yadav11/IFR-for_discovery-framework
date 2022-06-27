@@ -31,29 +31,33 @@ public with sharing class DocumentRenditionTask implements Queueable, Database.A
         String endPointTemplate =ConfigurationUtils.endPointService.get('Rendition');
         List<Object> parameter = new List<Object> {contentDocumentId};
         String apiEndPoint = String.format(endPointTemplate,parameter);
+        
         // Creating a OAuth model for authenticating the API call
         OAuthService authenticationModel = new OAuthService();
-
         WebServicesUtils makeCallOuts = new WebServicesUtils();
-
-        HttpRequest request = makeCallOuts.CreateHttpRequest(apiEndPoint,'GET ',authenticationModel);
-        HttpResponse response = makeCallOuts.GetResponse(request);
+        HttpRequest request = makeCallOuts.createHttpRequest(apiEndPoint,'GET ',authenticationModel);
+        HttpResponse response = makeCallOuts.getResponse(request);
+        
+        logMessage='API callout sent and current response recieved of the API Call';
+        System.debug(logClassName+' : ' +logMethodName+' : '+logMessage);
 
         //setting up a timer to recheck status
         Long startTime = DateTime.now().getTime();
-    	while(DateTime.now().getTime()-startTime<30000); 
+    	while( DateTime.now().getTime()-startTime<30000 ); 
 
-        if(response.getStatusCode()=202){
+        if( response.getStatusCode()=202 ){
             //Re-enqueueing current job if status is still in progress
             System.enqueueJob(this);
         }else{
-            //Making API call on order to Queue for extraction at rendition success
+        //Making API call in order to Queue for extraction at rendition success
         endPointTemplate =ConfigurationUtils.endPointService.get('QueueForExtraction');  
         parameters = new List<Object> {contentDocumentId};
         apiEndPoint = String.format(endPointTemplate,parameters);
+        
+        logMessage='API EndPoint for current document Id fetched'+apiEndPoint;
+        System.debug(logClassName+' : ' +logMethodName+' : '+logMessage);
 
         JWTAuthService jwtAuthenticationModel = new JWTAuthService();
-
         HttpRequest request = makeCallOuts.createHttpRequest(apiEndPoint,'POST ',jwtAuthenticationModel);
         HttpResponse response = makeCallOuts.getResponse(request);
         
