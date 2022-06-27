@@ -50,21 +50,43 @@ export default class Draggercomponent extends LightningElement {
         console.log(error,'Extracted Text Error');
     }
     
-    accounts={
-        data:[
-            {
-                Name:'Name',
-                id:'1',
-                
-            },
-            {
-                Name:'Gender',
-                id:'2',
-                
-            }
-        ]
-    };
+    
     selectValue = '';
+    @track selectedOption;
+    sortOrder(event) {
+        const field = event.target.name;
+        if (field === 'optionSelect'){
+            this.selectedOption = event.target.value;
+            if(this.selectedOption=='Sort a-z'){
+                this.listOfTexts.sort((text1, text2) => {
+                let compareText1=text1.text.toLowerCase();
+                let compareText2=text2.toLowerCase();
+                if (compareText1< compareText2) {
+                    return -1;
+                }
+                if (compareText1> compareText2) {
+                    return 1;
+                }
+                return 0;
+                });
+            }
+            if(this.selectedOption=='Sort z-a'){
+                this.listOfTexts.sort((text1, text2) => {
+                let compareText1=text1.text.toLowerCase();
+                let compareText2=text2.toLowerCase();
+                if (compareText1< compareText2) {
+                    return 1;
+                }
+                if (compareText1> compareText) {
+                    return -1;
+                }
+                return 0;
+                });
+            }
+        }
+
+    
+};
     handleDragStart(e){
         e.dataTransfer.setData("account_id",e.target.dataset.accountname);
       console.log(e.target.dataset.accountname+' dragged');

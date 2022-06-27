@@ -1,5 +1,9 @@
 <template>
-	<lightning-card title="Digitized Text">
+	<lightning-card title="Digitized Text" style=title_style>
+		<select class="bolder_style" name = "optionSelect" onchange={sortOrder} >
+			<option value="Sort a-z">Sort a-z</option>
+			<option value="Sort z-a">Sort z-a</option>
+		</select>
 	<nav>
 		<ul>
 			<template for:each={listOfTexts} for:item="textItem" >
