@@ -41,6 +41,7 @@ public with sharing class DocumentProcessGateway {
             
             //Start the text extraction over the obtained contentDocumentId
             extractDocument(contentDocumentId);
+            
             logMessage='DocumentExtraction Started';
             System.debug(logClassName+' : ' +logMethodName+' : '+logMessage);
 
@@ -62,10 +63,15 @@ public with sharing class DocumentProcessGateway {
         try {
             
             logMethodName='uploadDocument';
-            
+             /**
+             * 
+             * This section may be used any future preprocessing that may be required
+             * 
+             */
             //Call the upload method of DocumentUploader class
             DocumentUploader documentUploader = new DocumentUploader();
             String contentDocumentId = documentUploader.uploadDocument(encodedDocument, documentName);
+
             logMessage='ContentDocumentId is '+contentDocumentId;
             System.debug(logClassName+' : ' +logMethodName+' : '+logMessage);
 
@@ -80,7 +86,6 @@ public with sharing class DocumentProcessGateway {
      * @method : extractDocument() [public static]
      * @desc   : calls method of ApiHandler class to start the text Extraction from the document 
      * @param {String} contentDocumentId : the contentDocumentId to perform extraction Upon  
-     * @param {String} documentName : name of the document being uploaded 
      * @return {void}  
      */
 
@@ -88,20 +93,44 @@ public with sharing class DocumentProcessGateway {
     public static void extractDocument(String contentDocumentId){
         try {
             logMethodName='extractDocument';
-
+            /**
+             * 
+             * This section may be used of any future preprocessing that may be required
+             * 
+             */
             // Call the extractDocument Method of APIHandler class to start extraction
             ApiHandler apiHandler = new ApiHandler();
             apiHandler.extractDocument(contentDocumentId);
+
             logMessage = 'Document Extraction has started wait for email confirmation';
             System.debug(logClassName+' : ' +logMethodName+' : '+logMessage);
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
     }
-    @AuraEnabled
-    public static String getContentVersionId(){
+
+     /**
+     * @method : getContentVersionId() [public static]
+     * @desc   : get the ContentVersionId from ContentVersion sObject with given contentDocumentId
+     * @param {String} contentDocumentId : the contentDocumentId to perform extraction Upon  
+     * @return {void}  
+     */
+
+    @AuraEnabled(cacheable=true)
+    public static String getContentVersionId(String contentDocumentId){
         try {
-            
+            logMethodName = 'getContentVersionId';
+
+            //SOQL query to get contentVersionId from ContentVersion sObject
+            String contentVersionId = [
+                SELECT Id 
+                FROM ContentVersion 
+                WHERE ContentDocumentId =: contentDocumentId
+                ].Id;
+
+            logMessage='ContentVersionId is '+contentVersionId;
+            System.debug(logClassName+' : ' +logMethodName+' : '+logMessage);
+
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
