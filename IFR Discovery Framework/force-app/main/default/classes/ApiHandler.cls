@@ -35,6 +35,15 @@ public with sharing class ApiHandler {
           
 
      }
+
+     public void extractDocument(String contentDocumentId){
+          ID jobID = System.enqueueJob(new FileRenditionQueue(contentDocumentId));
+
+          //poll the job id
+          AsyncApexJob jobInfo = [SELECT Status,NumberOfErrors FROM AsyncApexJob WHERE Id=:jobID];
+          System.debug(jobInfo);
+          String jobStatus = (String)jobInfo.Status;
+     }
     
      
      
