@@ -1,9 +1,31 @@
 public with sharing class OAuthService implements IAuthenticationService {
+    // //------------------------------------------------------------------------------
+    // //======================= DebugLogVariables =================================
+    // //------------------------------------------------------------------------------
+    public static String logClassName='OAuthService';
+    public static String logMethodName;
+    public static String logMessage;
 
-    public String  GetAccessToken(){
+    // //------------------------------------------------------------------------------
+    // //======================= Implemented Methods =================================
+    // //------------------------------------------------------------------------------
 
-        String OauthAccessToken = (String)UserInfo.getSessionId();
-        return OauthAccessToken;
+    
+    /**
+     * @method : getAccessToken() [public]
+     * @desc   : returns the accesstoken required for 
+     * @return {String} : returns the accessToken to attach with Api calls
+     */
+    public String  getAccessToken(){
+
+        logMethodName='getAccessToken';
+
+        String accessToken = 'OAuth '+(String)UserInfo.getSessionId();
+
+        logMessage='AccessToken is '+accessToken;
+        System.debug(logClassName+' : ' +logMethodName+' : '+logMessage);
+        
+        return accessToken;
 
     }
  
