@@ -5,13 +5,13 @@ public with sharing class DocumentExtractionTask implements Queueable, Database.
     }
 
     public void execute(QueueableContext extractionTaskContext){
-        String apiEndPoint = endPointService.get('GetExtractedData');    
-        JWTAuthService authenticationToken = new JWTAuthService();
-        String accessToken = authenticationToken.getAccessToken();
-        WebServicesUtils makeCallOuts = new WebServicesUtils();
-
-        HttpRequest request = makeCallOuts.CreateHttpRequest(apiEndPoint,accessToken,'GET');
-        HttpResponse response = makeCallOuts.GetResponse(request);
+        String apiEndPointTemplate = endPointService.get('GetExtractedData');
+        List<Object> parameters = new List<Object> {contentDocumentId};
+        String apiEndPoint = String.format(endPointTemplate,parameters);  
+        
+        JWTAuthService jwtAuthenticationModel = new JWTAuthService();
+        HttpRequest request = makeCallOuts.createHttpRequest(apiEndPoint,'GET ',jwtAuthenticationModel);
+        HttpResponse response = makeCallOuts.getResponse(request);
 
         //setting up a timer
         Long startTime = DateTime.now().getTime();
@@ -28,12 +28,6 @@ public with sharing class DocumentExtractionTask implements Queueable, Database.
             //extraction Complteted
 
         }
-
-
-
-
-
-
 
     }
 
