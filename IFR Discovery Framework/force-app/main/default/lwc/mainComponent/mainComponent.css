@@ -1,9 +1,9 @@
 .question-panel{
-    background: #E5E5E5;
+    background: #F8F9FA;
     
 }
 .main-container{
-    background: #E5E5E5;
+    background: #F8F9FA;
     display: flex;
     flex-direction: row;
     align-items: center;
