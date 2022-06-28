@@ -1,5 +1,6 @@
 <template>
-      <template if:false={fileUploaded}>
+   <div class="main-container slds-align_absolute-center">
+      <template if:false={sucess}>
       <c-file-upload oncustomevent={handleCustomEvent}></c-file-upload>
       </template>
      
@@ -29,6 +30,6 @@
             </div>
          </lightning-card>
       </template>
-   
+   </div>
    
 </template>

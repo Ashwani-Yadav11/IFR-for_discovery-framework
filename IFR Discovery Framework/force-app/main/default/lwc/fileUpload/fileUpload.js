@@ -1,7 +1,7 @@
 import { LightningElement, api ,wire, track} from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { refreshApex } from '@salesforce/apex';
-
+import fileUploadBackground from '@salesforce/resourceUrl/fileUploadBackground';
 import processDocument from '@salesforce/apex/ProcessDocument.processDocument';
 
 import extractDocument from '@salesforce/apex/ProcessDocument.extractDocument';
@@ -15,6 +15,7 @@ export default class FileUpload extends LightningElement {
     @wire(extractDocument,{contentDocumentId: '$contentDocumentId'})
     odsrIds
     contentIds='';
+    backgroundImage = fileUploadBackground;
     // @wire(startExtract,{contentDocumentId: '$contentDocumentId',accessToken:'$accessToken.data'})
     // queryResponse
     openfileUpload(event) {
