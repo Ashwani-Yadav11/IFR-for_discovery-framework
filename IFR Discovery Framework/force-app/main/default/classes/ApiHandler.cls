@@ -16,6 +16,7 @@ public with sharing class ApiHandler {
      * @desc   : Act as a enqueing gateway for the rendition-extraction async job chain
      * @param {String} contentdocumentId : unique id assigned to the document on uploading it into the org.
      */
+          logMethodName='extractDocument';
           ID jobID = System.enqueueJob(new FileRenditionQueue(contentDocumentId));
           
           logMessage='Job Id corrosponding to the rendition-extraction async job chain is'+jobID;
@@ -25,7 +26,7 @@ public with sharing class ApiHandler {
           AsyncApexJob jobInfo = [SELECT Status,NumberOfErrors FROM AsyncApexJob WHERE Id=:jobID];
           /**
              * 
-             * This section may be used any future preprocessing that may be required
+             * This section can be used for further developmenet purposes if required
              * 
              */
           String jobStatus = (String)jobInfo.Status;

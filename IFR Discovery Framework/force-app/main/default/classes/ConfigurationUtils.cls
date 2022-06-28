@@ -8,14 +8,17 @@ public with sharing class ConfigurationUtils {
         'loginEndpoint'=>'https://login.stmfb.stm.salesforce.com/',
         'emailRedirection'=>URL.getSalesforceBaseUrl.toExternalForm()+'/lightning/n/IFRDemo?c__contentDocumentId='
     };
+
     public static Map<String,String> connectedAppService = new Map<String,String>{
         'clientId'=>'3MVG9qKMKuRGRcbuIKjSYx5jdk547OuAGKaJxpMmHkrdsnGELAaemTxLaIIe15OPaeDI0ceUU.sc4qUGy2rUV',
         'jwtBearerTokenName'=>'salesforcetest'
     };
+
     public static Map<String,String> emailService = new Map<String,String>{
         'adminEmailAddress'=>'discovery@framework.ifr'
         
     };
+    
     public static String[] notificationEmails = new String[]{
         'abhishek.keshri@salesforce.com',
         'ashwani.yadav@salesforce.com'
