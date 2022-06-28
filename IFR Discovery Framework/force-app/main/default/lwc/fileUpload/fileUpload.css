@@ -27,8 +27,7 @@ box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.244455);
     line-height: 25px;
     height: 25px;
     width: 300px;
-    left: 0px;
-    top: 212px;
+   
     border-radius: nullpx;
 
 }
@@ -37,7 +36,21 @@ box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.244455);
     font-size: 13px;
     
     line-height: 20px;
-   
- 
-
+  
 }
+.upload-content > div{
+    margin: 3px;
+}
+/* .modal-content{
+    display: flex;
+    flex-direction: row;
+    font-family: 'Salesforce Sans';
+    font-style: normal;
+    font-weight: 400;
+   
+}
+.modal-content-filename{
+    height: 20px;
+    font-size: 13px;
+    line-height: 20px;
+} */
