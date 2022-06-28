@@ -60,7 +60,7 @@ export default class Draggercomponent extends LightningElement {
             if(this.selectedOption=='Sort a-z'){
                 this.listOfTexts.sort((text1, text2) => {
                 let compareText1=text1.text.toLowerCase();
-                let compareText2=text2.toLowerCase();
+                let compareText2=text2.text.toLowerCase();
                 if (compareText1< compareText2) {
                     return -1;
                 }
@@ -73,19 +73,17 @@ export default class Draggercomponent extends LightningElement {
             if(this.selectedOption=='Sort z-a'){
                 this.listOfTexts.sort((text1, text2) => {
                 let compareText1=text1.text.toLowerCase();
-                let compareText2=text2.toLowerCase();
+                let compareText2=text2.text.toLowerCase();
                 if (compareText1< compareText2) {
                     return 1;
                 }
-                if (compareText1> compareText) {
+                if (compareText1> compareText2) {
                     return -1;
                 }
                 return 0;
                 });
             }
         }
-
-    
 };
     handleDragStart(e){
         e.dataTransfer.setData("account_id",e.target.dataset.accountname);
