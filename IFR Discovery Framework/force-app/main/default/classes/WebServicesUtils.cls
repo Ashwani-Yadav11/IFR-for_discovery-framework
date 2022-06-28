@@ -3,7 +3,7 @@ public with sharing class WebServicesUtils {
     // //------------------------------------------------------------------------------
     // //======================= DebugLogVariables =================================
     // //------------------------------------------------------------------------------
-    public static String logClassName='WebServicesUtils';
+    private final static String logClassName = 'WebServicesUtils';
     public static String logMethodName;
     public static String logMessage;
 
@@ -19,18 +19,26 @@ public with sharing class WebServicesUtils {
      * @param {String} documentName : name of the document being uploaded 
      * @return {String} : return the string API Endpoint corrosponding to given Id
      */
-   public  String FetchApiEndPoint(String jobType,String contentDocumentId){
-    /**
-     * This method fetches endpoint template based on the job type from the static resources
-     * and format that as per the given parameter and send the desired string endpoint back
-     */
+    public String FetchApiEndPoint(String jobType, String contentDocumentId) {
+
+        logMethodName = 'FetchApiEndPoint';
+        /** 
+         * This method fetches endpoint template based on the job type from the static resources
+         * and format that as per the given parameter and send the desired string endpoint back
+         */
+
+        //Fetching Template based on the jobtype(Rendition,Extraction etc.)
         ConfigurationUtils staticResources = new ConfigurationUtils();
         String requiredEndpointTemplate = staticResources.endPointService.get(jobType);
-        List<Object> parameter = new List<Object> {contentDocumentId};
-        String requiredEndPoint = String.format(endPointTemplate,parameter);
 
-        logMessage=' Required API Endpoint corrosponding to job '+jobType+' is '+requiredEndpoint;
-        System.debug(logClassName+' : ' +logMethodName+' : '+logMessage);
+        //Formatting the template based on the passed parameters
+        List < Object > parameter = new List < Object > {
+            contentDocumentId
+        };
+        String requiredEndPoint = String.format(endPointTemplate, parameter);
+
+        logMessage = ' Required API Endpoint corrosponding to job ' + jobType + ' is ' + requiredEndpoint;
+        System.debug(logClassName + ' : ' + logMethodName + ' : ' + logMessage);
 
         return requiredEndpoint;
     }
@@ -43,23 +51,26 @@ public with sharing class WebServicesUtils {
      * @param {String} methodType : Type of API request you want to make(GET, PUT etc) 
      * @param {IAuthenticationService} : An authentication model realisation of the authentication interface carrying the authentication token and type.
      */
-    public  HttpRequest createRequest(String apiEndPoint,String methodType,IAuthenticationService authModel) {
+    public HttpRequest createRequest(String apiEndPoint, String methodType, IAuthenticationService authModel) {
+
+        logMethodName = 'createRequest';
         /**
          * In this method we create a desired Http request
          * setting up the API endpoint, authentication model, mehtodType and return the Http request
          */
-    
+
         //Extracting the Token and Auth type from the model
         String authenticationInfo = authModel.getAccessToken();
+
+        //Setting Parameter of Http Request
         HttpRequest request = new HttpRequest();
         request.setEndpoint(apiEndPoint);
         request.setMethod(methodType);
-        request.setHeader('Authorization',authenticationInfo);
-        if(methodType=='POST')
-        {
+        request.setHeader('Authorization', authenticationInfo);
+        if (methodType == 'POST') {
 
-            Map<String,String> postBody = new Map<String,String>();
-            
+            Map < String, String > postBody = new Map < String, String > ();
+
 
             String reqBody = JSON.serialize(postBody);
             request.setBody(reqbody);
@@ -76,11 +87,13 @@ public with sharing class WebServicesUtils {
      * @return {HttpResponse} : returns the recieved response after making the Http Request.
      */
     public HttpResponse getResponse(HttpRequest request) {
+
+        logMethodName = 'getResponse';
         /**
          * here we Hit the given Http request and recieve the response
          * which is returned back to the user
          */
-        
+
         //make Http Request to the desired endpoint with adequate authentication
         HttpResponse response = http.send(request);
 
