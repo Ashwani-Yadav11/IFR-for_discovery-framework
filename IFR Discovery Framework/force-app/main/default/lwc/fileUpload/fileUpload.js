@@ -48,8 +48,7 @@ export default class FileUpload extends LightningElement {
              var ids = result.split(" ");
              console.log(ids);
             this.contentDocumentId = ids[1]; 
-            this.handleContentDocumentId();
-            
+               
             this.uploaded = true;
             let title = `${filename} is uploaded and queued for extraction, please continue with your other work completion of same will be notified via mail !! `
             this.toast(title)
