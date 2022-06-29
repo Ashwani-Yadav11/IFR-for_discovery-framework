@@ -1,34 +1,40 @@
+<!-- sldsValidatorIgnore -->
 <template>
-    <lightning-card title="Create Question" icon-name="custom:custom14">
-
-    <lightning-button
-                      onclick={addNewQuestion}
-                      variant="brand"
-                      label="+NewQuestion"
-                    ></lightning-button>
-        
-        <lightning-accordion 
-                    allow-multiple-sections-open
-                            onsectiontoggle={handleSectionToggle}
-                            active-section-name={activeSections}
-                            >
-        <template for:each={questions} for:item="question">
-            <lightning-accordion-section key={question.id} name={question.id} label={question.id}>
-                <c-question-field-viewer save-all={saveAll} reset-all={resetAll}></c-question-field-viewer>
-                </lightning-accordion-section>
-        </template>
-        </lightning-accordion>
-    <lightning-button
-                      onclick={saveAllQuestion}
-                      variant="brand"
-                      label="Save All"
-                      
-                    ></lightning-button>
-    <lightning-button
-                    onclick={ResetAllQuestion}
-                    variant="brand"
-                    label="Cancel"
-    ></lightning-button>
-  
-    </lightning-card>
+  <div>
+    <div class=" slds-modal__footer">
+        <span
+          role="status"
+          class="slds-float--left slds-p-top--x-small header"
+          >Create Question</span
+        >
+        <span class="slds-p-left--x-small">
+            <lightning-button
+            label="+ New Question"
+            title="+ New Question"
+            class="slds-var-m-left_small"
+            onclick={addNewQuestion}
+          ></lightning-button>
+        </span>
+      </div>
+    
+   
+    <lightning-accordion
+      allow-multiple-sections-open
+      onsectiontoggle={handleSectionToggle}
+      active-section-name={activeSections}
+    >
+      <template for:each={questions} for:item="question">
+        <lightning-accordion-section
+          key={question.id}
+          name={question.name}
+          label={question.name}
+        >
+          <c-question-field-viewer
+            
+          ></c-question-field-viewer>
+        </lightning-accordion-section>
+      </template>
+    </lightning-accordion>
+   
+  </div>
 </template>

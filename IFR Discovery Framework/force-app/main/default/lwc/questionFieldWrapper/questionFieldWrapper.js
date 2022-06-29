@@ -2,19 +2,21 @@ import { LightningElement,track } from 'lwc';
 
 export default class QuestionFieldWrapper extends LightningElement {
     @track questions=[{
-            id:1,
+            id:'1',
+            name:'Question 1',
         },
     ];
-    activeSections = ['1','2'];
+    activeSections = ['1'];
     @track saveAll=false;
     @track resetAll=false;
-
+    @track ariaStatus = true;
     activeSectionMessage = '';
    // isDVisible = false;
     addNewQuestion(event){
-        this.questions.push({id:this.questions.length+1});
-        this.activeSections.push(String(this.questions.length+1));
-           
+        const questionName = 'Question '+(String)(this.questions.length+1);
+        const questionId = (String)(this.questions.length+1);
+        this.questions.push({id:questionId,name:questionName});
+        this.activeSections.push(questionId);
     }
     handleSectionToggle(event) {
         const openSections = event.detail.openSections;
@@ -41,5 +43,7 @@ export default class QuestionFieldWrapper extends LightningElement {
             this.resetAll = false;
 
     }
-
+    changeAriaStatus(){
+        this.ariaStatus = !this.ariaStatus;
+    }
 }

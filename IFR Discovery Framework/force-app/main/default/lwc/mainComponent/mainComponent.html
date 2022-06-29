@@ -1,9 +1,9 @@
 <template>
    <div class="main-container slds-align_absolute-center">
-      <template if:false={sucess}>
+      <template if:false={success}>
       <c-file-upload oncustomevent={handleCustomEvent}></c-file-upload>
       </template>
-     
+   </div>
          <!-- <template if:false={success}>
          <lightning-button variant="brand" label="Start Question Creation" title="Start Question Creation" onclick={handleExtract} class="slds-m-left_x-small"></lightning-button>
                </template>
@@ -12,9 +12,9 @@
             </lightning-spinner>
          </template> -->
          <template if:true={success}>
-            <lightning-card>
+            
          
-            <div class="slds-grid">
+            <div class="slds-grid question-creation">
                <div class="slds-size_3-of-6 slds-scrollable" style="height:45rem">
                   <c-page-viewer content-document-id={contentDocumentId} content-version-id={contentVersionId} height-in-rem='50'></c-page-viewer>
                </div>
@@ -28,8 +28,8 @@
                </div>
             
             </div>
-         </lightning-card>
+         
       </template>
-   </div>
+  
    
 </template>
