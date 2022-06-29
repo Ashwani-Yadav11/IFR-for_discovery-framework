@@ -8,22 +8,19 @@ export default class Draggercomponent extends LightningElement {
 
 
 
- @api contentDocumentId;
- //contentDocumentId='069RM0000001hyBYAQ';
+ //@api contentDocumentId;
+  @api contentDocumentId;
  
-    @track listOfTexts=[];
-    @wire(returnExtractedTexts,{contentDocumentId:'$contentDocumentId'})
+  @track listOfTexts=[];
+  
+   @wire(returnExtractedTexts,{contentDocumentId:'$contentDocumentId'})
     texts({data,error}){
    console.log(this.contentDocumentId);
         console.log(data,this.contentDocumentId+' Extracted Text');
         if(data)
         {
             let pages = data.ocrDocumentScanResults;
-            let temp ={
-                text:'Gender',
-                id:1,
-            }
-            this.listOfTexts.push(temp);
+            let uniqueText=[];
         for(let i = 0;i<pages.length;i++)
         {
             //for
@@ -32,12 +29,17 @@ export default class Draggercomponent extends LightningElement {
            
             for(let j=0;j<keyValue.length;j++)
             {
+                
                 let tex = keyValue[j].key.text;
+                if(uniqueText.includes(tex)){
+                    continue;
+                }
                 let packet = {
                     text:tex,
                     id:this.listOfTexts.length+1,
                 };
                // console.log(packet);
+                uniqueText.push(tex);
                 this.listOfTexts.push(packet);
                // console.log(tex);
             }
@@ -49,8 +51,19 @@ export default class Draggercomponent extends LightningElement {
          }
         console.log(error,'Extracted Text Error');
     }
-    
-    
+    // @track listOfTexts=[{
+    //     text:'Gender',
+    //     id:1,
+    // },
+    // {
+    //     text:'Name',
+    //     id:2,
+    // },
+    // {
+    //     text:'Name',
+    //     id:3,
+    // }];
+   
     selectValue = '';
     @track selectedOption;
     sortOrder(event) {
