@@ -16,6 +16,8 @@ export default class FileUpload extends LightningElement {
     odsrIds
     contentIds='';
     backgroundImage = fileUploadBackground;
+    @track openModal = false;
+    @track uploaded = false;
     // @wire(startExtract,{contentDocumentId: '$contentDocumentId',accessToken:'$accessToken.data'})
     // queryResponse
     openfileUpload(event) {
@@ -28,12 +30,15 @@ export default class FileUpload extends LightningElement {
                 'base64': base64,
                 'recordId': this.recordId
             }
-            console.log(this.fileData)
+            console.log(this.fileData);
+            this.openModal = true;
+            this.handleUpload();
         }
         reader.readAsDataURL(file)
+       
     }
     
-    handleClick(){
+    handleUpload(){
         const {base64, filename, recordId} = this.fileData
         //startExtract({base64,filename}).then(result=>console.log(result));
         
@@ -43,8 +48,8 @@ export default class FileUpload extends LightningElement {
              var ids = result.split(" ");
              console.log(ids);
             this.contentDocumentId = ids[1]; 
-            this.handleContentDocumentId();
-            this.fileData = null
+               
+            this.uploaded = true;
             let title = `${filename} is uploaded and queued for extraction, please continue with your other work completion of same will be notified via mail !! `
             this.toast(title)
             
@@ -52,36 +57,7 @@ export default class FileUpload extends LightningElement {
             console.log(e)
         })
     }
-    handleExtract(){
-        refreshApex(this.odsrIds);
-        console.log(this.sessionId);
-        //console.log(this.accessToken,'jii');
-        console.log(this.odsrIds,'Hell');
-        // if(this.odsrIds.data.ocrDocumentScanResultInfos!=null)
-        // this.handleOdsrs();
-        console.log('clicked');
-        console.log(this.contentDocumentId,'Hello');
-        console.log(typeof this.contentDocumentId,'Hi');
-       // startExtract('','').then(res=>console.log(res)).catch(e=>console.log(e));
-        //extractDocument(String(this.contentDocumentId)).then(res=>console.log(res)).catch(e=>console.log(e));
-        
-    }
-
-    handleContentDocumentId()
-    {
-        let message={
-            'contentDocumentId':this.contentDocumentId
-        }
-       
-        const selectEvent = new CustomEvent('customevent',{detail:this.contentIds});
-        this.dispatchEvent(selectEvent);
-
-    }
-    handleOdsrs()
-    {
-        const selectEvent = new CustomEvent('customevent2',{detail:this.odsrIds.data.ocrDocumentScanResultInfos[0].ocrDocumentScanResultId});
-        this.dispatchEvent(selectEvent);
-    }
+   
 
     toast(title){
         const toastEvent = new ShowToastEvent({
@@ -90,4 +66,11 @@ export default class FileUpload extends LightningElement {
         })
         this.dispatchEvent(toastEvent)
     }
+    closeModal(event){
+        event.preventDefault();
+        this.openModal = false;
+        this.fileData = null;
+        eval("$A.get('e.force:refreshView').fire();");
+    }
+
 }
