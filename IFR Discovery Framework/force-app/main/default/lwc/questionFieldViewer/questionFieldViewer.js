@@ -185,12 +185,7 @@ export default class QuestionFieldViewer extends LightningElement {
                         this.dispatchEvent(successEvent);
                         this.assessmentQuestionVersionId=assessmentQuestionVersionRecord.id;
                         this.questionCreated = true;
-                        const selectEvent = new CustomEvent('mycustomevent', {
-                            detail: {
-                                id:this.questionId,
-                                name: this.strName
-                            }});
-                            this.dispatchEvent(selectEvent);
+                       this.handleContentDocumentId();
                         // this.resetForm();
                         // if (!wasSaveAndNewButtonClicked && this.shouldNavigateToNewlyCreatedQuestion) {
                         //     this[NavigationMixin.Navigate]({
@@ -215,6 +210,14 @@ export default class QuestionFieldViewer extends LightningElement {
         }).catch(error => {
             this.displayError(error, 'Assessment Question error');
         });
+    }
+    handleContentDocumentId()
+    {
+        
+        const selectEvent = new CustomEvent('customevent',{detail:this.strName});
+        this.dispatchEvent(selectEvent);
+        console.log(selectEvent,'Event Disptched');
+
     }
 
     // updateForm(){
