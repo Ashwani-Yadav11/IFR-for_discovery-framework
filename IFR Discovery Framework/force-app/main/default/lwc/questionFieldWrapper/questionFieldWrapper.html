@@ -24,13 +24,15 @@
       active-section-name={activeSections}
     >
       <template for:each={questions} for:item="question">
+        
         <lightning-accordion-section
           key={question.id}
           name={question.name}
           label={question.name}
+          
         >
           <c-question-field-viewer
-            
+            question-id={question.id}
           ></c-question-field-viewer>
         </lightning-accordion-section>
       </template>

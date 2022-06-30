@@ -1,178 +1,189 @@
 <template>
-  <lightning-card>
+  <div class="container">
     <div class="slds-p-horizontal_small">
-      <lightning-record-edit-form
-        record-id={assessmentQuestionRecordId}
-        object-api-name={assessmentQuestion}
-        onload={makeid}
-      >
-        <lightning-layout multiple-rows>
-          <lightning-layout-item size="12">
-            <lightning-messages></lightning-messages>
-          </lightning-layout-item>
-          <lightning-layout-item size="12">
-            <div class="slds-grid">
-              <div class="slds-col">
-                <lightning-messages></lightning-messages>
-                <lightning-input-field
-                  value={strName}
-                  ondragover={allowDrop}
-                  ondrop={nameDropHandler}
-                  onchange={nameChangedHandler}
-                  field-name="Name"
-                ></lightning-input-field>
-              </div>
-              <div class="slds-col">
-                <!-- <c-text-list-viewer></c-text-list-viewer> -->
-                <lightning-messages></lightning-messages>
-                <lightning-input-field
-                  value={strDevName}
-                  onchange={devNameChangedHandler}
-                  field-name="DeveloperName"
-                ></lightning-input-field>
-              </div>
-            </div>
-            <div class="slds-grid">
-              <div class="slds-col">
-                <div class="slds-col">
-                  <lightning-messages></lightning-messages>
-                  <lightning-input-field
-                    value={strQuestionCategory}
-                    onchange={questionCategoryChangedHandler}
-                    field-name="QuestionCategory"
-                  ></lightning-input-field>
-                </div>
-              </div>
-              <div class="slds-col">
-                <!-- <c-text-list-viewer></c-text-list-viewer> -->
-                <lightning-messages></lightning-messages>
-                <lightning-input-field
-                  value={strDataType}
-                  onchange={dataTypeChangedHandler}
-                  field-name="DataType"
-                ></lightning-input-field>
-              </div>
-            </div>
-            <div class="slds-grid">
-              <div class="slds-col">
-                <div class="slds-col">
-                  <lightning-messages></lightning-messages>
-                  <lightning-input-field
-                    value={strRelatedQuestionId}
-                    onchange={relatedQuestionIdChangedHandler}
-                    field-name="RelatedQuestionId"
-                  ></lightning-input-field>
-                </div>
-              </div>
-              <div class="slds-col">
-                <!-- <c-text-list-viewer></c-text-list-viewer> -->
-                <lightning-messages></lightning-messages>
-                <lightning-input-field
-                  value={strFormulaResponseDataType}
-                  onchange={formulaResponseDataTypeChangedHandler}
-                  field-name="FormulaResponseDataType"
-                ></lightning-input-field>
-              </div>
-            </div>
-          </lightning-layout-item>
-        </lightning-layout>
-      </lightning-record-edit-form>
-      <lightning-record-edit-form
-        record-id={assessmentQuestionVersionId}
-        object-api-name={assessmentQuestionVersion}
-      >
-        <lightning-layout multiple-rows>
-          <lightning-layout-item size="12">
-            <lightning-messages></lightning-messages>
-          </lightning-layout-item>
-
-          <lightning-layout-item size="12">
-            <!-- <lightning-input-field field-name="Code__c"></lightning-input-field> -->
-            <div class="slds-grid">
-              <div class="slds-col">
-                <div class="slds-col">
-                  <lightning-messages></lightning-messages>
-                  <lightning-input-field
-                    value={strQuestionText}
-                    onchange={questionTextChangeHandler}
-                    ondragover={allowDrop}
-                    ondrop={questionTextDropHandler}
-                    field-name="QuestionText"
-                  ></lightning-input-field>
-                </div>
-              </div>
-              <div class="slds-col">
-                <!-- <c-text-list-viewer></c-text-list-viewer> -->
-                <lightning-messages></lightning-messages>
-                <lightning-input-field
-                  value={strDescription}
-                  onchange={descriptionChangeHandler}
-                  ondragover={allowDrop}
-                  ondrop={descriptionDropHandler}
-                  field-name="Description"
-                ></lightning-input-field>
-              </div>
-            </div>
-
-            <div class="slds-grid">
-              <div class="slds-col">
-                <div class="slds-col">
-                  <lightning-messages></lightning-messages>
-                  <lightning-input-field
-                    value={strIsActive}
-                    onchange={activeChangeHandler}
-                    field-name="IsActive"
-                  ></lightning-input-field>
-                </div>
-              </div>
-              <div class="slds-col">
-                <!-- <c-text-list-viewer></c-text-list-viewer> -->
-                <lightning-messages></lightning-messages>
-                <lightning-input-field
-                  value={strResponseValues}
-                  onchange={responseValuesChangeHandler}
-                  ondragover={allowDrop}
-                  ondrop={responseValuesDropHandler}
-                  field-name="ResponseValues"
-                ></lightning-input-field>
-              </div>
-            </div>
-            <!-- <div class="slds-grid">
-                        <div class="slds-col">
-                            <div class="slds-col">
-                              <lighning-messages></lighning-messages>
-                                <lightning-input-field field-name="IsOptionSourceResponseValue"></lightning-input-field>
-                            </div>
-                        </div>
-                        <div class="slds-col">
-                            <lightning-input-field field-name="HelpText"></lightning-input-field>
+      <!-- <template if:false={questionCreated}> -->
+        <div class="assessment-question">
+          <lightning-record-edit-form
             
-                        </div>
+            object-api-name={assessmentQuestion}
+            onload={makeid}
+          >
+          <!-- record-id={assessmentQuestionRecordId} -->
+            <lightning-layout multiple-rows>
+              <lightning-layout-item size="12">
+                <lightning-messages></lightning-messages>
+              </lightning-layout-item>
+              <lightning-layout-item size="12">
+                <div class="slds-grid">
+                  <div class="slds-col">
+                    <lightning-messages></lightning-messages>
+                    <lightning-input-field
+                      value={strName}
+                      ondragover={allowDrop}
+                      ondrop={nameDropHandler}
+                      onchange={nameChangedHandler}
+                      field-name="Name"
+                    ></lightning-input-field>
+                  </div>
+                  <div class="slds-col">
+                    <!-- <c-text-list-viewer></c-text-list-viewer> -->
+                    <lightning-messages></lightning-messages>
+                    <lightning-input-field
+                      value={strDevName}
+                      onchange={devNameChangedHandler}
+                      field-name="DeveloperName"
+                    ></lightning-input-field>
+                  </div>
+                </div>
+                <div class="slds-grid">
+                  <div class="slds-col">
+                    <div class="slds-col">
+                      <lightning-messages></lightning-messages>
+                      <lightning-input-field
+                        value={strQuestionCategory}
+                        onchange={questionCategoryChangedHandler}
+                        field-name="QuestionCategory"
+                      ></lightning-input-field>
                     </div>
-                    <div class="slds-grid">
-                        <div class="slds-col">
+                  </div>
+                  <div class="slds-col">
+                    <!-- <c-text-list-viewer></c-text-list-viewer> -->
+                    <lightning-messages></lightning-messages>
+                    <lightning-input-field
+                      value={strDataType}
+                      onchange={dataTypeChangedHandler}
+                      field-name="DataType"
+                    ></lightning-input-field>
+                  </div>
+                </div>
+                <div class="slds-grid">
+                  <div class="slds-col">
+                    <div class="slds-col">
+                      <lightning-messages></lightning-messages>
+                      <lightning-input-field
+                        value={strRelatedQuestionId}
+                        onchange={relatedQuestionIdChangedHandler}
+                        field-name="RelatedQuestionId"
+                      ></lightning-input-field>
+                    </div>
+                  </div>
+                  <div class="slds-col">
+                    <!-- <c-text-list-viewer></c-text-list-viewer> -->
+                    <lightning-messages></lightning-messages>
+                    <lightning-input-field
+                      value={strFormulaResponseDataType}
+                      onchange={formulaResponseDataTypeChangedHandler}
+                      field-name="FormulaResponseDataType"
+                    ></lightning-input-field>
+                  </div>
+                </div>
+              </lightning-layout-item>
+            </lightning-layout>
+          </lightning-record-edit-form>
+        </div>
+        <div class="assessment-question-version">
+          <lightning-record-edit-form
+          
+            object-api-name={assessmentQuestionVersion}
+          >
+          <!-- record-id={assessmentQuestionVersionId} -->
+            <lightning-layout multiple-rows>
+              <lightning-layout-item size="12">
+                <lightning-messages></lightning-messages>
+              </lightning-layout-item>
+    
+              <lightning-layout-item size="12">
+                <!-- <lightning-input-field field-name="Code__c"></lightning-input-field> -->
+                <div class="slds-grid">
+                  <div class="slds-col">
+                    <div class="slds-col">
+                      <lightning-messages></lightning-messages>
+                      <lightning-input-field
+                        value={strQuestionText}
+                        onchange={questionTextChangeHandler}
+                        ondragover={allowDrop}
+                        ondrop={questionTextDropHandler}
+                        field-name="QuestionText"
+                      ></lightning-input-field>
+                    </div>
+                  </div>
+                  <div class="slds-col">
+                    <!-- <c-text-list-viewer></c-text-list-viewer> -->
+                    <lightning-messages></lightning-messages>
+                    <lightning-input-field
+                      value={strDescription}
+                      onchange={descriptionChangeHandler}
+                      ondragover={allowDrop}
+                      ondrop={descriptionDropHandler}
+                      field-name="Description"
+                    ></lightning-input-field>
+                  </div>
+                </div>
+    
+                <div class="slds-grid">
+                  <div class="slds-col">
+                    <div class="slds-col">
+                      <lightning-messages></lightning-messages>
+                      <lightning-input-field
+                        value={strIsActive}
+                        onchange={activeChangeHandler}
+                        field-name="IsActive"
+                      ></lightning-input-field>
+                    </div>
+                  </div>
+                  <div class="slds-col">
+                    <!-- <c-text-list-viewer></c-text-list-viewer> -->
+                    <lightning-messages></lightning-messages>
+                    <lightning-input-field
+                      value={strResponseValues}
+                      onchange={responseValuesChangeHandler}
+                      ondragover={allowDrop}
+                      ondrop={responseValuesDropHandler}
+                      field-name="ResponseValues"
+                    ></lightning-input-field>
+                  </div>
+                </div>
+                <!-- <div class="slds-grid">
                             <div class="slds-col">
-                                <lightning-input-field field-name="AdditionalInformation"></lightning-input-field>
+                                <div class="slds-col">
+                                  <lighning-messages></lighning-messages>
+                                    <lightning-input-field field-name="IsOptionSourceResponseValue"></lightning-input-field>
+                                </div>
+                            </div>
+                            <div class="slds-col">
+                                <lightning-input-field field-name="HelpText"></lightning-input-field>
+                
                             </div>
                         </div>
+                        <div class="slds-grid">
+                            <div class="slds-col">
+                                <div class="slds-col">
+                                    <lightning-input-field field-name="AdditionalInformation"></lightning-input-field>
+                                </div>
+                            </div>
+                            
+                        </div> -->
                         
-                    </div> -->
-          </lightning-layout-item>
-          <lightning-layout-item size="12" class="slds-align_absolute-center">
-            <lightning-button
-              label="Cancel"
-              class="slds-m-right_small"
-              onclick={resetForm}
-            ></lightning-button>
-            <lightning-button
-              onclick={createQuestion}
-              variant="brand"
-              label="Save"
-              class="questionFieldSubmit"
-            ></lightning-button>
-          </lightning-layout-item>
-        </lightning-layout>
-      </lightning-record-edit-form>
+              </lightning-layout-item>
+              <lightning-layout-item size="12" class="slds-align_absolute-center">
+                <lightning-button
+                  label="Cancel"
+                  class="slds-m-right_small"
+                  onclick={resetForm}
+                ></lightning-button>
+                <lightning-button
+                  onclick={createQuestion}
+                  variant="brand"
+                  label="Save"
+                  class="questionFieldSubmit"
+                ></lightning-button>
+              
+              </lightning-layout-item>
+            </lightning-layout>
+          </lightning-record-edit-form>
+        </div>
+      <!-- </template> -->
+     
     </div>
-  </lightning-card>
+  </div>
 </template>

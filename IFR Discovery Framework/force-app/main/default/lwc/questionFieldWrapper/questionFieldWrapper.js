@@ -11,7 +11,17 @@ export default class QuestionFieldWrapper extends LightningElement {
     @track resetAll=false;
     @track ariaStatus = true;
     activeSectionMessage = '';
+    @track msg;
    // isDVisible = false;
+   constructor() {
+    super();
+    this.template.addEventListener('mycustomevent', this.handleCustomEvent.bind(this));
+    }
+   handleCustomEvent(event) {
+    const textVal = event.detail;
+    this.msg = textVal;
+    console.log(this.msg,'Event');
+    }
     addNewQuestion(event){
         const questionName = 'Question '+(String)(this.questions.length+1);
         const questionId = (String)(this.questions.length+1);
@@ -37,7 +47,8 @@ export default class QuestionFieldWrapper extends LightningElement {
             x[i].click();
         }
     }
-   
+    
+    
     resetAllQuestion(event)
     {        event.preventDefault();
             this.resetAll = false;

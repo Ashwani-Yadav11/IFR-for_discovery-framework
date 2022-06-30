@@ -8,7 +8,7 @@ export default class MainComponent extends LightningElement {
     fileUploaded=true;
      contentId;
     @track spinner=false;
-    @track success=true;
+    @track success=false;
     @track error;
     @track contentDocumentId='';
     @track contentVersionId;
