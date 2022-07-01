@@ -1,5 +1,26 @@
-iframe {
-    border: 0;
-    width: 100%;
-    height: fit-content;
+img {
+    display: block;
+    
+width: 95%;
+height: 98%;
+display: flex;
+   
+
+}
+
+.documnet-container{
+    /* position: relative; */
+background: #B1B3B6;
+ max-width: 98%;
+height: 99%; 
+
+
+}
+
+.main-wrapper{
+position: absolute;
+background: #F8F9FA;;
+
+width: 33.3333333333%;
+height: 92%;
 }
