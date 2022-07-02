@@ -33,17 +33,17 @@ export default class MainComponent extends LightningElement {
             this.success = true;}
         console.log(this.contentDocumentId,this.success,'Content Id fetched from url');
     }
-    handleCustomEvent(event)
-    {
-        this.contentId = event.detail;
-        var ids = this.contentId.split(" ");
-             console.log(ids);
-            this.contentDocumentId = ids[1]; 
-            this.contentVersionId = ids[0];
-        console.log(event.detail,'maincomp');
-        this.fileUploaded = true;
+    // handleCustomEvent(event)
+    // {
+    //     this.contentId = event.detail;
+    //     var ids = this.contentId.split(" ");
+    //          console.log(ids);
+    //         this.contentDocumentId = ids[1]; 
+    //         this.contentVersionId = ids[0];
+    //     console.log(event.detail,'maincomp');
+    //     this.fileUploaded = true;
 
-    }
+    // }
     handleExtract(e){
         //e.preventDefault();
         this.spinner = true;

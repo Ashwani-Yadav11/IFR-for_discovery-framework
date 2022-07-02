@@ -25,7 +25,7 @@ export default class QuestionFieldViewer extends LightningElement {
     strResponseValues='';
     @api saveAll;
     @api resetAll;
-    @api questionId;
+    @api questionId='';
     @track questionCreated = false;
     // Change Handlers.
     questionTextChangeHandler(event){
@@ -214,7 +214,9 @@ export default class QuestionFieldViewer extends LightningElement {
     handleContentDocumentId()
     {
         
-        const selectEvent = new CustomEvent('customevent',{detail:this.strName});
+        const selectEvent = new CustomEvent('customevent',{detail:{
+            id:this.questionId,
+            name:this.strName}});
         this.dispatchEvent(selectEvent);
         console.log(selectEvent,'Event Disptched');
 
