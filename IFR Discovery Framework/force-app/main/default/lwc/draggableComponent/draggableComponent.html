@@ -1,20 +1,22 @@
 <template>
-	<lightning-card title="Digitized Text" style=title_style>
-		<select class="bolder_style" name = "optionSelect" onchange={sortOrder} >
-			<option value="Sort a-z">Sort a-z</option>
-			<option value="Sort z-a">Sort z-a</option>
-		</select>
-	<nav>
-		<ul>
-			<template for:each={listOfTexts} for:item="textItem" >
-				<li key={textItem.id}>
-					<lightning-input type="checkbox" data-textitem={textItem.text} label={textItem.text} onclick={createTemplate2}
-						draggable="true" ondragstart={handleDragStart2} class="bolder_style"> </lightning-input>
-				</li>
-			</template>
+	<lightning-card title="Digitize Texts" style=title_style>
+		<lightning-button-stateful slot="actions" icon-name-when-off="utility:arrowdown" icon-name-when-on="utility:arrowup"
+			selected={isSelected} onclick={sortOrder}>
+		</lightning-button-stateful>
 
 
-		</ul>
-	</nav>
-</lightning-card>
+		<nav>
+			<ul>
+				<template for:each={listOfTexts} for:item="textItem">
+					<li key={textItem.id}>
+						<lightning-input type="checkbox" data-textitem={textItem.text} label={textItem.text}
+							onclick={createTemplate2} draggable="true" ondragstart={handleDragStart2} class="bolder_style">
+						</lightning-input>
+					</li>
+				</template>
+
+
+			</ul>
+		</nav>
+	</lightning-card>
 </template>
