@@ -1,14 +1,13 @@
 <template>
-  <div class="container">
+  <lightning-card>
     <div class="slds-p-horizontal_small">
-      <!-- <template if:false={questionCreated}> -->
+      <template if:false={questionCreated}>
         <div class="assessment-question">
           <lightning-record-edit-form
-            
             object-api-name={assessmentQuestion}
             onload={makeid}
           >
-          <!-- record-id={assessmentQuestionRecordId} -->
+            <!-- record-id={assessmentQuestionRecordId} -->
             <lightning-layout multiple-rows>
               <lightning-layout-item size="12">
                 <lightning-messages></lightning-messages>
@@ -83,15 +82,14 @@
         </div>
         <div class="assessment-question-version">
           <lightning-record-edit-form
-          
             object-api-name={assessmentQuestionVersion}
           >
-          <!-- record-id={assessmentQuestionVersionId} -->
+            <!-- record-id={assessmentQuestionVersionId} -->
             <lightning-layout multiple-rows>
               <lightning-layout-item size="12">
                 <lightning-messages></lightning-messages>
               </lightning-layout-item>
-    
+
               <lightning-layout-item size="12">
                 <!-- <lightning-input-field field-name="Code__c"></lightning-input-field> -->
                 <div class="slds-grid">
@@ -119,7 +117,7 @@
                     ></lightning-input-field>
                   </div>
                 </div>
-    
+
                 <div class="slds-grid">
                   <div class="slds-col">
                     <div class="slds-col">
@@ -163,9 +161,11 @@
                             </div>
                             
                         </div> -->
-                        
               </lightning-layout-item>
-              <lightning-layout-item size="12" class="slds-align_absolute-center">
+              <lightning-layout-item
+                size="12"
+                class="slds-align_absolute-center"
+              >
                 <lightning-button
                   label="Cancel"
                   class="slds-m-right_small"
@@ -177,13 +177,122 @@
                   label="Save"
                   class="questionFieldSubmit"
                 ></lightning-button>
-              
               </lightning-layout-item>
             </lightning-layout>
           </lightning-record-edit-form>
         </div>
-      <!-- </template> -->
-     
+      </template>
+      <template if:true={questionCreated}>
+        <div class="assessment-question">
+          <lightning-record-view-form
+            record-id={assessmentQuestionRecordId}
+            object-api-name={assessmentQuestion}
+            onload={makeid}
+          >
+            <!-- record-id={assessmentQuestionRecordId} -->
+            <lightning-layout multiple-rows>
+              <lightning-layout-item size="12">
+                <lightning-messages></lightning-messages>
+              </lightning-layout-item>
+              <lightning-layout-item size="12">
+                <div class="slds-grid">
+                  <div class="slds-col slds-size_1-of-2">
+                    <lightning-messages></lightning-messages>
+                    <lightning-output-field
+                      field-name="Name"
+                    ></lightning-output-field>
+                  </div>
+                  <div class="slds-col slds-size_1-of-2">
+                    <!-- <c-text-list-viewer></c-text-list-viewer> -->
+                    <lightning-messages></lightning-messages>
+                    <lightning-output-field
+                      field-name="DeveloperName"
+                    ></lightning-output-field>
+                  </div>
+                </div>
+                <div class="slds-grid">
+                  <div class="slds-col slds-size_1-of-2">
+                    <lightning-messages></lightning-messages>
+                    <lightning-output-field
+                      field-name="QuestionCategory"
+                    ></lightning-output-field>
+                  </div>
+                  <div class="slds-col slds-size_1-of-2">
+                    <!-- <c-text-list-viewer></c-text-list-viewer> -->
+                    <lightning-messages></lightning-messages>
+                    <lightning-output-field
+                      field-name="DataType"
+                    ></lightning-output-field>
+                  </div>
+                </div>
+                <div class="slds-grid">
+                  <div class="slds-col slds-size_1-of-2">
+                    <lightning-messages></lightning-messages>
+                    <lightning-output-field
+                      field-name="RelatedQuestionId"
+                    ></lightning-output-field>
+                  </div>
+                  <div class="slds-col slds-size_1-of-2">
+                    <!-- <c-text-list-viewer></c-text-list-viewer> -->
+                    <lightning-messages></lightning-messages>
+                    <lightning-output-field
+                      field-name="FormulaResponseDataType"
+                    ></lightning-output-field>
+                  </div>
+                </div>
+              </lightning-layout-item>
+            </lightning-layout>
+          </lightning-record-view-form>
+        </div>
+        <div class="assessment-question-version">
+          <lightning-record-view-form
+            record-id={assessmentQuestionVersionId}
+            object-api-name={assessmentQuestionVersion}
+          >
+            <!--  -->
+            <lightning-layout multiple-rows>
+              <lightning-layout-item size="12">
+                <lightning-messages></lightning-messages>
+              </lightning-layout-item>
+
+              <lightning-layout-item size="12">
+                <!-- <lightning-output-field field-name="Code__c"></lightning-output-field> -->
+                <div class="slds-grid">
+                  <div class="slds-col slds-size_1-of-2">
+                    <lightning-messages></lightning-messages>
+                    <lightning-output-field
+                      field-name="QuestionText"
+                    ></lightning-output-field>
+                  </div>
+                  <div class="slds-col slds-size_1-of-2">
+                    <!-- <c-text-list-viewer></c-text-list-viewer> -->
+                    <lightning-messages></lightning-messages>
+                    <lightning-output-field
+                      field-name="Description"
+                    ></lightning-output-field>
+                  </div>
+                </div>
+
+                <div class="slds-grid">
+                  <div class="slds-col slds-size_1-of-2">
+                    <lightning-messages></lightning-messages>
+                    <lightning-output-field
+                      field-name="IsActive"
+                    ></lightning-output-field>
+                  </div>
+                  <div class="slds-col slds-size_1-of-2">
+                    <!-- <c-text-list-viewer></c-text-list-viewer> -->
+                    <lightning-messages></lightning-messages>
+                    <lightning-output-field
+                      field-name="ResponseValues"
+                    ></lightning-output-field>
+                  </div>
+                </div>
+              </lightning-layout-item>
+            </lightning-layout>
+          </lightning-record-view-form>
+        </div>
+      </template>
     </div>
-  </div>
+  </lightning-card>
 </template>
