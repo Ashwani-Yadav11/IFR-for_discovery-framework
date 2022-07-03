@@ -11,7 +11,7 @@
 				<template for:each={listOfTexts} for:item="textItem">
 					<li key={textItem.id}>
 						<hr class="solid">
-						<div draggable="true" ondragstart={handleDragStart2} class="bolder_style">
+						<div draggable="true" ondragstart={handleDragStart2} data-textitem={textItem.text} class="bolder_style">
 							<p>{textItem.text}</p>
 						</div>
 					</li>
