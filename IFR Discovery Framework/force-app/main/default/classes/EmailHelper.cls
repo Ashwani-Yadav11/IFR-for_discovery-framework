@@ -8,7 +8,7 @@ public class EmailHelper {
         String jobStatus = (String) jobInfo.Status;
         if(jobStatus=='Completed')
         {
-            message.htmlbody  = 'Document processing has been completed. Click the url to head back to question creation.\n '+'( '+ Url.getCurrentRequestUrl().toExternalForm()+'/lightning/n/IFRDemo?c__contentDocumentId='+contentDocumentId+' )';
+            message.htmlbody  = 'Document processing has been completed. Click the url to head back to question creation.\n '+'( '+ Url.getCurrentRequestUrl().toExternalForm()+'/lightning/page/home?c__contentDocumentId='+contentDocumentId+' )';
         }
         Messaging.SingleEmailMessage[] messages =   new List<Messaging.SingleEmailMessage> {message};
             Messaging.SendEmailResult[] results = Messaging.sendEmail(messages);
