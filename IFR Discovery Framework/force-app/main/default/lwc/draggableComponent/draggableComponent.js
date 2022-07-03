@@ -46,6 +46,11 @@ export default class Draggercomponent extends LightningElement {
             
 
         }
+        let packet = {
+            text:'Gender',
+            id:this.listOfTexts.length+1,
+        };
+        this.listOfTexts.push(packet);
         //console.info(this.listOfTexts);
         //'ListOftexts');
          }
