@@ -5,10 +5,10 @@ import {CurrentPageReference} from 'lightning/navigation';
 import returnExtractedTexts from '@salesforce/apex/GetExtractedData.returnExtractedTexts';
 
 export default class MainComponent extends LightningElement {
-    fileUploaded=false;
+    fileUploaded=true;
      contentId;
     @track spinner=false;
-    @track success=false;
+    @track success=true;
     @track error;
     @track contentDocumentId='';
     @track contentVersionId;

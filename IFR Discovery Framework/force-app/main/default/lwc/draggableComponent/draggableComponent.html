@@ -1,5 +1,6 @@
 <template>
-	<lightning-card title="Digitize Texts" style=title_style>
+	<lightning-card>
+		<h1 slot="title">Digitized Text</h1>
 		<lightning-button-stateful slot="actions" icon-name-when-off="utility:arrowdown" icon-name-when-on="utility:arrowup"
 			selected={isSelected} onclick={sortOrder}>
 		</lightning-button-stateful>
@@ -9,13 +10,12 @@
 			<ul>
 				<template for:each={listOfTexts} for:item="textItem">
 					<li key={textItem.id}>
-						<lightning-input type="checkbox" data-textitem={textItem.text} label={textItem.text}
-							onclick={createTemplate2} draggable="true" ondragstart={handleDragStart2} class="bolder_style">
-						</lightning-input>
+						<hr class="solid">
+						<div draggable="true" ondragstart={handleDragStart2} class="bolder_style">
+							<p>{textItem.text}</p>
+						</div>
 					</li>
 				</template>
-
-
 			</ul>
 		</nav>
 	</lightning-card>
