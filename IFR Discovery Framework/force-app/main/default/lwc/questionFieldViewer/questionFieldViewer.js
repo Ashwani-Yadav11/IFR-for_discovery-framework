@@ -1,5 +1,5 @@
 import { LightningElement,api, track } from 'lwc';
-import { createRecord } from 'lightning/uiRecordApi';
+import { createRecord, updateRecord } from 'lightning/uiRecordApi';
 //import EmailPreferencesStayInTouchReminder from '@salesforce/schema/User.EmailPreferencesStayInTouchReminder';
 import ASSESSMENT_QUESTION from "@salesforce/schema/AssessmentQuestion";
 import ASSESSMENT_QUESTION_VERSION from "@salesforce/schema/AssessmentQuestionVersion";
@@ -25,6 +25,8 @@ export default class QuestionFieldViewer extends LightningElement {
     strResponseValues='';
     @api saveAll;
     @api resetAll;
+    @api questionId='';
+    @track questionCreated = false;
     // Change Handlers.
     questionTextChangeHandler(event){
         if(this.strName==''&&this.strQuestionText=='')
@@ -44,7 +46,8 @@ export default class QuestionFieldViewer extends LightningElement {
     nameChangedHandler(event){
 
         this.strName = event.target.value;
-        console.log(this.strName);
+       // console.log(this.strName);
+        //const name = event.target.value;
     }
     devNameChangedHandler(event){
         this.strDevName = event.target.value;
@@ -181,6 +184,9 @@ export default class QuestionFieldViewer extends LightningElement {
                         });
                         this.dispatchEvent(successEvent);
                         this.assessmentQuestionVersionId=assessmentQuestionVersionRecord.id;
+                        this.questionCreated = true;
+                       this.handleContentDocumentId();
+                        // this.resetForm();
                         // if (!wasSaveAndNewButtonClicked && this.shouldNavigateToNewlyCreatedQuestion) {
                         //     this[NavigationMixin.Navigate]({
                         //         type: 'standard__recordPage',
@@ -205,6 +211,86 @@ export default class QuestionFieldViewer extends LightningElement {
             this.displayError(error, 'Assessment Question error');
         });
     }
+    handleContentDocumentId()
+    {
+        
+        const selectEvent = new CustomEvent('customevent',{detail:{
+            id:this.questionId,
+            name:this.strName}});
+        this.dispatchEvent(selectEvent);
+        console.log(selectEvent,'Event Disptched');
+
+    }
+
+    // updateForm(){
+    //     if(this.strIsActive==true)
+    //     {
+            
+    //      const temp = {
+    //         "IsActive":false,
+    //         "Id":this.assessmentQuestionVersionId
+    //     };
+    //     // temp[ASSESSMENT_QUESTION_VERSION_ID_FIELD.fieldApiName] = this.assessmentQuestionVersionId;
+    //     const assessmentQuestionVersionUpdateInput = { fields: temp };
+    //     updateRecord(assessmentQuestionVersionUpdateInput).then((assessmentQuestionVersionRecord)=>{
+    //         const successEvent = new ShowToastEvent({
+    //             'variant': 'success',
+    //             'title': 'Success!',
+    //             'message': 'Assessment Version Save Success',
+    //         });
+    //         console.log(assessmentQuestionVersionRecord);
+    //         this.dispatchEvent(successEvent);
+    //     }).catch(error=>{
+    //         console.log(error);
+    //                 this.displayError(error, 'Assessment Question Versions Update error');
+    //     });
+    //     }
+    //     const qvfields = {
+    //         "QuestionText":this.strQuestionText,
+    //         "Description":this.strDescription,
+    //         "IsActive":this.strIsActive,
+    //         "ResponseValues":this.strResponseValues
+    //     };
+    //     console.log(qvfields);
+    //      // Assessment Question Version entity has foreign key to AssessmentQuestionId
+    //      qvfields[ASSESSMENT_QUESTION_ID_FIELD.fieldApiName] =  this.assessmentQuestionRecordId;
+        
+    //      // Set the name to same as AssessmentQuestion entity's Name field
+    //      qvfields[ASSESSMENT_QUESTION_VERSION_NAME_FIELD.fieldApiName] = this.strName;
+         
+    //     const assessmentQuestionVersionInput = { apiName: ASSESSMENT_QUESTION_VERSION.objectApiName, fields: qvfields };
+        
+    //     createRecord(assessmentQuestionVersionInput)
+    //             .then((assessmentQuestionVersionRecord) => {
+    //                 const successEvent = new ShowToastEvent({
+    //                     'variant': 'success',
+    //                     'title': 'Success!',
+    //                     'message': 'Assessment Version Save Success',
+    //                 });
+    //                 this.dispatchEvent(successEvent);
+    //                 this.assessmentQuestionVersionId=assessmentQuestionVersionRecord.id;
+    //                 // if (!wasSaveAndNewButtonClicked && this.shouldNavigateToNewlyCreatedQuestion) {
+    //                 //     this[NavigationMixin.Navigate]({
+    //                 //         type: 'standard__recordPage',
+    //                 //         attributes: {
+    //                 //             recordId: assessmentQuestionRecord.id,
+    //                 //             objectApiName: 'AssessmentQuestion',
+    //                 //             actionName: 'view'
+    //                 //         }
+    //                 //     });
+    //                 // }
+    //             }).catch(error => {
+    //                 console.log(error);
+    //                 this.displayError(error, 'Assessment Question Versions error');
+    //             }).finally(() => {
+    //                 const closeFormEvent = new CustomEvent('close_form', {});
+    //                 this.dispatchEvent(closeFormEvent);
+    //                 // if (wasSaveAndNewButtonClicked) {
+    //                 //     const reOpenModalEvent = new CustomEvent('saveAndNew', {});
+    //                 //     this.dispatchEvent(reOpenModalEvent);
+    //                 // }
+    //             });
+    // }   
     dropElelment2(event)
     {
         this.strName = event.dataTransfer.getData("account_id");
@@ -217,7 +303,7 @@ export default class QuestionFieldViewer extends LightningElement {
         this.questionText = event.target.value;
         console.log(this.questionText);
     }
-    resetForm(event) {
+    resetForm() {
         const fields = this.template.querySelectorAll("lightning-input-field");
         fields.forEach((field) => {
           field.reset();
