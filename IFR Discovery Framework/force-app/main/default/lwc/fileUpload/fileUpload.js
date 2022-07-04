@@ -49,18 +49,27 @@ export default class FileUpload extends LightningElement {
         this.contentDocumentId = ids[1];
 
         this.uploaded = true;
-        let title = `${filename} is uploaded and queued for extraction, please continue with your other work completion of same will be notified via mail !! `;
-        this.toast(title);
+        let title = "File was uploaded. We’ll notify you via email after extracting the text.";
+        this.toastSuccess(title);
       })
       .catch((e) => {
+        let title = "Something went wrong. We couldn’t upload the file. Try again after sometime.";
+        this.toastFailure(title);
         console.log(e);
       });
   }
 
-  toast(title) {
+  toastSuccess(title) {
     const toastEvent = new ShowToastEvent({
       title,
       variant: "success"
+    });
+    this.dispatchEvent(toastEvent);
+  }
+  toastFailure(title) {
+    const toastEvent = new ShowToastEvent({
+      title,
+      variant: "error"
     });
     this.dispatchEvent(toastEvent);
   }
