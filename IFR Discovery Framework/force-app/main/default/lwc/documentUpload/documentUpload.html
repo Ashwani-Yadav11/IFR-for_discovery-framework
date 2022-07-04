@@ -1,151 +1,160 @@
 <!-- sldsValidatorIgnore -->
 <template>
-    <div class="upload-panel slds-align_absolute-center">
-      <div class="slds-var-m-around_medium upload-section">
-        <img src={backgroundImage} class="background-image" />
-        <div class="upload-content">
-          <div class="upload-content-heading">
-            <h2>Upload a document</h2>
-          </div>
-          <div class="upload-contet-text">
-            <p>Drop .pdf files here or use the Upload Files button to upload PDF documents.</p>
-          </div>
-          <div>
-            <lightning-input
-              type="file"
-              accept=" .pdf"
-              label=""
-              onchange={preProcessUploadedDocument}
-            ></lightning-input>
-          </div>
+  <div class="upload-panel slds-align_absolute-center">
+    <!-- START - Upload Document -->
+    <div class="slds-var-m-around_medium upload-section">
+      <img src={backgroundImage} class="background-image" />
+      <div class="upload-content">
+        <div class="upload-content-heading">
+          <h2>Upload a document</h2>
+        </div>
+        <div class="upload-contet-text">
+          <p>
+            Drop .pdf files here or use the Upload Files button to upload PDF
+            documents.
+          </p>
+        </div>
+        <div>
+          <lightning-input
+            type="file"
+            accept=" .pdf"
+            label=""
+            onchange={preprocessUploadedDocument}
+          ></lightning-input>
         </div>
       </div>
-     
-      <template if:true={openModal}>
-        <section
-          role="dialog"
-          tabindex="-1"
-          aria-labelledby="modal-heading-01"
-          aria-modal="true"
-          aria-describedby="modal-content-id-1"
-          class="slds-modal slds-fade-in-open"
-        >
-          <div class="slds-modal__container">
-           
-            <header class="slds-modal__header">
-              <button
-                class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
-                title="Close"
-                onclick={closeModal}
-              >
-                <lightning-icon
-                  icon-name="utility:close"
-                  alternative-text="close"
-                  variant="inverse"
-                  size="small"
-                ></lightning-icon>
-                <span class="slds-assistive-text">Close</span>
-              </button>
-              <h2
-                id="modal-heading-01"
-                class="slds-text-heading_medium slds-hyphenate"
-              >
-                Upload File
-              </h2>
-            </header>
-            
-            <div
-              class="slds-modal__content slds-p-around_medium"
-              id="modal-content-id-1"
+    </div>
+    <!-- END - Upload Document -->
+
+    <!-- START - Modal Pane -->
+    <template if:true={openModal}>
+      <section
+        role="dialog"
+        tabindex="-1"
+        aria-labelledby="modal-heading-01"
+        aria-modal="true"
+        aria-describedby="modal-content-id-1"
+        class="slds-modal slds-fade-in-open"
+      >
+        <div class="slds-modal__container">
+          <!-- START - Modal Pane header -->
+          <header class="slds-modal__header">
+            <button
+              class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+              title="Close"
+              onclick={closeModal}
             >
-              <div class="modal-content">
-                <div
-                  class="slds-grid slds-grid--vertical-align-center slds-p-around--small"
-                >
-                  <div class="slds-size_6-of-12">
-                    <div class="slds-media slds-media_center">
-                      <div class="slds-media__figure">
-                        <lightning-icon
-                          icon-name="doctype:pdf"
-                          alternative-text="pdfIcon"
-                          size="medium"
-                        ></lightning-icon>
-                      </div>
-                      <div class="slds-media__body">
-                        <div class="modal-content-filename">
-                          <p>{fileData.filename}</p>
-                        </div>
+              <lightning-icon
+                icon-name="utility:close"
+                alternative-text="close"
+                variant="inverse"
+                size="small"
+              ></lightning-icon>
+              <span class="slds-assistive-text">Close</span>
+            </button>
+            <h2
+              id="modal-heading-01"
+              class="slds-text-heading_medium slds-hyphenate"
+            >
+              Upload File
+            </h2>
+          </header>
+          <!-- END - Modal Pane Header -->
+
+          <!-- START - Modal Pane Content -->
+          <div
+            class="slds-modal__content slds-p-around_medium"
+            id="modal-content-id-1"
+          >
+            <div class="modal-content">
+              <div
+                class="slds-grid slds-grid--vertical-align-center slds-p-around--small"
+              >
+                <div class="slds-size_6-of-12">
+                  <div class="slds-media slds-media_center">
+                    <div class="slds-media__figure">
+                      <lightning-icon
+                        icon-name="doctype:pdf"
+                        alternative-text="pdfIcon"
+                        size="medium"
+                      ></lightning-icon>
+                    </div>
+                    <div class="slds-media__body">
+                      <div class="modal-content-filename">
+                        <p>{documentData.documentName}</p>
                       </div>
                     </div>
                   </div>
-                  <div class="slds-col--padded slds-size_5-of-12">
-                    <lightning-progress-bar
-                      value="100"
+                </div>
+                <div class="slds-col--padded slds-size_5-of-12">
+                  <lightning-progress-bar
+                    value="100"
+                    size="small"
+                  ></lightning-progress-bar>
+                </div>
+                <div class="slds-size_1-of-12 slds-text-align--center">
+                  <template if:false={documentUploaded}>
+                    <lightning-icon
+                      icon-name="utility:spinner"
+                      alternative-text="uploadingprogress"
                       size="small"
-                    ></lightning-progress-bar>
-                  </div>
-                  <div class="slds-size_1-of-12 slds-text-align--center">
-                    <template if:false={uploaded}>
-                      <lightning-icon
-                        icon-name="utility:spinner"
-                        alternative-text="uploadingprogress"
-                        size="small"
-                      ></lightning-icon>
-                    </template>
-                    <template if:true={uploaded}>
-                      <lightning-icon
-                        icon-name="utility:success"
-                        alternative-text="uploadedSuccess"
-                        size="small"
-                      ></lightning-icon>
-                    </template>
-                  </div>
+                    ></lightning-icon>
+                  </template>
+                  <template if:true={documentUploaded}>
+                    <lightning-icon
+                      icon-name="utility:success"
+                      alternative-text="documentUploadedSuccess"
+                      size="small"
+                    ></lightning-icon>
+                  </template>
                 </div>
               </div>
             </div>
-           
-            <template if:false={uploaded}>
-              <div class="modal-footer slds-modal__footer">
-                <span
-                  role="status"
-                  class="slds-text-body--small slds-float--left slds-p-top--x-small header"
-                  >0 out of 1 files uploaded</span
-                >
-                <span class="slds-p-left--x-small">
-                  <lightning-button
-                    variant="brand"
-                    label="Done"
-                    title="Done"
-                    onclick={closeModal}
-                    class="slds-m-left_small"
-                    disabled="true"
-                  ></lightning-button>
-                </span>
-              </div>
-            </template>
-            <template if:true={uploaded}>
-              <div class="modal-footer slds-modal__footer">
-                <span
-                  role="status"
-                  class="slds-text-body--small slds-float--left slds-p-top--x-small header"
-                  >1 out of 1 files uploaded</span
-                >
-                <span class="slds-p-left--x-small">
-                  <lightning-button
-                    variant="brand"
-                    label="OK"
-                    title="OK"
-                    onclick={closeModal}
-                    class="slds-m-left_small"
-                  ></lightning-button>
-                </span>
-              </div>
-            </template>
           </div>
-        </section>
-       
-       
-      </template>
-    </div>
-  </template>
-  
+          <!-- END - Modal Pane Content -->
+
+          <!-- START - Modal Pane Footer -->
+          <template if:false={documentUploaded}>
+            <div class="modal-footer slds-modal__footer">
+              <span
+                role="status"
+                class="slds-text-body--small slds-float--left slds-p-top--x-small header"
+                >0 out of 1 files uploaded</span
+              >
+              <span class="slds-p-left--x-small">
+                <lightning-button
+                  variant="brand"
+                  label="OK"
+                  title="OK"
+                  onclick={closeModal}
+                  class="slds-m-left_small"
+                  disabled="true"
+                ></lightning-button>
+              </span>
+            </div>
+          </template>
+          <template if:true={documentUploaded}>
+            <div class="modal-footer slds-modal__footer">
+              <span
+                role="status"
+                class="slds-text-body--small slds-float--left slds-p-top--x-small header"
+                >1 out of 1 files uploaded</span
+              >
+              <span class="slds-p-left--x-small">
+                <lightning-button
+                  variant="brand"
+                  label="OK"
+                  title="OK"
+                  onclick={closeModal}
+                  class="slds-m-left_small"
+                ></lightning-button>
+              </span>
+            </div>
+          </template>
+          <!-- End - Modal Pane Footer -->
+        </div>
+      </section>
+    </template>
+    <!-- END - Modal Pane -->
+  </div>
+</template>
