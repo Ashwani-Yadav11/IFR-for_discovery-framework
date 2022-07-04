@@ -49,13 +49,26 @@ export default class FileUpload extends LightningElement {
         this.contentDocumentId = ids[1];
 
         this.uploaded = true;
-        let title = "File was uploaded. We’ll notify you via email after extracting the text.";
-        this.toastSuccess(title);
+        let message =
+          "File was uploaded. We’ll notify you via email after extracting the text.";
+
+        const toastEvent = new ShowToastEvent({
+          title: "Sucess!",
+          variant: "success",
+          message: message
+        });
+        this.dispatchEvent(toastEvent);
       })
       .catch((e) => {
-        let title = "Something went wrong. We couldn’t upload the file. Try again after sometime.";
-        this.toastFailure(title);
-        console.log(e);
+        let message =
+          "Something went wrong. We couldn’t upload the file. Try again after sometime.";
+
+        const toastEvent = new ShowToastEvent({
+          title: "Error!",
+          variant: "error",
+          message: message
+        });
+        this.dispatchEvent(toastEvent);
       });
   }
 
@@ -74,7 +87,6 @@ export default class FileUpload extends LightningElement {
     this.dispatchEvent(toastEvent);
   }
   closeModal(event) {
-    event.preventDefault();
     this.openModal = false;
     this.fileData = null;
     eval("$A.get('e.force:refreshView').fire();");
