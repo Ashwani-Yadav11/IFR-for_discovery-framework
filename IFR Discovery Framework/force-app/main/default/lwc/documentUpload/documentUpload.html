@@ -1,6 +1,7 @@
 <!-- sldsValidatorIgnore -->
 <template>
   <div class="upload-panel slds-align_absolute-center">
+    <!-- START - Upload Document -->
     <div class="slds-var-m-around_medium upload-section">
       <img src={backgroundImage} class="background-image" />
       <div class="upload-content">
@@ -23,7 +24,9 @@
         </div>
       </div>
     </div>
+    <!-- END - Upload Document -->
 
+    <!-- START - Modal Pane -->
     <template if:true={openModal}>
       <section
         role="dialog"
@@ -34,6 +37,7 @@
         class="slds-modal slds-fade-in-open"
       >
         <div class="slds-modal__container">
+          <!-- START - Modal Pane header -->
           <header class="slds-modal__header">
             <button
               class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
@@ -55,7 +59,9 @@
               Upload File
             </h2>
           </header>
+          <!-- END - Modal Pane Header -->
 
+          <!-- START - Modal Pane Content -->
           <div
             class="slds-modal__content slds-p-around_medium"
             id="modal-content-id-1"
@@ -105,7 +111,9 @@
               </div>
             </div>
           </div>
+          <!-- END - Modal Pane Content -->
 
+          <!-- START - Modal Pane Footer -->
           <template if:false={documentUploaded}>
             <div class="modal-footer slds-modal__footer">
               <span
@@ -143,8 +151,10 @@
               </span>
             </div>
           </template>
+          <!-- End - Modal Pane Footer -->
         </div>
       </section>
     </template>
+    <!-- END - Modal Pane -->
   </div>
 </template>
