@@ -31,12 +31,16 @@ export default class Draggercomponent extends LightningElement {
             {
                 
                 let tex = keyValue[j].key.text;
+                let yCord = keyValue[j].key.polygon[0].yCoordinate;
+                let xCord = keyValue[j].key.polygon[0].xCoordinate;
                 if(uniqueText.includes(tex)){
                     continue;
                 }
                 let packet = {
                     text:tex,
                     id:this.listOfTexts.length+1,
+                    yCoordinate:yCord,
+                    xCoordinate:xCord,
                 };
                // console.log(packet);
                 uniqueText.push(tex);
@@ -49,6 +53,8 @@ export default class Draggercomponent extends LightningElement {
         let packet = {
             text:'Gender',
             id:this.listOfTexts.length+1,
+            yCoordinate: 0.20748403668403625,
+            xCoordinate: 0.15364843606948853,
         };
         this.listOfTexts.push(packet);
         //console.info(this.listOfTexts);

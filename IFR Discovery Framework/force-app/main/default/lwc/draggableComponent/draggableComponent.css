@@ -6,8 +6,14 @@
   height:40px;
   line-height: 20px;
   
-  
-  
+  }
+  .dragged_style{
+    font-family: 'Salesforce Sans';
+   font-style: normal;
+   background:  #F8F9FA;
+  margin-left: 20px;
+  height:40px;
+  line-height: 20px;
   }
   h1 {
   font-family: 'Salesforce Sans';
