@@ -2,7 +2,7 @@
 	<lightning-card>
 		<h1 slot="title">Extracted Text</h1>
 		<lightning-button-stateful slot="actions" icon-name-when-off="utility:arrowdown" icon-name-when-on="utility:arrowup" label-when-on="Sort Text" label-when-off="Sort Text"
-			 onclick={sortOrder}>
+			 onclick={sortOrder} selected={isSelected}>
 		</lightning-button-stateful>
 			<ul>
 				<template for:each={listOfTexts} for:item="textItem">
