@@ -5,10 +5,19 @@ import { LightningElement, track, wire } from "lwc";
 import { CurrentPageReference } from "lightning/navigation";
 
 export default class LandingComponent extends LightningElement {
+  // //------------------------------------------------------------------------------
+  // //======================= Variables for component ===========================
+  // //------------------------------------------------------------------------------
+
   @track emailSucessRedirection = false;
   @track contentDocumentId = "";
   currentPageReference = null;
   urlStateParameters = null;
+
+  // //------------------------------------------------------------------------------
+  // //======================= Methods for component =================================
+  // //------------------------------------------------------------------------------
+
   /**
    * @method getStateParameters : this is a wire method to get the url parameter
    * @param {CurrentPageRefernce} currentPageReference

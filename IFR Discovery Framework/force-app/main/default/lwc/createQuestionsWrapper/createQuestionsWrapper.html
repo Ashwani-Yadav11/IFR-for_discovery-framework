@@ -1,34 +1,32 @@
 <!-- sldsValidatorIgnore -->
 <template>
   <div>
-    <div class=" slds-modal__footer">
-        <span
-          role="status"
-          class="slds-float--left slds-p-top--x-small header"
-          >Questions</span
-        >
-        <span class="slds-p-left--x-small">
-            <lightning-button
-            label="New Question"
-            title="New Question"
-            class="slds-var-m-left_small"
-            onclick={addNewQuestion}
-          ></lightning-button>
-        </span>
-      </div>
-    
-   
+    <!-- START - Header -->
+    <div class="slds-modal__footer">
+      <span role="status" class="slds-float--left slds-p-top--x-small header"
+        >Questions</span
+      >
+      <span class="slds-p-left--x-small">
+        <lightning-button
+          label="New Question"
+          title="New Question"
+          class="slds-var-m-left_small"
+          onclick={addNewQuestion}
+        ></lightning-button>
+      </span>
+    </div>
+    <!-- END - Header -->
+
+    <!-- START - List of Question Field Editors -->
     <lightning-accordion
       allow-multiple-sections-open
       active-section-name={activeSections}
     >
       <template for:each={questions} for:item="question">
-        
         <lightning-accordion-section
           key={question.id}
           name={question.name}
           label={question.name}
-          
         >
           <c-question-field-editor
             question-id={question.id}
@@ -37,6 +35,6 @@
         </lightning-accordion-section>
       </template>
     </lightning-accordion>
-   
+    <!-- END - List of Question Field Editors -->
   </div>
 </template>

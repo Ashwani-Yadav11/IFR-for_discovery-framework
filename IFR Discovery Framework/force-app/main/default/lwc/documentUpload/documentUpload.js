@@ -1,3 +1,7 @@
+// //------------------------------------------------------------------------------
+// //======================= Imports =================================
+// //------------------------------------------------------------------------------
+
 import { LightningElement, track } from "lwc";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import fileUploadBackground from "@salesforce/resourceUrl/fileUploadBackground";

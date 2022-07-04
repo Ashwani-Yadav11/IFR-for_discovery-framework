@@ -1,35 +1,34 @@
 <template>
-   <div class="main-container slds-align_absolute-center">
-      <template if:false={success}>
+  <div class="document-upload slds-align_absolute-center">
+    <template if:false={success}>
       <c-file-upload oncustomevent={handleCustomEvent}></c-file-upload>
-      </template>
-   </div>
-         <!-- <template if:false={success}>
+    </template>
+  </div>
+  <!-- <template if:false={success}>
          <lightning-button variant="brand" label="Start Question Creation" title="Start Question Creation" onclick={handleExtract} class="slds-m-left_x-small"></lightning-button>
                </template>
          <template if:true={spinner}>
             <lightning-spinner if:true={spinner}>
             </lightning-spinner>
          </template> -->
-         <template if:true={success}>
-            
-         
-            <div class="slds-grid question-creation">
-               <div class="slds-size_2-of-6 slds-scrollable" style="height: 45rem" >
-                  <c-page-viewer content-document-id={contentDocumentId} content-version-id={contentVersionId} ></c-page-viewer>
-               </div>
-               <div class="slds-size_2-of-6 slds-scrollable">
-                  <!-- <c-text-list-viewer></c-text-list-viewer> -->
-                  <c-draggable-component content-document-id={contentDocumentId}></c-draggable-component>
-               </div>
-               <div class="slds-size_2-of-6 slds-scrollable">
-               <c-question-field-wrapper></c-question-field-wrapper>
-                  <!-- <c-question-field-viewer content-document-id={contentDocumentId}></c-question-field-viewer> -->
-               </div>
-            
-            </div>
-         
-      </template>
-  
-   
+  <template if:true={success}>
+    <div class="slds-grid question-creation">
+      <div class="slds-size_2-of-6 slds-scrollable" style="height: 45rem">
+        <c-page-viewer
+          content-document-id={contentDocumentId}
+          content-version-id={contentVersionId}
+        ></c-page-viewer>
+      </div>
+      <div class="slds-size_2-of-6 slds-scrollable">
+        <!-- <c-text-list-viewer></c-text-list-viewer> -->
+        <c-draggable-component
+          content-document-id={contentDocumentId}
+        ></c-draggable-component>
+      </div>
+      <div class="slds-size_2-of-6 slds-scrollable">
+        <c-question-field-wrapper></c-question-field-wrapper>
+        <!-- <c-question-field-viewer content-document-id={contentDocumentId}></c-question-field-viewer> -->
+      </div>
+    </div>
+  </template>
 </template>

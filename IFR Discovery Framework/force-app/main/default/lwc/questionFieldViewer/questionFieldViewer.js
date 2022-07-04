@@ -80,7 +80,7 @@ export default class QuestionFieldViewer extends LightningElement {
         if(this.strDescription=='')
         this.strDescription = event.dataTransfer.getData("account_id");
         else
-        this.strDescription = this.strDescription+event.dataTransfer.getData("account_id");
+        this.strDescription = this.strDescription+" "+event.dataTransfer.getData("account_id");
     }
     responseValuesDropHandler(event){
         if(this.strResponseValues=='')

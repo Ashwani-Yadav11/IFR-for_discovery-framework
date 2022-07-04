@@ -1,12 +1,15 @@
 <template>
-  <div class="main-container slds-align_absolute-center">
-    <!-- Check if the file has been uploaded -->
-    <!-- File upload part -->
-    <template if:false={emailSucessRedirection}>
-      <c-document-upload ></c-document-upload>
-    </template>
-  </div>
-  <!-- Render the questionCreation components -->
+  <!-- Check if the document has been uploaded -->
+
+  <!-- START - DocumentUpload Component -->
+  <template if:false={emailSucessRedirection}>
+    <div class="slds-align_absolute-center document-upload">
+      <c-document-upload></c-document-upload>
+    </div>
+  </template>
+  <!-- END - DocumentUpload Component -->
+
+  <!-- START - Question creation components -->
   <template if:true={emailSucessRedirection}>
     <div class="slds-grid question-creation">
       <div class="slds-size_2-of-6 slds-scrollable" style="height: 45rem">
@@ -25,4 +28,5 @@
       </div>
     </div>
   </template>
+  <!-- END - Question creation components -->
 </template>

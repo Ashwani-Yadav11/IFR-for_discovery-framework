@@ -1,13 +1,12 @@
 <template>
   <lightning-card>
     <div class="slds-p-horizontal_small">
+      <!-- START - Question Field Editor Form Section -->
       <template if:false={questionCreated}>
+        <!-- START - Assessement Question Fields Editor Form Section -->
+
         <div class="assessment-question">
-          <lightning-record-edit-form
-            object-api-name={assessmentQuestion}
-            
-          >
-            <!-- record-id={assessmentQuestionRecordId} -->
+          <lightning-record-edit-form object-api-name={assessmentQuestion}>
             <lightning-layout multiple-rows>
               <lightning-layout-item size="12">
                 <lightning-messages></lightning-messages>
@@ -25,7 +24,6 @@
                     ></lightning-input-field>
                   </div>
                   <div class="slds-col slds-size_1-of-2">
-                    <!-- <c-text-list-viewer></c-text-list-viewer> -->
                     <lightning-messages></lightning-messages>
                     <lightning-input-field
                       value={strDevName}
@@ -44,7 +42,6 @@
                     ></lightning-input-field>
                   </div>
                   <div class="slds-col slds-size_1-of-2">
-                    <!-- <c-text-list-viewer></c-text-list-viewer> -->
                     <lightning-messages></lightning-messages>
                     <lightning-input-field
                       value={strDataType}
@@ -63,7 +60,6 @@
                     ></lightning-input-field>
                   </div>
                   <div class="slds-col slds-size_1-of-2">
-                    <!-- <c-text-list-viewer></c-text-list-viewer> -->
                     <lightning-messages></lightning-messages>
                     <lightning-input-field
                       value={strFormulaResponseDataType}
@@ -76,18 +72,21 @@
             </lightning-layout>
           </lightning-record-edit-form>
         </div>
+
+        <!-- END - Assessement Question Fields Editor Form Section -->
+
+        <!-- START - Assessement Question Version Fields Editor Form Section -->
+
         <div class="assessment-question-version">
           <lightning-record-edit-form
             object-api-name={assessmentQuestionVersion}
           >
-            <!-- record-id={assessmentQuestionVersionId} -->
             <lightning-layout multiple-rows>
               <lightning-layout-item size="12">
                 <lightning-messages></lightning-messages>
               </lightning-layout-item>
 
               <lightning-layout-item size="12">
-                <!-- <lightning-input-field field-name="Code__c"></lightning-input-field> -->
                 <div class="slds-grid">
                   <div class="slds-col slds-size_1-of-2">
                     <lightning-messages></lightning-messages>
@@ -100,7 +99,6 @@
                     ></lightning-input-field>
                   </div>
                   <div class="slds-col slds-size_1-of-2">
-                    <!-- <c-text-list-viewer></c-text-list-viewer> -->
                     <lightning-messages></lightning-messages>
                     <lightning-input-field
                       value={strDescription}
@@ -122,7 +120,6 @@
                     ></lightning-input-field>
                   </div>
                   <div class="slds-col slds-size_1-of-2">
-                    <!-- <c-text-list-viewer></c-text-list-viewer> -->
                     <lightning-messages></lightning-messages>
                     <lightning-input-field
                       value={strResponseValues}
@@ -153,15 +150,18 @@
             </lightning-layout>
           </lightning-record-edit-form>
         </div>
+        <!-- END - Assessement Question Version Fields Editor Form Section -->
       </template>
+      <!-- END - Question Field Editor Form Section -->
+
+      <!-- START - Question Field Viewer Form Section -->
       <template if:true={questionCreated}>
+        <!-- START - Assessement Question Fields Viewer Form Section -->
         <div class="assessment-question">
           <lightning-record-view-form
             record-id={assessmentQuestionRecordId}
             object-api-name={assessmentQuestion}
-           
           >
-            <!-- record-id={assessmentQuestionRecordId} -->
             <lightning-layout multiple-rows>
               <lightning-layout-item size="12">
                 <lightning-messages></lightning-messages>
@@ -175,7 +175,6 @@
                     ></lightning-output-field>
                   </div>
                   <div class="slds-col slds-size_1-of-2">
-                    <!-- <c-text-list-viewer></c-text-list-viewer> -->
                     <lightning-messages></lightning-messages>
                     <lightning-output-field
                       field-name="DeveloperName"
@@ -190,7 +189,6 @@
                     ></lightning-output-field>
                   </div>
                   <div class="slds-col slds-size_1-of-2">
-                    <!-- <c-text-list-viewer></c-text-list-viewer> -->
                     <lightning-messages></lightning-messages>
                     <lightning-output-field
                       field-name="DataType"
@@ -205,7 +203,6 @@
                     ></lightning-output-field>
                   </div>
                   <div class="slds-col slds-size_1-of-2">
-                    <!-- <c-text-list-viewer></c-text-list-viewer> -->
                     <lightning-messages></lightning-messages>
                     <lightning-output-field
                       field-name="FormulaResponseDataType"
@@ -216,19 +213,20 @@
             </lightning-layout>
           </lightning-record-view-form>
         </div>
+        <!-- END - Assessement Question Fields Viewer Form Section -->
+
+        <!-- START - Assessement Question Version Fields Viewer Form Section -->
         <div class="assessment-question-version">
           <lightning-record-view-form
             record-id={assessmentQuestionVersionId}
             object-api-name={assessmentQuestionVersion}
           >
-            <!--  -->
             <lightning-layout multiple-rows>
               <lightning-layout-item size="12">
                 <lightning-messages></lightning-messages>
               </lightning-layout-item>
 
               <lightning-layout-item size="12">
-                <!-- <lightning-output-field field-name="Code__c"></lightning-output-field> -->
                 <div class="slds-grid">
                   <div class="slds-col slds-size_1-of-2">
                     <lightning-messages></lightning-messages>
@@ -237,7 +235,6 @@
                     ></lightning-output-field>
                   </div>
                   <div class="slds-col slds-size_1-of-2">
-                    <!-- <c-text-list-viewer></c-text-list-viewer> -->
                     <lightning-messages></lightning-messages>
                     <lightning-output-field
                       field-name="Description"
@@ -253,7 +250,6 @@
                     ></lightning-output-field>
                   </div>
                   <div class="slds-col slds-size_1-of-2">
-                    <!-- <c-text-list-viewer></c-text-list-viewer> -->
                     <lightning-messages></lightning-messages>
                     <lightning-output-field
                       field-name="ResponseValues"
@@ -264,7 +260,9 @@
             </lightning-layout>
           </lightning-record-view-form>
         </div>
+        <!-- END - Assessement Question Version Fields Viewer Form Section -->
       </template>
+      <!-- END - Question Field Viewer Form Section -->
     </div>
   </lightning-card>
 </template>
