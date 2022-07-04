@@ -30,7 +30,6 @@ export default class Draggercomponent extends LightningElement {
            
             for(let j=0;j<keyValue.length;j++)
             {
-                
                 let textExtracted = keyValue[j].key.text;
                 let yCord = keyValue[j].key.polygon[0].yCoordinate;
                 let xCord = keyValue[j].key.polygon[0].xCoordinate;
@@ -69,7 +68,8 @@ export default class Draggercomponent extends LightningElement {
               }
         };
 
-//this is an event listner which is fired at the start of an element drag.
+//this is an event listner which is fired at the start of an element drag, it sets the data text field to a tranfferable value
+//for cathcing purpose of the drop-zones
     handleDragStart(e){
         e.dataTransfer.setData("textValue",e.target.dataset.textitem);
         console.log(e.target.dataset.textitem+' dragged');
