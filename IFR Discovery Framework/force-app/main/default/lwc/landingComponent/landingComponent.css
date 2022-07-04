@@ -1,0 +1,13 @@
+.question-panel {
+  background: #f8f9fa;
+}
+.main-container {
+  background: #f8f9fa;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.question-creation {
+  background: #f8f9fa;
+  max-height: 45rem;
+}
