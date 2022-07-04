@@ -8,18 +8,17 @@ export default class PageViewer extends NavigationMixin(LightningElement)  {
     @api contentVersionId='';
     @api contentDocumentId='';
     @api heightInRem='';
-    contentDocumentId='069RM0000001hmjYAA';
     @api fileId='';
-    // @wire(getContentVersionId,{contentDocumentId:'$contentDocumentId'})
-    // versionId({data,error}){
-    //     this.contentVersionId=data;
-    // }
+    @wire(getContentVersionId,{contentDocumentId:'$contentDocumentId'})
+    versionId({data,error}){
+        this.contentVersionId=data;
+    }
     get pdfHeight() {
         return 'height: ' + this.heightInRem + 'rem';
     }
     recordPageUrl;
     get url() {
-        return '/sfc/servlet.shepherd/version/renditionDownload?rendition=JPGZ&versionId='+'068RM0000001lEnYAI';//this.contentVersionId;
+        return '/sfc/servlet.shepherd/version/renditionDownload?rendition=JPGZ&versionId='+this.contentVersionId;
     }
     @wire(filePreview,{contentDocumentId:'$contentDocumentId'})
     texts(data,error){
