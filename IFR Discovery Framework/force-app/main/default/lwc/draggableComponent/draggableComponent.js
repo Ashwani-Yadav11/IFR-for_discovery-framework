@@ -78,54 +78,31 @@ export default class Draggercomponent extends LightningElement {
     selectValue = '';
     isSelected = false;
     sortOrder(event) {
-      console.log('seleted');
-      this.isSelected = !this.isSelected;
-         
-        if (this.isSelected){
-            
-               this.listOfTexts.sort((text1, text2) => {
-                let compareText1=text1.text.toLowerCase();
-                let compareText2=text2.text.toLowerCase();
-              if (compareText1< compareText2) {
-                     return -1;
-                 }
-                if (compareText1> compareText2) {
-                     return 1;
-                 }
-                 return 0;
+        console.log('seleted');
+        this.isSelected = !this.isSelected;
+        
+           
+          if (this.isSelected){
+                
+                 this.listOfTexts.sort((text1, text2) => {
+                return text1.yCoordinate == text2.yCoordinate ? text1.xCoordinate - text2.xCoordinate : text1.yCoordinate - text2.yCoordinate;
                  });
-            }
-            if(!this.isSelected){
-                this.listOfTexts.sort((text1, text2) => {
-                 let compareText1=text1.text.toLowerCase();
-                 let compareText2=text2.text.toLowerCase();
-                 if (compareText1< compareText2) {
-                     return 1;
-                }
-                 if (compareText1> compareText2) {
-                     return -1;
-                }
-                 return 0;
-                 });
-            }
-         };
-    handleDragStart(e){
-        e.dataTransfer.setData("account_id",e.target.dataset.accountname);
-      console.log(e.target.dataset.accountname+' dragged');
-      
-    }
+              }
+              if(!this.isSelected){
+                  this.listOfTexts.sort((text1, text2) => {
+                return text1.xCoordinate == text2.xCoordinate ? -text2.yCoordinate+text1.yCoordinate : -(text2.xCoordinate - text1.xCoordinate);
+                   });
+              }
+           };
+  
     handleDragStart2(e)
     {
         e.dataTransfer.setData("account_id",e.target.dataset.textitem);
         console.log(e.target.dataset.textitem+' dragged');
     }
 
-    createTemplate(e){
-        
+
     
-        console.log('A question template with '+e.target.dataset.accountname+' as Question Text field will be created');
-     
-    }
     createTemplate2(e){
         console.log('A question template with '+e.target.dataset.textitem+' as Question Text field will be created');
 
